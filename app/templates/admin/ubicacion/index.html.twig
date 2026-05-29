@@ -1,0 +1,88 @@
+{% extends 'admin/crud_base.html.twig' %}
+
+{% block title %}{{ 'admin.ubicaciones.breadcrumb'|trans }} — {{ 'admin.title'|trans }}{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('css/admin_articulos.css') }}">
+{% endblock %}
+
+{% block breadcrumbs %}
+    <ul>
+        <li><a href="{{ path('app_admin') }}">{{ 'admin.master_data.home'|trans }}</a></li>
+        <li><a href="{{ path('admin_datos_maestros') }}">{{ 'admin.master_data.breadcrumb'|trans }}</a></li>
+        <li><a href="{{ path('admin_ubicacion_index') }}">{{ 'admin.ubicaciones.breadcrumb'|trans }}</a></li>
+        <li>{{ 'admin.ubicaciones.list'|trans }}</li>
+    </ul>
+{% endblock %}
+
+{% block crud_content %}
+<main class="fondo-pagina">
+    <div class="contenedor-principal">
+        <section class="tarjeta-maestra">
+
+            <header class="cabecera-tarjeta">
+                <h1>{{ 'admin.ubicaciones.title'|trans }}</h1>
+                <a href="{{ path('admin_ubicacion_nueva') }}" class="boton-nuevo">
+                    <span class="material-icons" aria-hidden="true">add</span>
+                    {{ 'admin.ubicaciones.new'|trans }}
+                </a>
+            </header>
+
+            {% if ubicaciones is empty %}
+                <p class="tarjeta-vacia">{{ 'admin.crud.no_results'|trans }}</p>
+            {% else %}
+                <div class="envoltorio-tabla">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>{{ 'admin.ubicaciones.col.aisle'|trans }}</th>
+                                <th>{{ 'admin.ubicaciones.col.shelf'|trans }}</th>
+                                <th>{{ 'admin.ubicaciones.col.level'|trans }}</th>
+                                <th>{{ 'logistica.inventario.articles'|trans|capitalize }}</th>
+                                <th class="texto-centrado">{{ 'comun.acciones'|trans }}</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for u in ubicaciones %}
+                                <tr>
+                                    <td class="texto-primario-negrita">{{ u.pasillo }}</td>
+                                    <td>{{ u.estanteria }}</td>
+                                    <td>{{ u.nivel }}</td>
+                                    <td>
+                                        <span class="contador-insignia">{{ u.articulos|length }}</span>
+                                    </td>
+                                    <td class="texto-centrado">
+                                        <div class="acciones-fila">
+                                            <a href="{{ path('admin_ubicacion_editar', {id: u.id}) }}"
+                                               class="boton-accion boton-accion--editar"
+                                               title="{{ 'comun.editar'|trans }}">
+                                                <span class="material-icons">edit</span>
+                                            </a>
+                                            <form method="post"
+                                                  action="{{ path('admin_ubicacion_eliminar', {id: u.id}) }}"
+                                                  onsubmit="return confirm('{{ 'admin.crud.confirm_delete'|trans|escape('js') }}')">
+                                                <input type="hidden" name="_token"
+                                                       value="{{ csrf_token('delete_ubicacion_' ~ u.id) }}">
+                                                <button type="submit"
+                                                        class="boton-accion boton-accion--eliminar"
+                                                        title="{{ 'comun.eliminar'|trans }}">
+                                                    <span class="material-icons">delete</span>
+                                                </button>
+                                            </form>
+                                        </div>
+                                    </td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+                <footer class="pie-tarjeta">
+                    <p>{{ 'admin.crud.total'|trans }}: <strong>{{ ubicaciones|length }}</strong></p>
+                </footer>
+            {% endif %}
+
+        </section>
+    </div>
+</main>
+{% endblock %}

@@ -1,0 +1,56 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ 'acceso.registro.titulo'|trans }}{% endblock %}
+
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('css/register.css') }}">
+{% endblock %}
+
+{% block body %}
+    {# h1 oculto visualmente pero accesible para lectores de pantalla #}
+    <h1>{{ 'acceso.registro.titulo'|trans }}</h1>
+
+    <main>
+        <div class="portada">
+            <figure>
+                <img src="{{ asset('images/logo-transparent.png') }}" alt="O Porto do Sabor">
+            </figure>
+        </div>
+
+        <section>
+            <header style="display:flex;justify-content:flex-end;width:100%;">
+                {% include 'components/_locale_switcher.html.twig' %}
+            </header>
+
+            <h2>{{ 'registro.intro'|trans }}</h2>
+            {% if isAdmin %}
+                <h3>{{ 'registro.empleado.titulo'|trans }}</h3>
+                <p class="sub">{{ 'registro.empleado.subtitulo'|trans }}</p>
+            {% else %}
+                <h3>{{ 'acceso.registro.titulo'|trans }}</h3>
+                <p class="sub">{{ 'registro.cliente.subtitulo'|trans }}</p>
+            {% endif %}
+
+            {{ form_start(form) }}
+                {% for field in form %}
+                    {% if not field.rendered and field.vars.name != '_token' %}
+                    <div class="form-row">
+                        {{ form_label(field) }}
+                        {{ form_widget(field) }}
+                        {{ form_errors(field) }}
+                    </div>
+                    {% endif %}
+                {% endfor %}
+                <button type="submit" class="btn">
+                    {% if isAdmin %}{{ 'registro.empleado.enviar'|trans }}{% else %}{{ 'acceso.registro.enviar'|trans }}{% endif %}
+                </button>
+            {{ form_end(form) }}
+
+            {% if isAdmin %}
+                <a href="{{ path('app_admin') }}" class="back">{{ 'registro.volver_panel'|trans }}</a>
+            {% else %}
+                <a href="{{ path('app_acceso') }}" class="back">{{ 'acceso.registro.tiene_cuenta'|trans }}</a>
+            {% endif %}
+        </section>
+    </main>
+{% endblock %}

@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="{{ app.request.locale|default('es') }}">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ 'factura.titulo'|trans }} #{{ pedido.id }} — {{ empresa.nombre }}</title>
+    <link rel="stylesheet" href="{{ asset('css/global.css') }}">
+    <style>
+        * { box-sizing: border-box; }
+        body {
+            font-family: var(--fuente-base);
+            color: var(--color-texto);
+            background: var(--color-blanco);
+            margin: 0;
+            padding: var(--espacio-xl);
+            max-width: 860px;
+            margin-inline: auto;
+        }
+
+        /* ── Cabecera ── */
+        .cabecera-factura { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: .75rem; }
+        .logo-factura { font-size: 1.6rem; font-weight: 900; color: var(--color-accion); line-height: 1.1; }
+        .sublogo-factura { font-size: var(--texto-xs); color: var(--color-texto-medio); margin-top: var(--espacio-xs); }
+        .meta-factura { text-align: right; font-size: var(--texto-sm); }
+        .meta-factura h1 { font-size: var(--texto-xl); color: var(--color-accion); margin: 0 0 .4rem; letter-spacing: .05em; }
+        .meta-factura p { margin: .15rem 0; color: var(--color-texto-medio); }
+        .insignia-pagado {
+            background: var(--color-exito-fondo);
+            color: var(--color-exito);
+            border-radius: var(--radio-total);
+            padding: .25rem .75rem;
+            font-size: var(--texto-xs);
+            font-weight: 700;
+            display: inline-block;
+            margin-top: .35rem;
+        }
+
+        /* ── Datos del cliente ── */
+        .cliente-factura { font-size: var(--texto-sm); line-height: 1.6; margin-bottom: var(--espacio-lg); }
+        .etiqueta-cliente-factura {
+            font-size: var(--texto-xs);
+            text-transform: uppercase;
+            letter-spacing: .08em;
+            color: var(--color-accion);
+            font-weight: 800;
+            margin-bottom: .4rem;
+        }
+        .cliente-factura strong { font-size: var(--texto-md); }
+        .direcciones-factura { display: flex; gap: var(--espacio-2xl); margin-top: .75rem; font-size: var(--texto-sm); }
+        .bloque-direccion-factura { flex: 1; }
+        .etiqueta-direccion-factura {
+            font-size: var(--texto-xs);
+            text-transform: uppercase;
+            letter-spacing: .08em;
+            color: var(--color-accion);
+            font-weight: 800;
+            margin-bottom: .3rem;
+        }
+
+        /* ── Separador ── */
+        .separador-factura { border: none; border-top: 2px solid var(--color-accion); margin: 0 0 1.75rem; }
+
+        /* ── Tabla de líneas ── */
+        table { width: 100%; border-collapse: collapse; margin-bottom: 1.75rem; }
+        th {
+            background: var(--color-accion);
+            color: var(--color-blanco);
+            padding: .6rem var(--espacio-md);
+            text-align: left;
+            font-size: var(--texto-xs);
+            text-transform: uppercase;
+            letter-spacing: .04em;
+        }
+        td { padding: .6rem var(--espacio-md); border-bottom: 1px solid var(--color-borde-suave); font-size: var(--texto-sm); }
+        td.numero, th.numero { text-align: right; }
+        tr:last-child td { border-bottom: none; }
+
+        /* ── Totales ── */
+        .totales-factura { display: flex; justify-content: flex-end; margin-bottom: var(--espacio-xl); }
+        .tabla-totales-factura { width: 300px; border: 1px solid var(--color-borde-suave); border-radius: var(--radio-lg); overflow: hidden; }
+        .tabla-totales-factura table { margin: 0; }
+        .tabla-totales-factura td { padding: .5rem var(--espacio-md); font-size: var(--texto-sm); border-bottom: 1px solid var(--color-borde-suave); }
+        .tabla-totales-factura tr:last-child td {
+            border-bottom: none;
+            background: var(--color-accion);
+            color: var(--color-blanco);
+            font-size: var(--texto-md);
+            font-weight: 700;
+        }
+
+        /* ── Aviso ── */
+        .aviso-factura {
+            background: var(--color-pagina);
+            border-left: 4px solid var(--color-accion);
+            padding: .75rem var(--espacio-md);
+            font-size: var(--texto-xs);
+            color: var(--color-texto-medio);
+            margin-top: var(--espacio-md);
+        }
+
+        /* ── Botón de impresión ── */
+        .boton-imprimir {
+            background: var(--color-accion);
+            color: var(--color-blanco);
+            border: none;
+            padding: .6rem 1.3rem;
+            border-radius: var(--radio-md);
+            cursor: pointer;
+            font-size: var(--texto-sm);
+            font-weight: 700;
+            margin-bottom: 1.75rem;
+            display: inline-flex;
+            align-items: center;
+            gap: .4rem;
+        }
+        @media print {
+            .boton-imprimir { display: none; }
+            body { padding: 1cm; }
+        }
+    </style>
+</head>
+<body>
+
+<button class="boton-imprimir" onclick="window.print()">🖨 {{ 'factura.boton_imprimir'|trans }}</button>
+
+{# ── Cabecera: logo izquierda, referencia factura derecha ── #}
+<header class="cabecera-factura">
+    <section>
+        <p class="logo-factura">{{ empresa.nombre }}</p>
+        <p class="sublogo-factura">{{ empresa.subtitulo }}</p>
+        <p class="sublogo-factura">CIF: {{ empresa.cif }}</p>
+        <p class="sublogo-factura">{{ empresa.calle }}, {{ empresa.cp }} {{ empresa.ciudad }}</p>
+        <p class="sublogo-factura">{{ empresa.telefono }} · {{ empresa.email }}</p>
+    </section>
+    <aside class="meta-factura">
+        <h1>{{ 'factura.titulo'|trans }}</h1>
+        <p>{{ 'factura.numero'|trans }} {{ '%05d'|format(pedido.id) }}</p>
+        <p>{{ 'factura.fecha_pedido'|trans }}: {{ pedido.creadoEn|date('d/m/Y') }}</p>
+        {% if pedido.enviadoEn %}
+        <p>{{ 'factura.fecha_envio'|trans }}: {{ pedido.enviadoEn|date('d/m/Y') }}</p>
+        {% endif %}
+        {% if pedido.estadoContable == 'PAGADO' %}
+        <span class="insignia-pagado">✓ {{ 'factura.pagada'|trans }}</span>
+        {% endif %}
+    </aside>
+</header>
+
+{# ── Datos del cliente ── #}
+<section class="cliente-factura">
+    <p class="etiqueta-cliente-factura">{{ 'factura.cliente'|trans }}</p>
+    {% if usuario %}
+    <strong>{{ usuario.nombre }} {{ usuario.apellidos }}</strong><br>
+    {% if usuario.telefono %}{{ usuario.telefono }}<br>{% endif %}
+    {% endif %}
+    {{ pedido.clienteEmail }}<br>
+    {{ 'pago.metodo'|trans }}:
+    {% if pedido.metodoPago == 'TARJETA' %}{{ 'pago.tarjeta.corto'|trans }}
+    {% elseif pedido.metodoPago == 'CONTRARREEMBOLSO' %}{{ 'pago.contrarreembolso'|trans }}
+    {% else %}{{ 'pago.transferencia.corto'|trans }}
+    {% endif %}
+
+    {% if pedido.direccionFacturacion or pedido.direccionEnvio %}
+    <section class="direcciones-factura">
+        {% if pedido.direccionFacturacion %}
+        <address class="bloque-direccion-factura">
+            <p class="etiqueta-direccion-factura">{{ 'factura.direccion_facturacion'|trans }}</p>
+            {{ pedido.direccionFacturacion.calle }}<br>
+            {{ pedido.direccionFacturacion.codigoPostal }} {{ pedido.direccionFacturacion.ciudad }}{% if pedido.direccionFacturacion.provincia %}, {{ pedido.direccionFacturacion.provincia }}{% endif %}<br>
+            {{ pedido.direccionFacturacion.pais }}
+        </address>
+        {% endif %}
+        {% if pedido.direccionEnvio and pedido.direccionEnvio != pedido.direccionFacturacion %}
+        <address class="bloque-direccion-factura">
+            <p class="etiqueta-direccion-factura">{{ 'factura.direccion_envio'|trans }}</p>
+            {{ pedido.direccionEnvio.calle }}<br>
+            {{ pedido.direccionEnvio.codigoPostal }} {{ pedido.direccionEnvio.ciudad }}{% if pedido.direccionEnvio.provincia %}, {{ pedido.direccionEnvio.provincia }}{% endif %}<br>
+            {{ pedido.direccionEnvio.pais }}
+        </address>
+        {% endif %}
+    </section>
+    {% endif %}
+</section>
+
+{# ── Separador ── #}
+<hr class="separador-factura">
+
+{# ── Líneas de producto ── #}
+<table>
+    <thead>
+        <tr>
+            <th>{{ 'factura.col.producto'|trans }}</th>
+            <th class="numero">{{ 'factura.col.cantidad'|trans }}</th>
+            <th class="numero">{{ 'factura.col.precio_unitario'|trans }}</th>
+            <th class="numero">{{ 'factura.col.iva'|trans }}</th>
+            <th class="numero">{{ 'factura.col.subtotal'|trans }}</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for linea in lineasFactura %}
+        <tr>
+            <td>{{ linea.titulo }}</td>
+            <td class="numero">{{ linea.cantidad }}</td>
+            <td class="numero">{{ linea.precioUnitarioSinIva|number_format(2, ',', '.') }} €</td>
+            <td class="numero">{{ linea.tipoIva|number_format(0) }} %</td>
+            <td class="numero">{{ linea.subtotal|number_format(2, ',', '.') }} €</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+{# ── Totales ── #}
+{% set totalBase  = 0 %}
+{% set totalCuota = 0 %}
+{% for grupo in desgloseTributario %}
+    {% set totalBase  = totalBase  + grupo.base %}
+    {% set totalCuota = totalCuota + grupo.cuota %}
+{% endfor %}
+
+<section class="totales-factura">
+    <article class="tabla-totales-factura">
+        <table>
+            <tr>
+                <td>{{ 'factura.total.subtotal'|trans }}</td>
+                <td class="numero">{{ totalBase|number_format(2, ',', '.') }} €</td>
+            </tr>
+            <tr>
+                <td>{{ 'factura.total.iva'|trans }}</td>
+                <td class="numero">{{ totalCuota|number_format(2, ',', '.') }} €</td>
+            </tr>
+            <tr>
+                <td>{{ 'factura.total.gran_total'|trans }}</td>
+                <td class="numero">{{ pedido.total|number_format(2, ',', '.') }} €</td>
+            </tr>
+        </table>
+    </article>
+</section>
+
+<aside class="aviso-factura">
+    {{ 'factura.pie'|trans }}
+</aside>
+
+</body>
+</html>

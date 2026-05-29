@@ -1,0 +1,21 @@
+{# Selector de idioma desplegable — incluir en cualquier nav. #}
+{% set _active = app.request.locale %}
+<div class="locale-switcher" role="navigation" aria-label="{{ 'nav.idioma'|trans }}">
+    <div class="locale-switcher__trigger" tabindex="0" aria-haspopup="listbox" aria-expanded="false">
+        <span class="material-icons locale-switcher__icon">language</span>
+        <span class="locale-switcher__label">{{ _active|upper }}</span>
+        <span class="material-icons locale-switcher__chevron">expand_more</span>
+    </div>
+    <ul class="locale-switcher__menu" role="listbox" aria-label="{{ 'nav.idioma'|trans }}">
+        {% for code in ['es', 'en', 'gl'] %}
+            <li role="option" aria-selected="{{ _active == code ? 'true' : 'false' }}">
+                <a href="{{ path('app_locale_switch', { code: code }) }}"
+                   class="{{ _active == code ? 'is-active' : '' }}"
+                   lang="{{ code }}"
+                   rel="nofollow">
+                    {{ code|upper }}
+                </a>
+            </li>
+        {% endfor %}
+    </ul>
+</div>

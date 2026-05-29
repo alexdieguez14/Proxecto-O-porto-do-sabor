@@ -1,0 +1,20 @@
+# Dependencias PHP
+app/vendor/
+
+# Caché y logs de Symfony
+app/var/
+
+# Archivos de entorno locales (pueden contener secretos)
+app/.env.local
+app/.env.local.php
+app/.env.*.local
+
+# Secretos de producción
+app/config/secrets/prod/prod.decrypt.private.php
+
+# Assets compilados
+app/public/bundles/
+
+# Archivos de sistema
+.DS_Store
+Thumbs.db

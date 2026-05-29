@@ -1,0 +1,653 @@
+/* Contabilidad */
+
+body {
+    background-color: var(--color-pagina);
+    display: flex;
+    flex-direction: column;
+}
+
+
+.contabilidad {
+    background-color: var(--color-accion);
+    color: var(--color-blanco);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: var(--espacio-xl) var(--espacio-lg);
+    min-height: 50vh;
+    text-align: center;
+    flex: 1;
+}
+
+.contabilidad h1 {
+    font-size: var(--texto-xl);
+    margin-bottom: var(--espacio-sm);
+}
+
+.contabilidad p {
+    font-size: var(--texto-md);
+    opacity: .85;
+}
+
+@media (min-width: 768px) {
+    .contabilidad h1 {
+        font-size: var(--texto-2xl);
+    }
+}
+
+/* Tarjetas y tablas */
+.tarjeta-maestra {
+    background: var(--color-blanco);
+    border-radius: var(--radio-lg);
+    box-shadow: var(--sombra-md);
+    overflow: hidden;
+    width: 100%;
+}
+
+.cabecera-tarjeta {
+    border-bottom: 1px solid var(--color-borde-suave);
+    display: flex;
+    flex-direction: column;
+    gap: var(--espacio-sm);
+    padding: var(--espacio-md) var(--espacio-lg);
+}
+
+.cabecera-tarjeta h1 {
+    color: var(--color-accion);
+    font-size: var(--texto-lg);
+    margin: 0;
+}
+
+.envoltorio-tabla {
+    overflow-x: auto;
+    width: 100%;
+}
+
+.tarjeta-maestra table,
+.envoltorio-tabla table {
+    border-collapse: collapse;
+    table-layout: auto;
+    width: 100%;
+}
+
+.tarjeta-maestra table th,
+.envoltorio-tabla table th {
+    background: var(--color-th-fondo);
+    border-bottom: 2px solid var(--color-borde-suave);
+    color: var(--color-accion);
+    font-size: var(--texto-xs);
+    font-weight: 800;
+    padding: .75rem var(--espacio-lg);
+    text-align: left;
+    text-transform: uppercase;
+    white-space: nowrap;
+}
+
+.tarjeta-maestra table td,
+.envoltorio-tabla table td {
+    border-bottom: 1px solid var(--color-borde-suave);
+    color: var(--color-accion);
+    font-size: var(--texto-sm);
+    font-weight: 700;
+    max-width: 260px;
+    padding: .85rem var(--espacio-lg);
+    vertical-align: middle;
+    word-break: break-word;
+}
+
+.tarjeta-maestra table tbody tr:last-child td,
+.envoltorio-tabla table tbody tr:last-child td {
+    border-bottom: none;
+}
+
+.pie-tarjeta {
+    background-color: var(--color-blanco);
+    padding: var(--espacio-md) var(--espacio-lg);
+}
+
+.tarjeta-vacia {
+    color: var(--color-texto-suave);
+    padding: var(--espacio-xl);
+    text-align: center;
+}
+
+.texto-centrado {
+    text-align: center;
+}
+
+.texto-primario-negrita {
+    color: var(--color-accion);
+    font-weight: 800;
+}
+
+.texto-suave {
+    color: var(--color-texto-suave);
+}
+
+.boton-nuevo {
+    align-items: center;
+    background-color: var(--color-accion);
+    border: none;
+    border-radius: var(--radio-md);
+    color: var(--color-blanco);
+    cursor: pointer;
+    display: inline-flex;
+    font-size: var(--texto-sm);
+    font-weight: 700;
+    gap: var(--espacio-xs);
+    padding: .65rem var(--espacio-xl);
+}
+
+.boton-nuevo:hover {
+    background-color: var(--color-accion-oscuro);
+}
+
+.boton-nuevo .material-icons {
+    font-size: 18px;
+}
+
+/* Indicadores */
+.cuadricula-indicadores {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--espacio-md);
+}
+
+@media (min-width: 640px) {
+    .cuadricula-indicadores {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+.tarjeta-indicador {
+    background: var(--color-blanco);
+    border-radius: var(--radio-lg);
+    box-shadow: var(--sombra-md);
+    padding: var(--espacio-lg);
+    display: flex;
+    align-items: center;
+    gap: var(--espacio-md);
+    border-left: 5px solid transparent;
+}
+
+.icono-indicador {
+    font-size: 2.8rem !important;
+    flex-shrink: 0;
+}
+
+.cuerpo-indicador {
+    display: flex;
+    flex-direction: column;
+    gap: .15rem;
+    min-width: 0;
+}
+
+.etiqueta-indicador {
+    font-size: var(--texto-xs);
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: .07em;
+    color: var(--color-texto-suave);
+    white-space: nowrap;
+}
+
+.valor-indicador {
+    font-size: var(--texto-xl);
+    font-weight: 900;
+    line-height: 1.1;
+    word-break: break-all;
+}
+
+.subtexto-indicador {
+    font-size: var(--texto-xs);
+    color: var(--color-texto-suave);
+}
+
+.tarjeta-indicador--ingreso {
+    border-left-color: var(--color-verde);
+}
+
+.tarjeta-indicador--ingreso .icono-indicador {
+    color: var(--color-verde);
+}
+
+.tarjeta-indicador--ingreso .valor-indicador {
+    color: var(--color-exito);
+}
+
+.tarjeta-indicador--gasto {
+    border-left-color: var(--color-peligro);
+}
+
+.tarjeta-indicador--gasto .icono-indicador {
+    color: var(--color-peligro);
+}
+
+.tarjeta-indicador--gasto .valor-indicador {
+    color: var(--color-peligro-oscuro);
+}
+
+.tarjeta-indicador--pendiente {
+    border-left-color: var(--color-advertencia);
+}
+
+.tarjeta-indicador--pendiente .icono-indicador {
+    color: var(--color-advertencia);
+}
+
+.tarjeta-indicador--pendiente .valor-indicador {
+    color: var(--color-advertencia-oscuro);
+}
+
+.titulo-tarjeta-financiera {
+    display: flex;
+    align-items: center;
+    gap: var(--espacio-sm);
+    margin: 0;
+    font-size: var(--texto-lg);
+    color: var(--color-accion);
+}
+
+.titulo-tarjeta-financiera .material-icons {
+    font-size: 22px;
+}
+
+/* Diseño de dos paneles del libro contable */
+.cuerpo-libro-contable {
+    display: flex;
+    flex-direction: column;
+}
+
+.panel-formulario-financiero {
+    padding: var(--espacio-lg);
+    border-bottom: 1px solid var(--color-borde-suave);
+}
+
+.panel-tabla-libro {
+    flex: 1;
+    min-width: 0;
+}
+
+.etiqueta-formulario-financiero {
+    font-size: var(--texto-xs);
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: .06em;
+    color: var(--color-texto-suave);
+    margin-bottom: var(--espacio-sm);
+}
+
+.formulario-financiero {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--espacio-md);
+}
+
+.grupo-formulario-financiero {
+    display: flex;
+    flex-direction: column;
+    gap: var(--espacio-xs);
+}
+
+.grupo-formulario-financiero label {
+    font-size: var(--texto-xs);
+    font-weight: 700;
+    color: var(--color-accion);
+    text-transform: uppercase;
+    letter-spacing: .05em;
+}
+
+.grupo-formulario-financiero .requerido {
+    color: var(--color-error);
+}
+
+.grupo-formulario-financiero input,
+.grupo-formulario-financiero select {
+    padding: .55rem var(--espacio-md);
+    border: 1.5px solid var(--color-borde-suave);
+    border-radius: var(--radio-md);
+    font-size: var(--texto-sm);
+    color: var(--color-texto);
+    background: var(--color-blanco);
+    transition: border-color .2s;
+    width: 100%;
+}
+
+.grupo-formulario-financiero input:focus,
+.grupo-formulario-financiero select:focus {
+    outline: none;
+    border-color: var(--color-accion);
+}
+
+@media (min-width: 640px) {
+    .formulario-financiero {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .acciones-formulario-financiero {
+        grid-column: 1 / -1;
+    }
+}
+
+@media (min-width: 900px) {
+    .cuerpo-libro-contable {
+        flex-direction: row;
+        align-items: flex-start;
+    }
+
+    .panel-formulario-financiero {
+        flex: 0 0 320px;
+        border-bottom: none;
+        border-right: 1px solid var(--color-borde-suave);
+    }
+
+    /* Dentro del panel estrecho mantener 2 columnas, no 3 */
+    .panel-formulario-financiero .formulario-financiero {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .formulario-financiero {
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    .acciones-formulario-financiero {
+        grid-column: 1 / -1;
+        display: flex;
+        justify-content: flex-end;
+    }
+}
+
+.tipo-movimiento {
+    display: inline-flex;
+    align-items: center;
+    gap: .25rem;
+    font-size: var(--texto-xs);
+    font-weight: 700;
+    border-radius: var(--radio-total);
+    padding: .2rem .65rem;
+    white-space: nowrap;
+}
+
+.tipo-movimiento .material-icons {
+    font-size: 14px !important;
+}
+
+.tipo-movimiento--ingreso {
+    background-color: var(--color-exito-fondo);
+    color: var(--color-exito);
+}
+
+.tipo-movimiento--egreso {
+    background-color: var(--color-error-fondo);
+    color: var(--color-peligro-oscuro);
+}
+
+.referencia-financiera {
+    display: inline-flex;
+    align-items: center;
+    gap: .2rem;
+    font-size: var(--texto-xs);
+    font-weight: 600;
+    color: var(--color-accion);
+}
+
+.referencia-financiera .material-icons {
+    font-size: 13px !important;
+    opacity: .7;
+}
+
+.formulario-pago {
+    display: flex;
+    flex-direction: column;
+    gap: var(--espacio-sm);
+}
+
+.referencias-formulario-pago {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--espacio-xs);
+}
+
+@media (min-width: 640px) {
+    .formulario-pago {
+        flex-direction: row;
+        align-items: center;
+        flex-wrap: wrap;
+    }
+
+    .referencias-formulario-pago {
+        grid-template-columns: 1fr 1fr;
+        flex: 1;
+        min-width: 0;
+    }
+}
+
+.referencias-formulario-pago input {
+    padding: .4rem .7rem;
+    border: 1.5px solid var(--color-borde-suave);
+    border-radius: var(--radio-md);
+    font-size: var(--texto-xs);
+    color: var(--color-texto);
+    background: var(--color-blanco);
+    width: 100%;
+    transition: border-color .2s;
+}
+
+.referencias-formulario-pago input:focus {
+    outline: none;
+    border-color: var(--color-accion);
+}
+
+.importe-financiero {
+    font-weight: 700;
+    font-size: var(--texto-sm);
+    white-space: nowrap;
+}
+
+.importe-financiero--ingreso {
+    color: var(--color-exito);
+}
+
+.importe-financiero--egreso {
+    color: var(--color-peligro-oscuro);
+}
+
+
+.pedido-contable {
+    margin-bottom: var(--espacio-lg);
+}
+
+/* Variantes de color por estado  */
+.pedido-contable--pagado {
+    border-left: 5px solid var(--color-verde);
+}
+
+.pedido-contable--vencido-sin-pagar {
+    border-left: 5px solid var(--color-peligro);
+}
+
+.pedido-contable--pendiente-pago {
+    border-left: 5px solid var(--color-advertencia);
+}
+
+.info-pedido-contable {
+    display: flex;
+    flex-direction: column;
+    gap: .2rem;
+}
+
+.numero-pedido-contable {
+    font-size: var(--texto-xs);
+    font-weight: 800;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+    color: var(--color-accion);
+    margin: 0;
+}
+
+.email-pedido-contable {
+    font-size: var(--texto-sm);
+    color: var(--color-texto-suave);
+}
+
+.insignias-pedido-contable {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--espacio-xs);
+    margin-top: var(--espacio-xs);
+}
+
+.estado-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: .3rem;
+    border-radius: var(--radio-total);
+    padding: .3rem .75rem;
+    font-size: var(--texto-xs);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: .05em;
+}
+
+.estado-badge .material-icons {
+    font-size: 16px;
+}
+
+.insignia-pagado {
+    background-color: var(--color-exito-fondo);
+    color: var(--color-exito);
+}
+
+.insignia-vencido {
+    background-color: var(--color-error-fondo);
+    color: var(--color-peligro-oscuro);
+}
+
+.insignia-pendiente {
+    background-color: var(--insignia-pagado-fondo);
+    color: var(--insignia-pagado-color);
+}
+
+.insignia-metodo-tarjeta {
+    background-color: var(--color-info-claro);
+    color: var(--badge-preparacion-color);
+    border: 1px solid var(--borde-info);
+}
+
+.insignia-metodo-transferencia {
+    background-color: var(--color-verde-claro);
+    color: var(--color-exito);
+    border: 1px solid var(--borde-verde);
+}
+
+.insignia-metodo-contrarreembolso {
+    background-color: var(--color-naranja-claro);
+    color: var(--color-naranja-oscuro);
+    border: 1px solid var(--borde-naranja);
+}
+
+.pedido-address-bar {
+    display: flex;
+    align-items: center;
+    gap: .4rem;
+    padding: .45rem var(--espacio-md);
+    background-color: var(--color-fila-alternada);
+    border-top: 1px solid var(--color-borde);
+    font-size: var(--texto-sm);
+    color: var(--color-texto-suave);
+}
+
+.pedido-address-bar .material-icons {
+    font-size: 16px;
+    color: var(--color-accion);
+}
+
+.meta-pedido-contable {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--espacio-md);
+    padding: var(--espacio-sm) 0;
+    border-top: 1px solid var(--color-borde);
+    border-bottom: 1px solid var(--color-borde);
+    margin-bottom: var(--espacio-md);
+    font-size: var(--texto-sm);
+    color: var(--color-texto-suave);
+}
+
+.meta-pedido-contable span {
+    display: inline-flex;
+    align-items: center;
+    gap: .25rem;
+}
+
+.meta-pedido-contable .material-icons {
+    font-size: 16px;
+    color: var(--color-accion);
+    opacity: .7;
+}
+
+.carencia-info {
+    color: var(--insignia-pagado-color) !important;
+    font-weight: 700;
+}
+
+.carencia-info .material-icons {
+    color: var(--color-advertencia) !important;
+    opacity: 1 !important;
+}
+
+.acciones-pedido-contable {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: var(--espacio-sm);
+    padding: var(--espacio-md) var(--espacio-lg);
+    border-top: 1px solid var(--color-borde-suave);
+}
+
+.boton-accion-contable {
+    display: inline-flex;
+    align-items: center;
+    gap: .35rem;
+    padding: .55rem var(--espacio-md);
+    border-radius: var(--radio-md);
+    font-size: var(--texto-sm);
+    font-weight: 700;
+    border: none;
+    cursor: pointer;
+    text-decoration: none;
+    white-space: nowrap;
+    transition: opacity .15s;
+}
+
+.boton-accion-contable:hover {
+    opacity: .85;
+}
+
+.boton-accion-contable .material-icons {
+    font-size: 18px;
+}
+
+.boton-factura {
+    background-color: var(--color-pagina);
+    color: var(--color-accion);
+    border: 1.5px solid var(--color-accion);
+}
+
+.boton-registrar-pago {
+    background-color: var(--color-verde);
+    color: var(--color-blanco);
+}
+
+
+@media (min-width: 900px) {
+    .pedido-contable .cabecera-tarjeta {
+        align-items: flex-start;
+    }
+
+    .insignias-pedido-contable {
+        margin-top: 0;
+        justify-content: flex-end;
+    }
+}

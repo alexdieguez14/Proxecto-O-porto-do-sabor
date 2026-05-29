@@ -1,0 +1,24 @@
+twig:
+    file_name_pattern: '*.twig'
+    globals:
+        # ── Company identity ── edit here to rebrand the app
+        empresa:
+            nombre:    'O Porto do Sabor'
+            subtitulo: 'Empresa de distribución alimentaria'
+            cif:       'B-00000000'
+            calle:     'Calle Ejemplo, 1'
+            cp:        '36001'
+            ciudad:    'Vigo'
+            provincia: 'Pontevedra'
+            pais:      'España'
+            telefono:  '+34 986 000 000'
+            email:     'info@portodosabor.com'
+            web:       'www.portodosabor.com'
+
+        # ── Shared with PHP parameters ──
+        mercure_base_topic: '%app.mercure.base_topic%'
+        stock_umbral_bajo:  '%app.stock.umbral_bajo%'
+
+when@test:
+    twig:
+        strict_variables: true

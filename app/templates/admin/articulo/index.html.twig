@@ -1,0 +1,97 @@
+{% extends 'admin/crud_base.html.twig' %}
+{% from 'components/_filter_bar.html.twig' import filter_bar %}
+
+{% block title %}{{ 'admin.articulos.breadcrumb'|trans }} — {{ 'admin.title'|trans }}{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('css/admin_articulos.css') }}">
+{% endblock %}
+
+{% block breadcrumbs %}
+    <ul>
+        <li><a href="{{ path('app_admin') }}">{{ 'admin.master_data.home'|trans }}</a></li>
+        <li><a href="{{ path('admin_datos_maestros') }}">{{ 'admin.master_data.breadcrumb'|trans }}</a></li>
+        <li><a href="{{ path('admin_articulo_index') }}">{{ 'admin.articulos.breadcrumb'|trans }}</a></li>
+        <li>{{ 'admin.articulos.list'|trans }}</li>
+    </ul>
+{% endblock %}
+
+{% block crud_content %}
+<main class="fondo-pagina">
+    <div class="contenedor-principal">
+        <section class="tarjeta-maestra">
+
+            <header class="cabecera-tarjeta">
+                <h1>{{ 'admin.articulos.title'|trans }}</h1>
+                <a href="{{ path('admin_articulo_nuevo') }}" class="boton-nuevo">
+                    <span class="material-icons" aria-hidden="true">add</span>
+                    {{ 'admin.articulos.new'|trans }}
+                </a>
+            </header>
+
+            <div class="envoltorio-filtro">
+                {{ filter_bar(filtroForm) }}
+            </div>
+
+            {% if articulos is empty %}
+                <p class="tarjeta-vacia">{{ 'admin.crud.no_results'|trans }}</p>
+            {% else %}
+                <div class="envoltorio-tabla">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>{{ 'admin.articulos.col.title'|trans }}</th>
+                                <th>{{ 'comun.producto'|trans }}</th>
+                                <th>{{ 'admin.articulos.col.price'|trans }}</th>
+                                <th>{{ 'logistica.inventario.col.stock'|trans }}</th>
+                                <th>{{ 'logistica.inventario.location'|trans }}</th>
+                                <th class="texto-centrado">{{ 'comun.acciones'|trans }}</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for a in articulos %}
+                                <tr>
+                                    <td class="texto-primario-negrita">{{ a.titulo }}</td>
+                                    <td>
+                                        {% if a.imagen %}
+                                            <img src="{{ asset('images/' ~ a.imagen) }}" class="imagen-miniatura" alt="{{ a.titulo }}">
+                                        {% else %}
+                                            <span class="texto-suave">N/A</span>
+                                        {% endif %}
+                                    </td>
+                                    <td>{{ a.precio|number_format(2, ',', '.') }} €</td>
+                                    <td>{{ a.stock }}</td>
+                                    <td>{{ a.ubicacion ?: '—' }}</td>
+                                    <td class="texto-centrado">
+                                        <div class="acciones-fila">
+                                            <a href="{{ path('admin_articulo_editar', {id: a.id}) }}"
+                                               class="boton-accion boton-accion--editar"
+                                               title="{{ 'comun.editar'|trans }}">
+                                                <span class="material-icons">edit</span>
+                                            </a>
+                                            <form method="post"
+                                                  action="{{ path('admin_articulo_eliminar', {id: a.id}) }}"
+                                                  onsubmit="return confirm('{{ 'admin.crud.confirm_delete'|trans|escape('js') }}')">
+                                                <input type="hidden" name="_token"
+                                                       value="{{ csrf_token('delete_articulo_' ~ a.id) }}">
+                                                <button class="boton-accion boton-accion--eliminar" title="{{ 'comun.eliminar'|trans }}">
+                                                    <span class="material-icons">delete</span>
+                                                </button>
+                                            </form>
+                                        </div>
+                                    </td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+                <footer class="pie-tarjeta">
+                    <p>{{ 'admin.crud.total'|trans }}: <strong>{{ articulos|length }}</strong></p>
+                </footer>
+            {% endif %}
+
+        </section>
+    </div>
+</main>
+{% endblock %}

@@ -1,0 +1,235 @@
+{% extends 'base.html.twig' %}
+{% from 'components/_filter_bar.html.twig' import filter_bar %}
+
+{% block title %}{{ 'logistica.inventario.title'|trans }} — {{ 'logistica.title'|trans }}{% endblock %}
+
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('css/admin.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/admin_articulos.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/logistica.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/inventario.css') }}">
+{% endblock %}
+
+{% block body %}
+<header>
+    <nav class="navbar">
+        <a class="nav-logo" href="{{ path('app_logistica') }}">
+            <img src="{{ asset('images/logo-transparent.png') }}" alt="O Porto do Sabor">
+        </a>
+        <button class="nav-hamburger js-nav-toggle" aria-label="{{ 'nav.abrir_menu'|trans }}" aria-expanded="false">
+            <span class="material-icons">menu</span>
+        </button>
+        <div class="menu-desplegable js-nav-menu">
+            <div class="menu-overlay-header">
+                <a class="nav-logo" href="{{ path('app_logistica') }}">
+                    <img src="{{ asset('images/logo-transparent.png') }}" alt="O Porto do Sabor">
+                </a>
+                <button class="nav-hamburger js-nav-toggle" aria-label="{{ 'nav.cerrar_menu'|trans }}" aria-expanded="false">
+                    <span class="material-icons">close</span>
+                </button>
+            </div>
+            <ul class="enlaces-nav">
+                <li>
+                    <a href="{{ path('logistica_preparacion') }}">
+                        <span class="material-icons icono-nav" aria-hidden="true">pending</span>
+                        {{ 'logistica.nav.preparacion'|trans }}
+                    </a>
+                </li>
+                <li>
+                    <a href="{{ path('logistica_listos') }}">
+                        <span class="material-icons icono-nav" aria-hidden="true">local_shipping</span>
+                        {{ 'logistica.nav.listo'|trans }}
+                    </a>
+                </li>
+                <li>
+                    <a href="{{ path('logistica_enviados') }}">
+                        <span class="material-icons icono-nav" aria-hidden="true">outbox</span>
+                        {{ 'logistica.nav.enviados'|trans }}
+                    </a>
+                </li>
+                <li>
+                    <a href="{{ path('app_inventario') }}" class="enlace-nav-activo">
+                        <span class="material-icons icono-nav" aria-hidden="true">inventory</span>
+                        {{ 'admin.acceso_rapido.inventario'|trans }}
+                    </a>
+                </li>
+            </ul>
+            <div class="usuario-nav">
+                {% include 'components/_locale_switcher.html.twig' %}
+                {% if app.user %}
+                    <span class="material-icons icono-nav-usuario" aria-hidden="true">person</span>
+                    <span class="email-nav-usuario">{{ app.user.email }}</span>
+                    {% if is_granted('ROLE_ADMIN') %}
+                        <a href="{{ path('app_admin') }}" class="boton-panel-admin">
+                            <span class="material-icons" aria-hidden="true">admin_panel_settings</span>
+                            {{ 'nav.admin'|trans }}
+                        </a>
+                    {% endif %}
+                    <a href="{{ path('app_cerrar_sesion') }}" class="boton-salir">
+                        <span class="material-icons" aria-hidden="true">logout</span>
+                        {{ 'nav.salir'|trans }}
+                    </a>
+                {% endif %}
+            </div>
+        </div>
+    </nav>
+</header>
+
+<nav class="breadcrumbs">
+    <ul>
+        <li><a href="{{ path('app_logistica') }}">{{ 'logistica.title'|trans }}</a></li>
+        <li>{{ 'logistica.inventario.title'|trans }}</li>
+        <li>{{ 'admin.articulos.list'|trans }}</li>
+    </ul>
+</nav>
+
+<main class="fondo-pagina">
+    <div class="contenedor-principal">
+
+        {# ── Formulario de entrada de stock ── #}
+        <section class="tarjeta-maestra">
+            <header class="cabecera-tarjeta">
+                <h1 class="cabecera-tarjeta-icono">
+                    <span class="material-icons">add_circle</span>
+                    {{ 'logistica.inventario.register_entry'|trans }}
+                </h1>
+            </header>
+            <div class="cuerpo-formulario">
+                <form class="formulario-entrada-inventario" method="post" action="{{ path('inventario_entrada') }}">
+                    <input type="hidden" name="_token" value="{{ csrf_token('inventario_entrada') }}">
+
+                    <div class="grupo-formulario-inventario">
+                        <label for="inventario-articulo">{{ 'logistica.inventario.article'|trans }} <span class="requerido">*</span></label>
+                        <select id="inventario-articulo" name="articulo_id" required>
+                            <option value="">{{ 'logistica.inventario.select_article'|trans }}</option>
+                            {% for a in articulosTodos %}
+                                <option value="{{ a.id }}">{{ a.titulo }} ({{ 'logistica.inventario.stock'|trans }}: {{ a.stock }})</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+
+                    <div class="grupo-formulario-inventario">
+                        <label for="inventario-cantidad">{{ 'logistica.inventario.quantity'|trans }} <span class="requerido">*</span></label>
+                        <input type="number" id="inventario-cantidad" name="cantidad" min="1" placeholder="50" required>
+                    </div>
+
+                    <div class="grupo-formulario-inventario">
+                        <label for="inventario-proveedor">{{ 'logistica.inventario.supplier'|trans }}</label>
+                        <select id="inventario-proveedor" name="proveedor_id">
+                            <option value="0">{{ 'logistica.inventario.no_supplier'|trans }}</option>
+                            {% for p in proveedores %}
+                                <option value="{{ p.id }}">{{ p.nombre }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+
+                    <div class="grupo-formulario-inventario">
+                        <label for="inventario-albaran">{{ 'logistica.inventario.albaran'|trans }}</label>
+                        <input type="text" id="inventario-albaran" name="num_albaran"
+                               placeholder="ALB-2026-00123" maxlength="100">
+                    </div>
+
+                    <div class="acciones-formulario-inventario">
+                        <button type="submit" class="boton-inventario-enviar">
+                            <span class="material-icons">add_box</span>
+                            {{ 'logistica.inventario.register_entry'|trans }}
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </section>
+
+        {# ── Tabla de stock ── #}
+        <section class="tarjeta-maestra">
+            <header class="cabecera-tarjeta">
+                <h1 class="cabecera-tarjeta-icono">
+                    <span class="material-icons">inventory_2</span>
+                    {{ 'logistica.inventario.current_stock'|trans }}
+                </h1>
+                <span class="contador-inventario">{{ articulos|length }} {{ 'logistica.inventario.articles'|trans }}</span>
+            </header>
+
+            <div class="envoltorio-filtro">
+                {{ filter_bar(filtroForm) }}
+            </div>
+
+            {% if articulos is empty %}
+                <p class="tarjeta-vacia">{{ 'admin.crud.no_results'|trans }}</p>
+            {% else %}
+                <div class="envoltorio-tabla">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>{{ 'logistica.inventario.col.product'|trans }}</th>
+                                <th>{{ 'logistica.inventario.col.category'|trans }}</th>
+                                <th>{{ 'logistica.inventario.col.supplier'|trans }}</th>
+                                <th class="texto-centrado">{{ 'logistica.inventario.col.stock'|trans }}</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for a in articulos %}
+                            <tr class="{{ a.stock == 0 ? 'fila-inventario-vacia' : (a.stock <= 5 ? 'fila-inventario-baja' : '') }}">
+                                <td class="texto-primario-negrita">{{ a.titulo }}</td>
+                                <td>{{ a.categoria ? a.categoria.nombre : '—' }}</td>
+                                <td>{{ a.proveedor ? a.proveedor.nombre : '—' }}</td>
+                                <td class="texto-centrado">
+                                    {% if a.stock == 0 %}
+                                        <span class="insignia-inventario insignia-inventario--vacio">{{ 'logistica.inventario.no_stock'|trans }}</span>
+                                    {% elseif a.stock <= 5 %}
+                                        <span class="insignia-inventario insignia-inventario--bajo">{{ a.stock }}</span>
+                                    {% else %}
+                                        <span class="insignia-inventario insignia-inventario--correcto">{{ a.stock }}</span>
+                                    {% endif %}
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+                <footer class="pie-tarjeta">
+                    <p>{{ 'admin.crud.total'|trans }}: <strong>{{ articulos|length }}</strong></p>
+                </footer>
+            {% endif %}
+        </section>
+
+        {# ── Historial reciente de entradas ── #}
+        {% if entradas is not empty %}
+        <section class="tarjeta-maestra">
+            <header class="cabecera-tarjeta">
+                <h1 class="cabecera-tarjeta-icono">
+                    <span class="material-icons">history</span>
+                    {{ 'logistica.inventario.recent_entries'|trans }}
+                </h1>
+            </header>
+            <div class="envoltorio-tabla">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>{{ 'logistica.inventario.col.date'|trans }}</th>
+                            <th>{{ 'logistica.inventario.col.product'|trans }}</th>
+                            <th>{{ 'logistica.inventario.col.supplier'|trans }}</th>
+                            <th>{{ 'logistica.inventario.col.albaran'|trans }}</th>
+                            <th class="texto-centrado">{{ 'logistica.inventario.col.quantity'|trans }}</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for e in entradas %}
+                        <tr>
+                            <td>{{ e.creadoEn|date('d/m/Y H:i') }}</td>
+                            <td class="texto-primario-negrita">{{ e.articulo.titulo }}</td>
+                            <td>{{ e.proveedor ? e.proveedor.nombre : '—' }}</td>
+                            <td>{{ e.numAlbaran ?? '—' }}</td>
+                            <td class="texto-centrado">
+                                <span class="insignia-inventario insignia-inventario--correcto">+{{ e.cantidad }}</span>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </section>
+        {% endif %}
+
+    </div>
+</main>
+{% endblock %}

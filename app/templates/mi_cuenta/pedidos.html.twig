@@ -1,0 +1,173 @@
+{% extends 'base.html.twig' %}
+{% from 'components/_filter_bar.html.twig' import filter_bar %}
+
+{% block title %}{{ 'cuenta.pedidos.titulo'|trans }} — O Porto do Sabor{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('css/mi-cuenta.css') }}">
+{% endblock %}
+
+{% block body %}
+<header>
+    <nav class="cuenta-nav">
+        <section class="cuenta-nav__izquierda" aria-label="{{ 'nav.logo'|trans|default('Logo') }}">
+            <a class="cuenta-nav__logo" href="{{ path('app_tienda') }}">
+                <img src="{{ asset('images/logo-transparent.png') }}" alt="O Porto do Sabor">
+            </a>
+        </section>
+        <section class="cuenta-nav__centro" aria-label="{{ 'nav.main'|trans|default('Navegación') }}">
+            <a class="cuenta-nav__enlace" href="{{ path('app_tienda') }}">
+                <span class="material-icons" aria-hidden="true">storefront</span>
+                {{ 'cliente.hero.cta'|trans }}
+            </a>
+        </section>
+        <section class="cuenta-nav__derecha" aria-label="{{ 'cuenta.titulo'|trans }}">
+            {% include 'components/_locale_switcher.html.twig' %}
+            {% if app.user %}
+                <span class="cuenta-nav__usuario">
+                    <span class="material-icons" aria-hidden="true">person</span>
+                    {{ app.user.nombre ?? app.user.email }}
+                </span>
+                <a class="boton-salir" href="{{ path('app_cerrar_sesion') }}">
+                    <span class="material-icons" aria-hidden="true">logout</span>
+                    {{ 'nav.salir'|trans }}
+                </a>
+            {% endif %}
+        </section>
+    </nav>
+</header>
+
+<main class="pagina-cuenta">
+    <section class="contenedor-cuenta">
+
+        <h1 class="titulo-cuenta">
+            <span class="material-icons" aria-hidden="true">receipt_long</span>
+            {{ 'cuenta.pedidos.titulo'|trans }}
+        </h1>
+
+        <section class="filtro-cuenta" aria-label="{{ 'logistica.status_nav'|trans }}">
+            {{ filter_bar(filtroForm) }}
+        </section>
+
+        {% if pedidos is empty %}
+            <section class="estado-vacio-cuenta">
+                <span class="material-icons" aria-hidden="true">shopping_bag</span>
+                <p>{{ 'cuenta.pedidos.vacio'|trans }}</p>
+                <a href="{{ path('app_tienda') }}">{{ 'cuenta.pedidos.cta_tienda'|trans }}</a>
+            </section>
+        {% else %}
+            {% for pedido in pedidos %}
+            <article class="pedido-cuenta">
+
+                <header class="pedido-cuenta__cabecera">
+                    <div class="pedido-cuenta__meta">
+                        <span class="pedido-cuenta__numero">
+                            {{ 'logistica.order'|trans }} #{{ pedido.id }}
+                        </span>
+                        <span class="pedido-cuenta__fecha">
+                            <span class="material-icons" aria-hidden="true">calendar_today</span>
+                            {{ pedido.creadoEn|date('d/m/Y') }}
+                        </span>
+                    </div>
+                    <div class="pedido-cuenta__etiquetas">
+                        {% if pedido.estado == 'ENVIADO' or pedido.estado == 'PAGADO' %}
+                            <span class="insignia insignia--enviado">
+                                <span class="material-icons" aria-hidden="true">local_shipping</span>
+                                {{ 'estado.enviado'|trans }}
+                            </span>
+                        {% elseif pedido.estado == 'LISTO_ENVIO' %}
+                            <span class="insignia insignia--listo">
+                                <span class="material-icons" aria-hidden="true">inventory</span>
+                                {{ 'estado.listo_envio'|trans }}
+                            </span>
+                        {% else %}
+                            <span class="insignia insignia--preparacion">
+                                <span class="material-icons" aria-hidden="true">pending</span>
+                                {{ 'estado.preparacion'|trans }}
+                            </span>
+                        {% endif %}
+                        {% if pedido.estadoContable == 'PAGADO' %}
+                            <span class="insignia insignia--pagado">
+                                <span class="material-icons" aria-hidden="true">check_circle</span>
+                                {{ 'estado.pagado'|trans }}
+                            </span>
+                        {% elseif pedido.estadoContable == 'VENCIDO_SIN_PAGAR' %}
+                            <span class="insignia insignia--vencido">
+                                <span class="material-icons" aria-hidden="true">warning</span>
+                                {{ 'estado.vencido'|trans }}
+                            </span>
+                        {% else %}
+                            <span class="insignia insignia--pendiente">
+                                <span class="material-icons" aria-hidden="true">schedule</span>
+                                {{ 'estado.pendiente_pago'|trans }}
+                            </span>
+                        {% endif %}
+                        <span class="pedido-cuenta__total">
+                            {{ pedido.total|number_format(2, ',', '.') }} €
+                        </span>
+                    </div>
+                </header>
+
+                <div class="pedido-cuenta__cuerpo">
+                    {% if pedido.direccionEnvio %}
+                    <p class="pedido-cuenta__info">
+                        <span class="material-icons" aria-hidden="true">location_on</span>
+                        {{ pedido.direccionEnvio.calle }},
+                        {{ pedido.direccionEnvio.codigoPostal }} {{ pedido.direccionEnvio.ciudad }}
+                    </p>
+                    {% endif %}
+
+                    {% if pedido.numeroSeguimiento %}
+                    <p class="pedido-cuenta__info pedido-cuenta__seguimiento">
+                        <span class="material-icons" aria-hidden="true">pin_drop</span>
+                        {{ 'cuenta.pedido.seguimiento'|trans }}: <strong>{{ pedido.numeroSeguimiento }}</strong>
+                    </p>
+                    {% endif %}
+
+                    <table class="tabla-pedido-cuenta">
+                        <thead>
+                            <tr>
+                                <th>{{ 'comun.producto'|trans }}</th>
+                                <th>{{ 'factura.col.cantidad'|trans }}</th>
+                                <th>{{ 'comun.subtotal'|trans }}</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for item in pedido.items %}
+                            <tr>
+                                <td class="celda-nombre">{{ item.titulo }}</td>
+                                <td>{{ item.cantidad }}</td>
+                                <td>{{ item.subtotal|number_format(2, ',', '.') }} €</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                        <tfoot>
+                            <tr>
+                                <td colspan="2">{{ 'comun.total'|trans }}</td>
+                                <td>{{ pedido.total|number_format(2, ',', '.') }} €</td>
+                            </tr>
+                        </tfoot>
+                    </table>
+                </div>
+
+                <footer class="pedido-cuenta__acciones">
+                    <a href="{{ path('mi_cuenta_factura', {id: pedido.id}) }}"
+                       class="pedido-cuenta__factura"
+                       target="_blank">
+                        <span class="material-icons">download</span>
+                        {{ 'cuenta.pedido.factura'|trans }}
+                    </a>
+                </footer>
+
+            </article>
+            {% endfor %}
+        {% endif %}
+
+    </section>
+</main>
+
+<footer class="pie-cuenta">
+    <p>&copy; {{ "now"|date("Y") }} {{ 'cliente.footer'|trans }}</p>
+</footer>
+{% endblock %}

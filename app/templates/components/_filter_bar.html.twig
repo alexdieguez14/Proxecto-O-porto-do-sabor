@@ -1,0 +1,42 @@
+{# barra de busqueda para importar  #}
+{% macro filter_bar(form, opts) %}
+    {%- set submitLabel = opts.submitLabel ?? 'Filtrar' -%}
+    {%- set clearLabel  = opts.clearLabel  ?? 'Limpiar' -%}
+    {%- set formClass   = opts.formClass   ?? '' -%}
+
+    {{ form_start(form, {
+        attr: { class: 'filter-bar ' ~ formClass }
+    }) }}
+
+        {% for field in form %}
+            {%- set col      = field.vars.row_attr['data-filter-col'] | default(3) -%}
+            {%- set isSelect = 'choice' in field.vars.block_prefixes -%}
+            {%- set ctrlCls  = isSelect ? 'form-select form-select-sm' : 'form-control form-control-sm' -%}
+
+            <div class="filter-bar__field col-12 col-md-{{ col }}">
+                {%- if field.vars.label is not same as(false) -%}
+                    {{ form_label(field, null, {
+                        label_attr: { class: 'form-label form-label-sm' }
+                    }) }}
+                {%- endif -%}
+                {{ form_widget(field, { attr: { class: ctrlCls } }) }}
+                {{- form_errors(field) -}}
+            </div>
+        {% endfor %}
+
+        <div class="filter-bar__actions">
+            <button type="submit" class="btn btn-primary btn-sm">
+                <span class="material-icons" aria-hidden="true">search</span>
+                {{ submitLabel }}
+            </button>
+            <button type="button"
+                    class="btn btn-outline-secondary btn-sm"
+                    onclick="window.location.href = window.location.pathname"
+                    aria-label="{{ clearLabel }}">
+                <span class="material-icons" aria-hidden="true">filter_alt_off</span>
+                {{ clearLabel }}
+            </button>
+        </div>
+
+    {{ form_end(form) }}
+{% endmacro %}

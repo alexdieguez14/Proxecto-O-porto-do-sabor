@@ -1,0 +1,54 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ 'acceso.sesion.titulo'|trans }}{% endblock %}
+
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('css/login.css') }}">
+{% endblock %}
+
+{% block body %}
+    {# h1 oculto visualmente pero accesible para lectores de pantalla #}
+    <h1>{{ 'acceso.sesion.titulo'|trans }}</h1>
+
+    <main>
+        <div class="portada">
+            <figure>
+                <img src="{{ asset('images/bateas.webp') }}" alt="">
+            </figure>
+        </div>
+
+        <section>
+            <figure>
+                <img src="{{ asset('images/logo-transparent.png') }}" alt="O Porto do Sabor">
+            </figure>
+
+            <header style="display:flex;justify-content:flex-end;width:100%;">
+                {% include 'components/_locale_switcher.html.twig' %}
+            </header>
+
+            <h2>{{ 'acceso.sesion.titulo'|trans }}</h2>
+            <h3>{{ 'acceso.sesion.subtitulo'|trans }}</h3>
+
+            {% if error %}
+                <p class="alert-error">{{ error.messageKey|trans(error.messageData, 'security') }}</p>
+            {% endif %}
+
+            {{ form_start(form) }}
+                <p>
+                    {{ form_label(form.email) }}
+                    {{ form_widget(form.email) }}
+                    {{ form_errors(form.email) }}
+                </p>
+                <p>
+                    {{ form_label(form.password) }}
+                    {{ form_widget(form.password) }}
+                    {{ form_errors(form.password) }}
+                </p>
+                <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
+                <button type="submit" class="btn">{{ 'acceso.sesion.enviar'|trans }}</button>
+            {{ form_end(form, {render_rest: false}) }}
+
+            <p class="link-registro">{{ 'acceso.sesion.sin_cuenta'|trans }} <a href="{{ path('app_registro') }}">{{ 'acceso.sesion.enlace_registro'|trans }}</a></p>
+        </section>
+    </main>
+{% endblock %}

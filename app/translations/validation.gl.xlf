@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" version="1.2">
+    <file source-language="es" target-language="gl" datatype="plaintext" original="validation.es.xlf">
+        <body>
+            <trans-unit id="validation.name.required">
+                <source>validation.name.required</source>
+                <target>O nome é obrigatorio.</target>
+            </trans-unit>
+            <trans-unit id="validation.surname.required">
+                <source>validation.surname.required</source>
+                <target>Os apelidos son obrigatorios.</target>
+            </trans-unit>
+            <trans-unit id="validation.phone.required">
+                <source>validation.phone.required</source>
+                <target>O teléfono é obrigatorio.</target>
+            </trans-unit>
+            <trans-unit id="validation.phone.invalid">
+                <source>validation.phone.invalid</source>
+                <target>O teléfono non ten un formato válido.</target>
+            </trans-unit>
+            <trans-unit id="validation.email.required">
+                <source>validation.email.required</source>
+                <target>O correo electrónico é obrigatorio.</target>
+            </trans-unit>
+            <trans-unit id="validation.email.invalid">
+                <source>validation.email.invalid</source>
+                <target>O correo electrónico non é válido.</target>
+            </trans-unit>
+            <trans-unit id="validation.password.required">
+                <source>validation.password.required</source>
+                <target>O contrasinal é obrigatorio.</target>
+            </trans-unit>
+            <trans-unit id="validation.password.min">
+                <source>validation.password.min</source>
+                <target>O contrasinal debe ter polo menos {{ limit }} caracteres.</target>
+            </trans-unit>
+            <trans-unit id="validation.role.required">
+                <source>validation.role.required</source>
+                <target>Debes seleccionar un rol.</target>
+            </trans-unit>
+            <trans-unit id="validation.title.required">
+                <source>validation.title.required</source>
+                <target>O título é obrigatorio.</target>
+            </trans-unit>
+            <trans-unit id="validation.price.required">
+                <source>validation.price.required</source>
+                <target>O prezo é obrigatorio.</target>
+            </trans-unit>
+            <trans-unit id="validation.price.positive">
+                <source>validation.price.positive</source>
+                <target>O prezo debe ser positivo.</target>
+            </trans-unit>
+            <trans-unit id="validation.weight.required">
+                <source>validation.weight.required</source>
+                <target>O peso é obrigatorio.</target>
+            </trans-unit>
+            <trans-unit id="validation.weight.positive">
+                <source>validation.weight.positive</source>
+                <target>O peso debe ser positivo.</target>
+            </trans-unit>
+            <trans-unit id="validation.stock.nonnegative">
+                <source>validation.stock.nonnegative</source>
+                <target>O stock non pode ser negativo.</target>
+            </trans-unit>
+            <trans-unit id="validation.image.mime">
+                <source>validation.image.mime</source>
+                <target>Sobe unha imaxe JPG, PNG ou WEBP.</target>
+            </trans-unit>
+        </body>
+    </file>
+</xliff>

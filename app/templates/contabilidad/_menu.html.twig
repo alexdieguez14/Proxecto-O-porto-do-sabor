@@ -1,0 +1,84 @@
+<header>
+    <nav class="navbar">
+
+        {# IZQUIERDA: Logo #}
+        <a class="nav-logo" href="{{ path('app_contabilidad') }}">
+            <img src="{{ asset('images/logo-transparent.png') }}" alt="Logo empresa">
+        </a>
+
+        {# Botón hamburguesa (solo móvil) #}
+        <button class="nav-hamburger js-nav-toggle"
+                aria-label="Abrir menú"
+                aria-expanded="false">
+            <span class="material-icons">menu</span>
+        </button>
+
+        {# CENTRO + DERECHA (pantalla completa en móvil, en línea en escritorio) #}
+        <div class="menu-desplegable js-nav-menu">
+
+            {# Cabecera superpuesta: logo + botón cerrar (solo móvil) #}
+            <div class="menu-overlay-header">
+                <a class="nav-logo" href="{{ path('app_contabilidad') }}">
+                    <img src="{{ asset('images/logo-transparent.png') }}" alt="Logo empresa">
+                </a>
+                <button class="nav-hamburger js-nav-toggle" aria-label="Cerrar menú" aria-expanded="false">
+                    <span class="material-icons">close</span>
+                </button>
+            </div>
+
+            {# CENTRO: enlaces de navegación #}
+            <ul class="enlaces-nav">
+                <li>
+                    <a href="{{ path('app_contabilidad') }}">
+                        <span class="material-icons icono-nav" aria-hidden="true">account_balance</span>
+                        Contabilidad
+                    </a>
+                </li>
+                <li>
+                    <a href="{{ path('contabilidad_pedidos') }}">
+                        <span class="material-icons icono-nav" aria-hidden="true">receipt_long</span>
+                        Pedidos
+                    </a>
+                </li>
+                <li>
+                    <a href="{{ path('contabilidad_proveedor_index') }}">
+                        <span class="material-icons icono-nav" aria-hidden="true">local_shipping</span>
+                        Proveedores
+                    </a>
+                </li>
+                <li>
+                    <a href="{{ path('contabilidad_cliente_index') }}">
+                        <span class="material-icons icono-nav" aria-hidden="true">people</span>
+                        Clientes
+                    </a>
+                </li>
+                <li>
+                    <a href="{{ path('contabilidad_empleado_index') }}">
+                        <span class="material-icons icono-nav" aria-hidden="true">badge</span>
+                        Empleados
+                    </a>
+                </li>
+            </ul>
+
+            {# DERECHA: nombre de usuario + cerrar sesión (+ enlace al panel admin si corresponde) #}
+            <div class="usuario-nav">
+                {% include 'components/_locale_switcher.html.twig' %}
+                {% if app.user %}
+                    <span class="material-icons icono-nav-usuario" aria-hidden="true">person</span>
+                    <span class="email-nav-usuario">{{ app.user.email }}</span>
+                    {% if is_granted('ROLE_ADMIN') %}
+                        <a href="{{ path('app_admin') }}" class="boton-panel-admin">
+                            <span class="material-icons" aria-hidden="true">admin_panel_settings</span>
+                            {{ 'nav.admin'|trans }}
+                        </a>
+                    {% endif %}
+                    <a href="{{ path('app_cerrar_sesion') }}" class="boton-salir">
+                        <span class="material-icons" aria-hidden="true">logout</span>
+                        {{ 'nav.salir'|trans }}
+                    </a>
+                {% endif %}
+            </div>
+
+        </div>
+    </nav>
+</header>

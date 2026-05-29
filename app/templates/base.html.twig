@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="{{ app.request.locale|default('es') }}">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}O Porto do Sabor{% endblock %}</title>
+    <link rel="stylesheet" href="{{ asset('css/global.css') }}">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <style>
+    .flash-global {
+        position: fixed;
+        top: 1rem;
+        right: 1rem;
+        z-index: 9100;
+        display: flex;
+        flex-direction: column;
+        gap: .5rem;
+        width: min(380px, calc(100vw - 2rem));
+        list-style: none;
+        margin: 0;
+        padding: 0;
+    }
+    .flash-global .flash {
+        display: flex;
+        align-items: center;
+        gap: var(--espacio-md);
+        padding: .85rem 1.1rem;
+        border-radius: var(--radio-md);
+        font-size: var(--texto-sm);
+        font-weight: 500;
+        line-height: 1.4;
+        box-shadow: var(--sombra-md);
+        animation: flash-in .2s ease;
+    }
+    @keyframes flash-in {
+        from { opacity: 0; transform: translateX(.5rem); }
+        to   { opacity: 1; transform: translateX(0); }
+    }
+    .flash-global .flash-success { background: var(--color-exito);  color: var(--color-blanco); }
+    .flash-global .flash-error   { background: var(--color-error);  color: var(--color-blanco); }
+    .flash-global .flash-msg  { flex: 1; }
+    .flash-global .flash-close {
+        flex-shrink: 0;
+        background: none;
+        border: none;
+        cursor: pointer;
+        color: var(--color-blanco);
+        font-size: var(--texto-lg);
+        line-height: 1;
+        opacity: .7;
+        padding: 0;
+    }
+    .flash-global .flash-close:hover { opacity: 1; }
+    </style>
+    {% block stylesheets %}{% endblock %}
+</head>
+<body {% block body_attrs %}{% endblock %}>
+
+    {%- set _flash_s = app.flashes('success') -%}
+    {%- set _flash_e = app.flashes('error') -%}
+    {%- if _flash_s or _flash_e %}
+    <div class="flash-global" role="status" aria-live="polite">
+        {%- for msg in _flash_s %}
+        <div class="flash flash-success">
+            <span class="flash-msg">{{ msg is iterable ? (msg.0|trans(msg.1 ?? {})) : msg|trans }}</span>
+            <button class="flash-close" aria-label="{{ 'comun.cerrar'|trans }}">&times;</button>
+        </div>
+        {%- endfor %}
+        {%- for msg in _flash_e %}
+        <div class="flash flash-error">
+            <span class="flash-msg">{{ msg is iterable ? (msg.0|trans(msg.1 ?? {})) : msg|trans }}</span>
+            <button class="flash-close" aria-label="{{ 'comun.cerrar'|trans }}">&times;</button>
+        </div>
+        {%- endfor %}
+    </div>
+    {%- endif %}
+
+    {% block body %}{% endblock %}
+    {% block javascripts %}
+    <script>
+        (function () {
+            /* Selector de idioma (dropdown) */
+            document.addEventListener('click', function (e) {
+                var trigger = e.target.closest('.locale-switcher__trigger');
+                if (trigger) {
+                    var sw = trigger.closest('.locale-switcher');
+                    var opening = !sw.classList.contains('is-open');
+                    document.querySelectorAll('.locale-switcher.is-open').forEach(function (el) { el.classList.remove('is-open'); });
+                    if (opening) { sw.classList.add('is-open'); }
+                    trigger.setAttribute('aria-expanded', String(opening));
+                    return;
+                }
+                if (!e.target.closest('.locale-switcher')) {
+                    document.querySelectorAll('.locale-switcher.is-open').forEach(function (el) {
+                        el.classList.remove('is-open');
+                        var t = el.querySelector('.locale-switcher__trigger');
+                        if (t) t.setAttribute('aria-expanded', 'false');
+                    });
+                }
+            });
+            document.addEventListener('keydown', function (e) {
+                if (e.key === 'Escape') {
+                    document.querySelectorAll('.locale-switcher.is-open').forEach(function (el) {
+                        el.classList.remove('is-open');
+                        var t = el.querySelector('.locale-switcher__trigger');
+                        if (t) { t.setAttribute('aria-expanded', 'false'); t.focus(); }
+                    });
+                }
+            });
+        })();
+        (function () {
+            function syncToggles(nav, isOpen) {
+                if (!nav) return;
+                nav.querySelectorAll('.js-nav-toggle').forEach(function (btn) {
+                    var icon = btn.querySelector('.material-icons');
+                    if (icon) icon.textContent = isOpen ? 'close' : 'menu';
+                    btn.setAttribute('aria-expanded', String(isOpen));
+                });
+            }
+
+            document.addEventListener('click', function (e) {
+                var toggleBtn = e.target.closest('.js-nav-toggle');
+                if (toggleBtn) {
+                    /* Button may be inside the menu (close btn) or outside (hamburger) */
+                    var menu = toggleBtn.closest('.js-nav-menu')
+                        || (toggleBtn.closest('nav') && toggleBtn.closest('nav').querySelector('.js-nav-menu'));
+                    if (!menu) return;
+                    var isOpen = menu.classList.toggle('is-open');
+                    syncToggles(menu.closest('nav'), isOpen);
+                    return;
+                }
+
+                /* Nav link inside overlay: close on click */
+                var navLink = e.target.closest('.js-nav-menu a');
+                if (navLink) {
+                    var menu = navLink.closest('.js-nav-menu');
+                    if (menu && menu.classList.contains('is-open')) {
+                        menu.classList.remove('is-open');
+                        syncToggles(menu.closest('nav'), false);
+                    }
+                    return;
+                }
+
+                /* Click outside header closes all open menus */
+                if (!e.target.closest('header')) {
+                    document.querySelectorAll('.js-nav-menu.is-open').forEach(function (menu) {
+                        menu.classList.remove('is-open');
+                        syncToggles(menu.closest('nav'), false);
+                    });
+                }
+            });
+        })();
+    </script>
+    <script>
+    (function () {
+        var DELAY = 4500;
+        function fadeOut(el) {
+            el.style.transition = 'opacity .3s ease';
+            el.style.opacity = '0';
+            setTimeout(function () { if (el.parentNode) el.parentNode.removeChild(el); }, 320);
+        }
+        document.querySelectorAll('.flash-global .flash').forEach(function (flash) {
+            var btn = flash.querySelector('.flash-close');
+            if (btn) btn.addEventListener('click', function () { fadeOut(flash); });
+            setTimeout(function () { fadeOut(flash); }, DELAY);
+        });
+    }());
+    </script>
+    {% endblock %}
+</body>
+</html>

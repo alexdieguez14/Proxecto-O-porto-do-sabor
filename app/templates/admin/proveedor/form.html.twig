@@ -1,0 +1,64 @@
+{% extends ('contabilidad' in app.request.attributes.get('_route'))
+    ? 'contabilidad/crud_base.html.twig'
+    : 'admin/crud_base.html.twig' %}
+
+{% set _ctx = 'contabilidad' in app.request.attributes.get('_route') %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('css/admin_articulos.css') }}">
+{% endblock %}
+
+{% block breadcrumbs %}
+    <ul>
+        {% if _ctx %}
+            <li><a href="{{ path('app_contabilidad') }}">{{ 'contabilidad.panel.breadcrumb'|trans }}</a></li>
+        {% else %}
+            <li><a href="{{ path('app_admin') }}">{{ 'admin.master_data.home'|trans }}</a></li>
+            <li><a href="{{ path('admin_datos_maestros') }}">{{ 'admin.master_data.breadcrumb'|trans }}</a></li>
+        {% endif %}
+        <li><a href="{{ path(_ctx ? 'contabilidad_proveedor_index' : 'admin_proveedor_index') }}">{{ 'admin.proveedores.breadcrumb'|trans }}</a></li>
+        <li>{{ ('ditar' in titulo ? 'comun.editar' : 'comun.crear')|trans }}</li>
+    </ul>
+{% endblock %}
+
+{% block crud_content %}
+<main class="fondo-pagina">
+    <div class="contenedor-formulario">
+        <section class="tarjeta-maestra">
+
+            <header class="cabecera-tarjeta">
+                <h1>{{ titulo }}</h1>
+                <a href="{{ path(_ctx ? 'contabilidad_proveedor_index' : 'admin_proveedor_index') }}" class="boton-volver">
+                    <span class="material-icons" aria-hidden="true">arrow_back</span>
+                    {{ 'comun.atras'|trans }}
+                </a>
+            </header>
+
+            <div class="cuerpo-formulario">
+                {{ form_start(form) }}
+
+                    {% for field in form %}
+                        {% if not field.rendered and field.vars.name != '_token' %}
+                        <div class="fila-formulario">
+                            {{ form_label(field) }}
+                            {{ form_widget(field) }}
+                            {{ form_errors(field) }}
+                        </div>
+                        {% endif %}
+                    {% endfor %}
+
+                    <div class="acciones-formulario">
+                        <button type="submit" class="boton-primario">
+                            <span class="material-icons" aria-hidden="true">save</span>
+                            {{ 'comun.guardar'|trans }}
+                        </button>
+                    </div>
+
+                {{ form_end(form) }}
+            </div>
+
+        </section>
+    </div>
+</main>
+{% endblock %}

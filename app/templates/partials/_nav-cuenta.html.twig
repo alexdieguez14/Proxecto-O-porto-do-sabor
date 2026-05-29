@@ -1,0 +1,41 @@
+{# Nav de mi cuenta#}
+<li>{% include 'components/_locale_switcher.html.twig' %}</li>
+
+{% if app.user %}
+    <li>
+        <span class="nav-u__nombre">
+            <span class="material-icons" aria-hidden="true">person</span>
+            {{ app.user.nombre ?? app.user.email }}
+        </span>
+    </li>
+
+    <li>
+        <a class="boton-salir" href="{{ path('app_cerrar_sesion') }}">
+            <span class="material-icons" aria-hidden="true">logout</span>
+            {{ 'nav.salir'|trans }}
+        </a>
+    </li>
+
+    {% if (nav_context ?? 'tienda') == 'tienda' %}
+        <li>
+            <a class="nav-u__enlace" href="{{ path('mi_cuenta_pedidos') }}">
+                <span class="material-icons nav-icon" aria-hidden="true">receipt_long</span>
+                {{ 'cuenta.pedidos.titulo'|trans }}
+            </a>
+        </li>
+    {% else %}
+        <li>
+            <a class="nav-u__enlace" href="{{ path('app_tienda') }}">
+                <span class="material-icons nav-icon" aria-hidden="true">storefront</span>
+                {{ 'cliente.hero.cta'|trans }}
+            </a>
+        </li>
+    {% endif %}
+{% else %}
+    <li>
+        <a class="nav-u__enlace" href="{{ path('app_acceso') }}">
+            <span class="material-icons nav-icon" aria-hidden="true">login</span>
+            {{ 'nav.iniciar_sesion'|trans }}
+        </a>
+    </li>
+{% endif %}

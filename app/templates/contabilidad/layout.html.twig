@@ -1,0 +1,74 @@
+{% extends 'base.html.twig' %}
+
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('css/admin.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/contabilidad.css') }}">
+{% endblock %}
+
+{% block body %}
+    {% include 'contabilidad/_menu.html.twig' %}
+    {% set _bc %}{% block breadcrumbs %}{% endblock %}{% endset %}
+    {% if _bc | trim %}
+        <nav class="breadcrumbs">{{ _bc | raw }}</nav>
+    {% endif %}
+    {% block page_content %}{% endblock %}
+{% endblock %}
+
+{% block javascripts %}
+{{ parent() }}
+<script>
+(function () {
+    var esUrl = '{{ mercure([
+        mercure_base_topic ~ '/pedidos',
+        mercure_base_topic ~ '/movimientos'
+    ])|escape('js') }}';
+
+    var es = new EventSource(esUrl);
+    var banner = null;
+
+    function showUpdateBanner(msg) {
+        if (banner) return;
+        banner = document.createElement('div');
+        banner.className = 'mercure-update-banner';
+        banner.innerHTML =
+            '<span class="material-icons">sync</span> ' +
+            '<span class="mercure-update-msg">' + msg + '</span>' +
+            '<button class="boton-actualizacion-mercure" onclick="window.location.reload()">{{ 'logistica.update.refresh'|trans|escape('js') }}</button>' +
+            '<button class="mercure-update-close" aria-label="{{ 'comun.cerrar'|trans|escape('js') }}" ' +
+            '  onclick="this.parentNode.remove();banner=null;">' +
+            '  <span class="material-icons">close</span></button>';
+        document.body.prepend(banner);
+    }
+
+    es.onmessage = function (e) {
+        var data = {};
+        try { data = JSON.parse(e.data); } catch (_) { return; }
+        if (data.evento === 'pedido.actualizado' || data.evento === 'movimiento.creado') {
+            showUpdateBanner('{{ 'logistica.update.new'|trans|escape('js') }}');
+        }
+    };
+
+    es.onerror = function () {};
+}());
+</script>
+<style>
+.mercure-update-banner {
+    position: fixed; top: 0; left: 0; right: 0; z-index: var(--capa-flash);
+    display: flex; align-items: center; gap: var(--espacio-md);
+    padding: var(--espacio-sm) var(--espacio-lg);
+    background: var(--color-accion);
+    color: var(--color-blanco); font-size: var(--texto-sm);
+}
+.mercure-update-banner .material-icons { font-size: var(--texto-md); animation: spin 1.4s linear infinite; }
+@keyframes spin { to { transform: rotate(360deg); } }
+.mercure-update-msg { flex: 1; }
+.boton-actualizacion-mercure {
+    padding: var(--espacio-xs) var(--espacio-sm); border-radius: var(--radio-sm); border: 2px solid var(--color-blanco);
+    background: transparent; color: var(--color-blanco); font-weight: 600; cursor: pointer;
+}
+.mercure-update-close {
+    background: transparent; border: none; color: var(--color-blanco); cursor: pointer;
+    display: flex; align-items: center;
+}
+</style>
+{% endblock %}

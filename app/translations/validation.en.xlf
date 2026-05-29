@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" version="1.2">
+    <file source-language="es" target-language="en" datatype="plaintext" original="validation.es.xlf">
+        <body>
+            <trans-unit id="validation.name.required">
+                <source>validation.name.required</source>
+                <target>First name is required.</target>
+            </trans-unit>
+            <trans-unit id="validation.surname.required">
+                <source>validation.surname.required</source>
+                <target>Surname is required.</target>
+            </trans-unit>
+            <trans-unit id="validation.phone.required">
+                <source>validation.phone.required</source>
+                <target>Phone is required.</target>
+            </trans-unit>
+            <trans-unit id="validation.phone.invalid">
+                <source>validation.phone.invalid</source>
+                <target>Phone has an invalid format.</target>
+            </trans-unit>
+            <trans-unit id="validation.email.required">
+                <source>validation.email.required</source>
+                <target>Email is required.</target>
+            </trans-unit>
+            <trans-unit id="validation.email.invalid">
+                <source>validation.email.invalid</source>
+                <target>Email is invalid.</target>
+            </trans-unit>
+            <trans-unit id="validation.password.required">
+                <source>validation.password.required</source>
+                <target>Password is required.</target>
+            </trans-unit>
+            <trans-unit id="validation.password.min">
+                <source>validation.password.min</source>
+                <target>Password must be at least {{ limit }} characters long.</target>
+            </trans-unit>
+            <trans-unit id="validation.role.required">
+                <source>validation.role.required</source>
+                <target>You must select a role.</target>
+            </trans-unit>
+            <trans-unit id="validation.title.required">
+                <source>validation.title.required</source>
+                <target>Title is required.</target>
+            </trans-unit>
+            <trans-unit id="validation.price.required">
+                <source>validation.price.required</source>
+                <target>Price is required.</target>
+            </trans-unit>
+            <trans-unit id="validation.price.positive">
+                <source>validation.price.positive</source>
+                <target>Price must be positive.</target>
+            </trans-unit>
+            <trans-unit id="validation.weight.required">
+                <source>validation.weight.required</source>
+                <target>Weight is required.</target>
+            </trans-unit>
+            <trans-unit id="validation.weight.positive">
+                <source>validation.weight.positive</source>
+                <target>Weight must be positive.</target>
+            </trans-unit>
+            <trans-unit id="validation.stock.nonnegative">
+                <source>validation.stock.nonnegative</source>
+                <target>Stock cannot be negative.</target>
+            </trans-unit>
+            <trans-unit id="validation.image.mime">
+                <source>validation.image.mime</source>
+                <target>Upload a JPG, PNG or WEBP image.</target>
+            </trans-unit>
+        </body>
+    </file>
+</xliff>

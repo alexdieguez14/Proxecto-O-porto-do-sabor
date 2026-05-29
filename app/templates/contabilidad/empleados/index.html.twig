@@ -1,0 +1,69 @@
+{% extends 'contabilidad/crud_base.html.twig' %}
+
+{% block title %}{{ 'contabilidad.empleados.title'|trans }} — {{ 'contabilidad.title'|trans }}{% endblock %}
+
+{% set roleLabels = {
+    'ROLE_ADMIN':         'contabilidad.role.admin'|trans,
+    'ROLE_LOGISTICA':     'contabilidad.role.logistica'|trans,
+    'ROLE_CONTABILIDAD':  'contabilidad.role.contabilidad'|trans
+} %}
+
+{% set staffRoles = ['ROLE_ADMIN', 'ROLE_LOGISTICA', 'ROLE_CONTABILIDAD'] %}
+
+{% block breadcrumbs %}
+    <ul>
+        <li><a href="{{ path('app_contabilidad') }}">{{ 'contabilidad.panel.breadcrumb'|trans }}</a></li>
+        <li><a href="{{ path('contabilidad_empleado_index') }}">{{ 'contabilidad.empleados.title'|trans }}</a></li>
+        <li>{{ 'admin.articulos.list'|trans }}</li>
+    </ul>
+{% endblock %}
+
+{% block crud_content %}
+<main class="fondo-pagina">
+    <div class="contenedor-principal">
+        <section class="tarjeta-maestra">
+
+            <header class="cabecera-tarjeta">
+                <h1>{{ 'contabilidad.empleados.title'|trans }}</h1>
+            </header>
+
+            {% if empleados is empty %}
+                <p class="tarjeta-vacia">{{ 'contabilidad.empleados.empty'|trans }}</p>
+            {% else %}
+                <div class="envoltorio-tabla">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>{{ 'comun.nombre'|trans }}</th>
+                                <th>{{ 'comun.correo'|trans }}</th>
+                                <th>{{ 'comun.telefono'|trans }}</th>
+                                <th>{{ 'comun.estado_col'|trans }}</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for e in empleados %}
+                                <tr>
+                                    <td class="texto-primario-negrita">{{ e.nombre }} {{ e.apellidos }}</td>
+                                    <td>{{ e.email }}</td>
+                                    <td>{{ e.telefono ?: '—' }}</td>
+                                    <td>
+                                        {% for role in e.roles %}
+                                            {% if role in staffRoles %}
+                                                <span class="contador-insignia">{{ roleLabels[role] ?? role }}</span>
+                                            {% endif %}
+                                        {% endfor %}
+                                    </td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+                <footer class="pie-tarjeta">
+                    <p>{{ 'admin.crud.total'|trans }}: <strong>{{ empleados|length }}</strong></p>
+                </footer>
+            {% endif %}
+
+        </section>
+    </div>
+</main>
+{% endblock %}

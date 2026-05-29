@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="{{ app.request.locale|default('es') }}">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ 'albaran.titulo'|trans }} #{{ pedido.id }}</title>
+    <link rel="stylesheet" href="{{ asset('css/global.css') }}">
+    <style>
+        body {
+            font-family: var(--fuente-base);
+            color: var(--color-texto);
+            background: var(--color-blanco);
+            margin: 0;
+            padding: var(--espacio-xl);
+        }
+        .cabecera-documento {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            border-bottom: 3px solid var(--color-accion);
+            padding-bottom: var(--espacio-lg);
+            margin-bottom: var(--espacio-xl);
+        }
+        .logo-documento { font-size: var(--texto-xl); font-weight: 900; color: var(--color-accion); }
+        .meta-documento { text-align: right; font-size: var(--texto-sm); }
+        .meta-documento h1 { font-size: var(--texto-lg); margin-bottom: var(--espacio-sm); }
+        .meta-documento p { margin: .2rem 0; color: var(--color-texto-medio); }
+        section.seccion-documento { margin-bottom: var(--espacio-lg); }
+        section.seccion-documento h2 {
+            font-size: var(--texto-xs);
+            text-transform: uppercase;
+            letter-spacing: .08em;
+            color: var(--color-accion);
+            font-weight: 800;
+            margin-bottom: var(--espacio-sm);
+        }
+        section.seccion-documento p { font-size: var(--texto-sm); margin: .25rem 0; }
+        table { width: 100%; border-collapse: collapse; margin-bottom: var(--espacio-lg); }
+        th {
+            background: var(--color-accion);
+            color: var(--color-blanco);
+            padding: .6rem var(--espacio-md);
+            text-align: left;
+            font-size: var(--texto-sm);
+            text-transform: uppercase;
+        }
+        td { padding: .65rem var(--espacio-md); border-bottom: 1px solid var(--color-borde-suave); font-size: var(--texto-sm); }
+        tr:last-child td { border-bottom: none; }
+        tfoot td { background: var(--color-pagina); font-weight: 700; }
+        .caja-bultos {
+            border: 2px solid var(--color-accion);
+            border-radius: var(--radio-lg);
+            padding: var(--espacio-md) var(--espacio-lg);
+            display: inline-block;
+            margin-top: var(--espacio-md);
+        }
+        .caja-bultos span { font-size: var(--texto-2xl); font-weight: 900; color: var(--color-accion); }
+        .caja-bultos p { margin: 0; font-size: var(--texto-xs); text-transform: uppercase; color: var(--color-texto-medio); }
+        .aviso-documento {
+            background: var(--color-pagina);
+            border-left: 4px solid var(--color-accion);
+            padding: .75rem var(--espacio-md);
+            font-size: var(--texto-xs);
+            color: var(--color-texto-medio);
+            margin-top: var(--espacio-xl);
+        }
+        .boton-imprimir {
+            background: var(--color-accion);
+            color: var(--color-blanco);
+            border: none;
+            padding: .65rem 1.4rem;
+            border-radius: var(--radio-md);
+            cursor: pointer;
+            font-size: var(--texto-sm);
+            font-weight: 700;
+            margin-bottom: var(--espacio-lg);
+            display: inline-flex;
+            align-items: center;
+            gap: .4rem;
+        }
+        @media print {
+            .boton-imprimir { display: none; }
+            body { padding: 1cm; }
+        }
+    </style>
+</head>
+<body>
+
+<button class="boton-imprimir" onclick="window.print()">🖨 {{ 'albaran.boton_imprimir'|trans }}</button>
+
+<header class="cabecera-documento">
+    <p class="logo-documento">O Porto do Sabor</p>
+    <aside class="meta-documento">
+        <h1>{{ 'albaran.titulo'|trans }}</h1>
+        <p>{{ 'albaran.numero'|trans }} {{ '%05d'|format(pedido.id) }}</p>
+        <p>{{ 'factura.fecha_pedido'|trans }}: {{ pedido.creadoEn|date('d/m/Y') }}</p>
+        {% if pedido.enviadoEn %}
+        <p>{{ 'factura.fecha_envio'|trans }}: {{ pedido.enviadoEn|date('d/m/Y') }}</p>
+        {% endif %}
+    </aside>
+</header>
+
+<section class="seccion-documento">
+    <h2>{{ 'albaran.cliente'|trans }}</h2>
+    {% if pedido.usuario %}
+    <p><strong>{{ pedido.usuario.nombre }} {{ pedido.usuario.apellidos }}</strong></p>
+    {% if pedido.usuario.telefono %}<p>{{ pedido.usuario.telefono }}</p>{% endif %}
+    {% endif %}
+    <p>{{ pedido.clienteEmail }}</p>
+    <p>{{ 'pago.metodo'|trans }}:
+        {% if pedido.metodoPago == 'TARJETA' %}{{ 'pago.tarjeta.corto'|trans }}
+        {% elseif pedido.metodoPago == 'CONTRARREEMBOLSO' %}{{ 'pago.contrarreembolso'|trans }}
+        {% else %}{{ 'pago.transferencia.corto'|trans }}
+        {% endif %}
+    </p>
+</section>
+
+{% if pedido.direccionEnvio %}
+<section class="seccion-documento">
+    <h2>{{ 'albaran.direccion_envio'|trans }}</h2>
+    <address>
+        <p>{{ pedido.direccionEnvio.calle }}</p>
+        <p>{{ pedido.direccionEnvio.codigoPostal }} {{ pedido.direccionEnvio.ciudad }}{% if pedido.direccionEnvio.provincia %}, {{ pedido.direccionEnvio.provincia }}{% endif %}</p>
+        <p>{{ pedido.direccionEnvio.pais }}</p>
+    </address>
+</section>
+{% endif %}
+
+<section class="seccion-documento">
+    <h2>{{ 'albaran.lineas'|trans }}</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>{{ 'comun.producto'|trans }}</th>
+                <th style="text-align:center">{{ 'comun.cantidad'|trans }}</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for item in pedido.items %}
+            <tr>
+                <td>{{ item.titulo }}</td>
+                <td style="text-align:center">{{ item.cantidad }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+        <tfoot>
+            <tr>
+                <td>{{ 'albaran.total_unidades'|trans }}</td>
+                <td style="text-align:center">{{ pedido.cantidadTotal }}</td>
+            </tr>
+        </tfoot>
+    </table>
+</section>
+
+{% if pedido.bultos %}
+<aside class="caja-bultos">
+    <p>{{ 'albaran.bultos_caja'|trans }}</p>
+    <span>{{ pedido.bultos }}</span>
+</aside>
+{% endif %}
+
+<aside class="aviso-documento">
+    {{ 'albaran.pie'|trans }}
+</aside>
+
+</body>
+</html>

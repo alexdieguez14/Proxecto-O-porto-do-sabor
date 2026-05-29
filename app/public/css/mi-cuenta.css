@@ -1,0 +1,514 @@
+/* Mi cuenta */
+
+body {
+    background-color: var(--color-pagina);
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+/* Navegación */
+
+header {
+    background-color: var(--color-blanco);
+    box-shadow: 0 8px 24px rgba(24, 50, 66, .08);
+    position: sticky;
+    top: 0;
+    z-index: var(--capa-nav);
+    width: 100%;
+}
+
+.cuenta-nav {
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    align-items: center;
+    padding: 0 var(--espacio-md);
+    min-height: 60px;
+    width: 100%;
+}
+
+.cuenta-nav__izquierda,
+.cuenta-nav__centro,
+.cuenta-nav__derecha {
+    display: flex;
+    align-items: center;
+}
+
+.cuenta-nav__centro {
+    justify-content: center;
+}
+
+.cuenta-nav__derecha {
+    justify-content: flex-end;
+    gap: var(--espacio-sm);
+}
+
+.cuenta-nav__logo img {
+    height: 60px;
+    width: auto;
+    display: block;
+}
+
+.cuenta-nav__enlace {
+    display: inline-flex;
+    align-items: center;
+    gap: .35rem;
+    color: var(--color-accion);
+    font-weight: 700;
+    font-size: var(--texto-md);
+    text-decoration: none;
+    transition: color .2s;
+}
+
+.cuenta-nav__enlace:hover {
+    color: var(--color-accion-muy-oscuro);
+}
+
+.cuenta-nav__enlace .material-icons {
+    font-size: 22px;
+}
+
+.cuenta-nav__usuario {
+    display: inline-flex;
+    align-items: center;
+    gap: .3rem;
+    font-size: var(--texto-sm);
+    font-weight: 600;
+    color: var(--color-texto-suave);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 140px;
+}
+
+.cuenta-nav__usuario .material-icons {
+    font-size: 20px;
+    flex-shrink: 0;
+}
+
+.boton-salir {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--espacio-xs);
+    background: var(--color-accion);
+    color: var(--color-blanco);
+    padding: .4rem var(--espacio-md);
+    border-radius: var(--radio-md);
+    text-decoration: none;
+    font-size: var(--texto-sm);
+    font-weight: 700;
+    white-space: nowrap;
+    transition: background-color .2s;
+}
+
+.boton-salir:hover {
+    background: var(--color-accion-oscuro);
+}
+
+.boton-salir .material-icons {
+    font-size: 18px;
+}
+
+/* Página */
+
+.pagina-cuenta {
+    flex: 1;
+    padding: var(--espacio-md) var(--espacio-sm);
+}
+
+.contenedor-cuenta {
+    max-width: 860px;
+    margin: 0 auto;
+}
+
+/* Título */
+
+.titulo-cuenta {
+    display: flex;
+    align-items: center;
+    gap: .6rem;
+    font-size: var(--texto-xl);
+    font-weight: 800;
+    color: var(--color-primario);
+    margin-bottom: var(--espacio-xl);
+}
+
+.titulo-cuenta .material-icons {
+    font-size: 1.75rem;
+    color: var(--color-accion);
+}
+
+/* Estado vacío */
+
+.estado-vacio-cuenta {
+    text-align: center;
+    padding: 5rem 1rem;
+    color: var(--color-texto-suave);
+}
+
+.estado-vacio-cuenta .material-icons {
+    font-size: 4rem;
+    display: block;
+    margin-bottom: var(--espacio-md);
+    color: var(--color-borde-suave);
+}
+
+.estado-vacio-cuenta p {
+    font-size: var(--texto-lg);
+    margin-bottom: var(--espacio-md);
+    color: var(--color-texto-medio);
+}
+
+.estado-vacio-cuenta a {
+    display: inline-block;
+    background: var(--color-accion);
+    color: var(--color-blanco);
+    padding: .6rem var(--espacio-lg);
+    border-radius: var(--radio-lg);
+    font-weight: 700;
+    font-size: var(--texto-sm);
+    text-decoration: none;
+    transition: background .2s;
+}
+
+.estado-vacio-cuenta a:hover {
+    background: var(--color-accion-muy-oscuro);
+}
+
+/* Pedidos */
+
+.pedido-cuenta {
+    background: var(--color-blanco);
+    border: 1px solid var(--color-borde-suave);
+    border-radius: 12px;
+    box-shadow: var(--sombra-sm);
+    margin-bottom: 1.25rem;
+    overflow: hidden;
+    transition: box-shadow .2s, transform .2s;
+}
+
+.pedido-cuenta:hover {
+    box-shadow: var(--sombra-md);
+    transform: translateY(-1px);
+}
+
+
+.pedido-cuenta__cabecera {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: .75rem;
+    padding: .85rem 1rem;
+    border-bottom: 1px solid var(--color-borde-suave);
+}
+
+.pedido-cuenta__meta {
+    display: flex;
+    flex-direction: column;
+    gap: .3rem;
+}
+
+.pedido-cuenta__numero {
+    font-size: .72rem;
+    font-weight: 800;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+    color: var(--color-texto-suave);
+}
+
+.pedido-cuenta__fecha {
+    display: inline-flex;
+    align-items: center;
+    gap: .3rem;
+    font-size: var(--texto-sm);
+    color: var(--color-texto-medio);
+}
+
+.pedido-cuenta__fecha .material-icons {
+    font-size: .9rem;
+    color: var(--color-texto-suave);
+}
+
+.pedido-cuenta__etiquetas {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: .5rem;
+}
+
+.pedido-cuenta__total {
+    font-size: 1.1rem;
+    font-weight: 800;
+    color: var(--color-primario);
+    padding-left: .65rem;
+    border-left: 2px solid var(--color-borde-suave);
+    margin-left: .15rem;
+}
+
+/* Insignias */
+
+.insignia {
+    display: inline-flex;
+    align-items: center;
+    gap: .28rem;
+    padding: .22rem .55rem;
+    border-radius: var(--radio-total);
+    font-size: .72rem;
+    font-weight: 700;
+    white-space: nowrap;
+    line-height: 1.5;
+}
+
+.insignia .material-icons {
+    font-size: .9rem;
+}
+
+.insignia--preparacion {
+    background: var(--color-morado-claro);
+    color: var(--color-morado-oscuro);
+}
+
+.insignia--listo {
+    background: var(--color-naranja-suave);
+    color: var(--color-naranja-quemado);
+}
+
+.insignia--enviado {
+    background: var(--color-azul-claro);
+    color: var(--color-azul-marino);
+}
+
+.insignia--completado {
+    background: var(--color-exito-fondo);
+    color: var(--color-exito);
+}
+
+.insignia--pendiente {
+    background: var(--color-ambar-claro);
+    color: var(--color-ambar-oscuro);
+}
+
+.insignia--vencido {
+    background: var(--color-error-fondo);
+    color: var(--color-error);
+    border: 1px solid var(--borde-error);
+}
+
+.insignia--pagado {
+    background: var(--color-exito-fondo);
+    color: var(--color-exito);
+}
+
+/* Cuerpo */
+
+.pedido-cuenta__cuerpo {
+    padding: .85rem 1rem;
+}
+
+.pedido-cuenta__info {
+    display: flex;
+    align-items: center;
+    gap: .4rem;
+    font-size: var(--texto-sm);
+    color: var(--color-texto-medio);
+    margin-bottom: .45rem;
+}
+
+.pedido-cuenta__info .material-icons {
+    font-size: 1rem;
+    flex-shrink: 0;
+    color: var(--color-accion);
+}
+
+.pedido-cuenta__seguimiento {
+    color: var(--color-accion);
+    font-weight: 600;
+}
+
+/* Tabla */
+
+.tabla-pedido-cuenta {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: var(--espacio-md);
+    font-size: var(--texto-sm);
+}
+
+.tabla-pedido-cuenta thead tr {
+    border-bottom: 2px solid var(--color-borde-suave);
+}
+
+.tabla-pedido-cuenta th {
+    padding: .4rem .5rem;
+    font-size: .8rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: .07em;
+    color: var(--color-texto-suave);
+    text-align: left;
+}
+
+.tabla-pedido-cuenta th:nth-child(n+2) {
+    text-align: right;
+}
+
+.tabla-pedido-cuenta tbody tr {
+    border-bottom: 1px solid var(--color-borde-suave);
+    transition: background-color .15s;
+}
+
+.tabla-pedido-cuenta tbody tr:last-child {
+    border-bottom: none;
+}
+
+.tabla-pedido-cuenta tbody tr:hover {
+    background-color: var(--color-pagina);
+}
+
+.tabla-pedido-cuenta td {
+    padding: .4rem .5rem;
+    color: var(--color-texto);
+    font-size: .8rem;
+}
+
+.tabla-pedido-cuenta td:nth-child(n+2) {
+    text-align: right;
+}
+
+.tabla-pedido-cuenta .celda-nombre {
+    font-weight: 600;
+    color: var(--color-primario);
+}
+
+.tabla-pedido-cuenta tfoot tr {
+    border-top: 2px solid var(--color-borde-suave);
+    background: var(--color-pagina);
+}
+
+.tabla-pedido-cuenta tfoot td {
+    padding: .6rem .75rem;
+    font-weight: 800;
+    color: var(--color-primario);
+}
+
+.tabla-pedido-cuenta tfoot td:last-child {
+    font-size: 1.05rem;
+    color: var(--color-accion);
+}
+
+/* Pie */
+
+.pie-cuenta {
+    background: var(--color-primario);
+    color: rgba(255, 255, 255, .7);
+    text-align: center;
+    padding: var(--espacio-lg) var(--espacio-md);
+    font-size: var(--texto-sm);
+    margin-top: auto;
+}
+
+/* Filtros */
+
+.filtro-cuenta {
+    background: var(--color-blanco);
+    border: 1px solid var(--color-borde-suave);
+    border-radius: var(--radius-md, 8px);
+    margin-bottom: var(--espacio-lg);
+    padding: var(--espacio-md) var(--espacio-lg);
+}
+
+.filtro-cuenta .filter-bar {
+    background: transparent;
+    padding: 0;
+}
+
+.filtro-cuenta .btn {
+    padding: .32rem .8rem;
+    font-size: .8rem;
+}
+
+.filtro-cuenta .btn .material-icons {
+    font-size: .9rem;
+}
+
+/* Acciones */
+
+.pedido-cuenta__acciones {
+    padding: .65rem var(--espacio-lg);
+    border-top: 1px solid var(--color-borde-suave);
+    display: flex;
+    justify-content: flex-end;
+    gap: .5rem;
+}
+
+.pedido-cuenta__factura {
+    display: inline-flex;
+    align-items: center;
+    gap: .3rem;
+    font-size: .82rem;
+}
+
+.pedido-cuenta__factura .material-icons {
+    font-size: .95rem;
+}
+
+@media (min-width: 641px) {
+    .cuenta-nav {
+        grid-template-columns: 1fr auto 1fr;
+        padding: 0 var(--espacio-xl);
+        min-height: 80px;
+    }
+
+    .cuenta-nav__derecha {
+        gap: var(--espacio-md);
+    }
+
+    .cuenta-nav__usuario {
+        font-size: var(--texto-md);
+        max-width: none;
+    }
+
+    .pagina-cuenta {
+        padding: var(--espacio-xl) var(--espacio-md);
+    }
+
+    .pedido-cuenta__cabecera {
+        padding: 1rem 1.5rem;
+    }
+
+    .pedido-cuenta__cuerpo {
+        padding: 1rem 1.5rem;
+    }
+
+    .pedido-cuenta__total {
+        border-left: 2px solid var(--color-borde-suave);
+        padding-left: .65rem;
+    }
+
+    .tabla-pedido-cuenta th {
+        padding: .45rem .75rem;
+        font-size: .7rem;
+    }
+
+    .tabla-pedido-cuenta td {
+        padding: .55rem .75rem;
+        font-size: var(--texto-sm);
+    }
+
+    .insignia {
+        font-size: .76rem;
+        padding: .28rem .75rem;
+    }
+}
+
+@media (min-width: 1024px) {
+    .cuenta-nav {
+        min-height: 120px;
+        padding: 0 4rem;
+    }
+
+    .cuenta-nav__logo img {
+        height: 100px;
+    }
+}

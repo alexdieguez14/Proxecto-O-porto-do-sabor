@@ -1,0 +1,17 @@
+{% extends 'base.html.twig' %}
+
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('css/admin.css') }}">
+{% endblock %}
+
+{% block body %}
+    {% include 'admin/_menu.html.twig' %}
+
+    {# Captura el bloque de migas de pan; solo renderiza el contenedor si no está vacío #}
+    {% set _bc %}{% block breadcrumbs %}{% endblock %}{% endset %}
+    {% if _bc | trim %}
+        <nav class="breadcrumbs">{{ _bc | raw }}</nav>
+    {% endif %}
+
+    {% block page_content %}{% endblock %}
+{% endblock %}

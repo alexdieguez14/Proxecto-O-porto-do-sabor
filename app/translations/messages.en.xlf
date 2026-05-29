@@ -1,0 +1,1755 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" version="1.2">
+    <file source-language="es" target-language="en" datatype="plaintext" original="messages.es.xlf">
+        <body>
+            <trans-unit id="comun.guardar">
+                <source>comun.guardar</source>
+                <target>Save</target>
+            </trans-unit>
+            <trans-unit id="comun.cancelar">
+                <source>comun.cancelar</source>
+                <target>Cancel</target>
+            </trans-unit>
+            <trans-unit id="comun.editar">
+                <source>comun.editar</source>
+                <target>Edit</target>
+            </trans-unit>
+            <trans-unit id="comun.eliminar">
+                <source>comun.eliminar</source>
+                <target>Delete</target>
+            </trans-unit>
+            <trans-unit id="comun.crear">
+                <source>comun.crear</source>
+                <target>Create</target>
+            </trans-unit>
+            <trans-unit id="comun.buscar">
+                <source>comun.buscar</source>
+                <target>Search</target>
+            </trans-unit>
+            <trans-unit id="comun.filtrar">
+                <source>comun.filtrar</source>
+                <target>Filter</target>
+            </trans-unit>
+            <trans-unit id="comun.limpiar">
+                <source>comun.limpiar</source>
+                <target>Clear</target>
+            </trans-unit>
+            <trans-unit id="comun.atras">
+                <source>comun.atras</source>
+                <target>Back</target>
+            </trans-unit>
+            <trans-unit id="comun.siguiente">
+                <source>comun.siguiente</source>
+                <target>Next</target>
+            </trans-unit>
+            <trans-unit id="comun.confirmar">
+                <source>comun.confirmar</source>
+                <target>Confirm</target>
+            </trans-unit>
+            <trans-unit id="comun.cerrar">
+                <source>comun.cerrar</source>
+                <target>Close</target>
+            </trans-unit>
+            <trans-unit id="comun.anadir">
+                <source>comun.anadir</source>
+                <target>Add</target>
+            </trans-unit>
+            <trans-unit id="comun.acciones">
+                <source>comun.acciones</source>
+                <target>Actions</target>
+            </trans-unit>
+            <trans-unit id="comun.si">
+                <source>comun.si</source>
+                <target>Yes</target>
+            </trans-unit>
+            <trans-unit id="comun.no">
+                <source>comun.no</source>
+                <target>No</target>
+            </trans-unit>
+            <trans-unit id="comun.total">
+                <source>comun.total</source>
+                <target>Total</target>
+            </trans-unit>
+            <trans-unit id="comun.subtotal">
+                <source>comun.subtotal</source>
+                <target>Subtotal</target>
+            </trans-unit>
+            <trans-unit id="comun.fecha">
+                <source>comun.fecha</source>
+                <target>Date</target>
+            </trans-unit>
+            <trans-unit id="comun.estado_col">
+                <source>comun.estado_col</source>
+                <target>Status</target>
+            </trans-unit>
+            <trans-unit id="comun.nombre">
+                <source>comun.nombre</source>
+                <target>Name</target>
+            </trans-unit>
+            <trans-unit id="comun.correo">
+                <source>comun.correo</source>
+                <target>Email</target>
+            </trans-unit>
+            <trans-unit id="comun.telefono">
+                <source>comun.telefono</source>
+                <target>Phone</target>
+            </trans-unit>
+            <trans-unit id="comun.direccion">
+                <source>comun.direccion</source>
+                <target>Address</target>
+            </trans-unit>
+            <trans-unit id="comun.ciudad">
+                <source>comun.ciudad</source>
+                <target>City</target>
+            </trans-unit>
+            <trans-unit id="comun.codigo_postal">
+                <source>comun.codigo_postal</source>
+                <target>Postal code</target>
+            </trans-unit>
+            <trans-unit id="comun.provincia">
+                <source>comun.provincia</source>
+                <target>Province</target>
+            </trans-unit>
+            <trans-unit id="comun.pais">
+                <source>comun.pais</source>
+                <target>Country</target>
+            </trans-unit>
+            <trans-unit id="comun.cantidad">
+                <source>comun.cantidad</source>
+                <target>Quantity</target>
+            </trans-unit>
+            <trans-unit id="comun.precio">
+                <source>comun.precio</source>
+                <target>Price</target>
+            </trans-unit>
+            <trans-unit id="comun.producto">
+                <source>comun.producto</source>
+                <target>Product</target>
+            </trans-unit>
+            <trans-unit id="comun.cargando">
+                <source>comun.cargando</source>
+                <target>Loading...</target>
+            </trans-unit>
+            <trans-unit id="comun.vacio">
+                <source>comun.vacio</source>
+                <target>No results</target>
+            </trans-unit>
+            <trans-unit id="comun.obligatorio">
+                <source>comun.obligatorio</source>
+                <target>Required</target>
+            </trans-unit>
+            <trans-unit id="comun.opcional">
+                <source>comun.opcional</source>
+                <target>Optional</target>
+            </trans-unit>
+            <trans-unit id="comun.imprimir">
+                <source>comun.imprimir</source>
+                <target>Print</target>
+            </trans-unit>
+            <trans-unit id="nav.iniciar_sesion">
+                <source>nav.iniciar_sesion</source>
+                <target>Log in</target>
+            </trans-unit>
+            <trans-unit id="nav.salir">
+                <source>nav.salir</source>
+                <target>Log out</target>
+            </trans-unit>
+            <trans-unit id="nav.registrar">
+                <source>nav.registrar</source>
+                <target>Sign up</target>
+            </trans-unit>
+            <trans-unit id="nav.cuenta">
+                <source>nav.cuenta</source>
+                <target>My account</target>
+            </trans-unit>
+            <trans-unit id="nav.cesta">
+                <source>nav.cesta</source>
+                <target>Cart</target>
+            </trans-unit>
+            <trans-unit id="nav.admin">
+                <source>nav.admin</source>
+                <target>Admin panel</target>
+            </trans-unit>
+            <trans-unit id="nav.logistica">
+                <source>nav.logistica</source>
+                <target>Logistics</target>
+            </trans-unit>
+            <trans-unit id="nav.contabilidad">
+                <source>nav.contabilidad</source>
+                <target>Accounting</target>
+            </trans-unit>
+            <trans-unit id="nav.datos_maestros">
+                <source>nav.datos_maestros</source>
+                <target>Master data</target>
+            </trans-unit>
+            <trans-unit id="nav.pedidos">
+                <source>nav.pedidos</source>
+                <target>Orders</target>
+            </trans-unit>
+            <trans-unit id="nav.proveedores">
+                <source>nav.proveedores</source>
+                <target>Suppliers</target>
+            </trans-unit>
+            <trans-unit id="nav.clientes">
+                <source>nav.clientes</source>
+                <target>Customers</target>
+            </trans-unit>
+            <trans-unit id="nav.empleados">
+                <source>nav.empleados</source>
+                <target>Employees</target>
+            </trans-unit>
+            <trans-unit id="nav.abrir_menu">
+                <source>nav.abrir_menu</source>
+                <target>Open menu</target>
+            </trans-unit>
+            <trans-unit id="nav.cerrar_menu">
+                <source>nav.cerrar_menu</source>
+                <target>Close menu</target>
+            </trans-unit>
+            <trans-unit id="nav.bienvenido">
+                <source>nav.bienvenido</source>
+                <target>Welcome</target>
+            </trans-unit>
+            <trans-unit id="nav.idioma">
+                <source>nav.idioma</source>
+                <target>Language</target>
+            </trans-unit>
+            <trans-unit id="nav.idioma.es">
+                <source>nav.idioma.es</source>
+                <target>Español</target>
+            </trans-unit>
+            <trans-unit id="nav.idioma.en">
+                <source>nav.idioma.en</source>
+                <target>English</target>
+            </trans-unit>
+            <trans-unit id="acceso.sesion.titulo">
+                <source>acceso.sesion.titulo</source>
+                <target>Log in</target>
+            </trans-unit>
+            <trans-unit id="acceso.sesion.subtitulo">
+                <source>acceso.sesion.subtitulo</source>
+                <target>Access your account</target>
+            </trans-unit>
+            <trans-unit id="acceso.sesion.correo">
+                <source>acceso.sesion.correo</source>
+                <target>Email</target>
+            </trans-unit>
+            <trans-unit id="acceso.sesion.contrasena">
+                <source>acceso.sesion.contrasena</source>
+                <target>Password</target>
+            </trans-unit>
+            <trans-unit id="acceso.sesion.enviar">
+                <source>acceso.sesion.enviar</source>
+                <target>Sign in</target>
+            </trans-unit>
+            <trans-unit id="acceso.sesion.credenciales_invalidas">
+                <source>acceso.sesion.credenciales_invalidas</source>
+                <target>Invalid credentials</target>
+            </trans-unit>
+            <trans-unit id="acceso.sesion.sin_cuenta">
+                <source>acceso.sesion.sin_cuenta</source>
+                <target>Don't have an account?</target>
+            </trans-unit>
+            <trans-unit id="acceso.sesion.enlace_registro">
+                <source>acceso.sesion.enlace_registro</source>
+                <target>Sign up here</target>
+            </trans-unit>
+            <trans-unit id="acceso.registro.titulo">
+                <source>acceso.registro.titulo</source>
+                <target>Create account</target>
+            </trans-unit>
+            <trans-unit id="acceso.registro.enviar">
+                <source>acceso.registro.enviar</source>
+                <target>Create account</target>
+            </trans-unit>
+            <trans-unit id="acceso.registro.tiene_cuenta">
+                <source>acceso.registro.tiene_cuenta</source>
+                <target>Already have an account?</target>
+            </trans-unit>
+            <trans-unit id="acceso.registro.enlace_sesion">
+                <source>acceso.registro.enlace_sesion</source>
+                <target>Log in</target>
+            </trans-unit>
+            <trans-unit id="acceso.inicio.titulo">
+                <source>acceso.inicio.titulo</source>
+                <target>Home panel</target>
+            </trans-unit>
+            <trans-unit id="acceso.inicio.cuerpo">
+                <source>acceso.inicio.cuerpo</source>
+                <target>You have signed in successfully.</target>
+            </trans-unit>
+            <trans-unit id="registro.intro">
+                <source>registro.intro</source>
+                <target>Discover O Porto do Sabor</target>
+            </trans-unit>
+            <trans-unit id="registro.empleado.titulo">
+                <source>registro.empleado.titulo</source>
+                <target>New employee</target>
+            </trans-unit>
+            <trans-unit id="registro.empleado.subtitulo">
+                <source>registro.empleado.subtitulo</source>
+                <target>Create a user with Logistics or Accounting role.</target>
+            </trans-unit>
+            <trans-unit id="registro.empleado.enviar">
+                <source>registro.empleado.enviar</source>
+                <target>Create employee</target>
+            </trans-unit>
+            <trans-unit id="registro.cliente.subtitulo">
+                <source>registro.cliente.subtitulo</source>
+                <target>Register as a customer.</target>
+            </trans-unit>
+            <trans-unit id="registro.volver_panel">
+                <source>registro.volver_panel</source>
+                <target>Back to admin panel</target>
+            </trans-unit>
+            <trans-unit id="cookies.text">
+                <source>cookies.text</source>
+                <target>We use our own and third-party cookies to ensure the shop works and to improve your experience, in compliance with GDPR and the Spanish LSSI-CE.</target>
+            </trans-unit>
+            <trans-unit id="cookies.more_info">
+                <source>cookies.more_info</source>
+                <target>More info</target>
+            </trans-unit>
+            <trans-unit id="cookies.necessary_only">
+                <source>cookies.necessary_only</source>
+                <target>Necessary only</target>
+            </trans-unit>
+            <trans-unit id="cookies.accept_all">
+                <source>cookies.accept_all</source>
+                <target>Accept all</target>
+            </trans-unit>
+            <trans-unit id="estado.preparacion">
+                <source>estado.preparacion</source>
+                <target>In preparation</target>
+            </trans-unit>
+            <trans-unit id="estado.listo_envio">
+                <source>estado.listo_envio</source>
+                <target>Ready to ship</target>
+            </trans-unit>
+            <trans-unit id="estado.enviado">
+                <source>estado.enviado</source>
+                <target>Shipped</target>
+            </trans-unit>
+            <trans-unit id="estado.completado">
+                <source>estado.completado</source>
+                <target>Completed</target>
+            </trans-unit>
+            <trans-unit id="estado.cancelado">
+                <source>estado.cancelado</source>
+                <target>Cancelled</target>
+            </trans-unit>
+            <trans-unit id="estado.pendiente_pago">
+                <source>estado.pendiente_pago</source>
+                <target>Pending payment</target>
+            </trans-unit>
+            <trans-unit id="estado.pagado">
+                <source>estado.pagado</source>
+                <target>Paid</target>
+            </trans-unit>
+            <trans-unit id="estado.vencido">
+                <source>estado.vencido</source>
+                <target>Overdue</target>
+            </trans-unit>
+            <trans-unit id="pago.metodo">
+                <source>pago.metodo</source>
+                <target>Payment method</target>
+            </trans-unit>
+            <trans-unit id="pago.tarjeta">
+                <source>pago.tarjeta</source>
+                <target>Credit card</target>
+            </trans-unit>
+            <trans-unit id="pago.tarjeta.corto">
+                <source>pago.tarjeta.corto</source>
+                <target>Bank card</target>
+            </trans-unit>
+            <trans-unit id="pago.tarjeta.descripcion">
+                <source>pago.tarjeta.descripcion</source>
+                <target>Immediate, confirmed payment</target>
+            </trans-unit>
+            <trans-unit id="pago.transferencia">
+                <source>pago.transferencia</source>
+                <target>Bank account / Transfer</target>
+            </trans-unit>
+            <trans-unit id="pago.transferencia.corto">
+                <source>pago.transferencia.corto</source>
+                <target>Bank transfer</target>
+            </trans-unit>
+            <trans-unit id="pago.transferencia.descripcion">
+                <source>pago.transferencia.descripcion</source>
+                <target>30-day payment term</target>
+            </trans-unit>
+            <trans-unit id="pago.contrarreembolso">
+                <source>pago.contrarreembolso</source>
+                <target>Cash on delivery</target>
+            </trans-unit>
+            <trans-unit id="pago.contrarreembolso.descripcion">
+                <source>pago.contrarreembolso.descripcion</source>
+                <target>Pay in cash on receipt</target>
+            </trans-unit>
+            <trans-unit id="pago.contrarreembolso.info">
+                <source>pago.contrarreembolso.info</source>
+                <target>Payment is made in cash on receipt of the order. The courier will collect the total amount on delivery.</target>
+            </trans-unit>
+            <trans-unit id="cliente.title">
+                <source>cliente.title</source>
+                <target>Shop — O Porto do Sabor</target>
+            </trans-unit>
+            <trans-unit id="cliente.hero.title">
+                <source>cliente.hero.title</source>
+                <target>O Porto do Sabor</target>
+            </trans-unit>
+            <trans-unit id="cliente.hero.subtitle">
+                <source>cliente.hero.subtitle</source>
+                <target>Galician seafood prepared to bring the taste of the ria to your table.</target>
+            </trans-unit>
+            <trans-unit id="cliente.hero.cta">
+                <source>cliente.hero.cta</source>
+                <target>View products</target>
+            </trans-unit>
+            <trans-unit id="cliente.no_products">
+                <source>cliente.no_products</source>
+                <target>No products found for your search.</target>
+            </trans-unit>
+            <trans-unit id="cliente.category_empty">
+                <source>cliente.category_empty</source>
+                <target>No items currently available in %category%.</target>
+            </trans-unit>
+            <trans-unit id="cliente.add">
+                <source>cliente.add</source>
+                <target>Add</target>
+            </trans-unit>
+            <trans-unit id="cliente.footer">
+                <source>cliente.footer</source>
+                <target>O Porto do Sabor. Authentic flavour from the Galician ria.</target>
+            </trans-unit>
+            <trans-unit id="cesta.titulo">
+                <source>cesta.titulo</source>
+                <target>My Cart</target>
+            </trans-unit>
+            <trans-unit id="cesta.subtitulo">
+                <source>cesta.subtitulo</source>
+                <target>Your selection</target>
+            </trans-unit>
+            <trans-unit id="cesta.cerrar">
+                <source>cesta.cerrar</source>
+                <target>Close cart</target>
+            </trans-unit>
+            <trans-unit id="cesta.vacia">
+                <source>cesta.vacia</source>
+                <target>The cart is empty.</target>
+            </trans-unit>
+            <trans-unit id="cesta.total_estimado">
+                <source>cesta.total_estimado</source>
+                <target>Estimated total:</target>
+            </trans-unit>
+            <trans-unit id="cesta.comprar">
+                <source>cesta.comprar</source>
+                <target>Checkout</target>
+            </trans-unit>
+            <trans-unit id="cesta.vaciar">
+                <source>cesta.vaciar</source>
+                <target>Empty cart</target>
+            </trans-unit>
+            <trans-unit id="tramitar.titulo">
+                <source>tramitar.titulo</source>
+                <target>Place order</target>
+            </trans-unit>
+            <trans-unit id="tramitar.pasos">
+                <source>tramitar.pasos</source>
+                <target>Process steps</target>
+            </trans-unit>
+            <trans-unit id="tramitar.paso.direccion">
+                <source>tramitar.paso.direccion</source>
+                <target>Address</target>
+            </trans-unit>
+            <trans-unit id="tramitar.paso.pago">
+                <source>tramitar.paso.pago</source>
+                <target>Payment</target>
+            </trans-unit>
+            <trans-unit id="tramitar.direccion_envio">
+                <source>tramitar.direccion_envio</source>
+                <target>Shipping address</target>
+            </trans-unit>
+            <trans-unit id="tramitar.direccion_facturacion">
+                <source>tramitar.direccion_facturacion</source>
+                <target>Billing address</target>
+            </trans-unit>
+            <trans-unit id="tramitar.misma_direccion">
+                <source>tramitar.misma_direccion</source>
+                <target>Use the same address for billing</target>
+            </trans-unit>
+            <trans-unit id="tramitar.titular_tarjeta">
+                <source>tramitar.titular_tarjeta</source>
+                <target>Cardholder</target>
+            </trans-unit>
+            <trans-unit id="tramitar.titular_tarjeta_placeholder">
+                <source>tramitar.titular_tarjeta_placeholder</source>
+                <target>Full name</target>
+            </trans-unit>
+            <trans-unit id="tramitar.numero_tarjeta">
+                <source>tramitar.numero_tarjeta</source>
+                <target>Card number</target>
+            </trans-unit>
+            <trans-unit id="tramitar.vencimiento_tarjeta">
+                <source>tramitar.vencimiento_tarjeta</source>
+                <target>Expiry</target>
+            </trans-unit>
+            <trans-unit id="tramitar.cvv">
+                <source>tramitar.cvv</source>
+                <target>CVV</target>
+            </trans-unit>
+            <trans-unit id="tramitar.guardar_tarjeta">
+                <source>tramitar.guardar_tarjeta</source>
+                <target>Save card for future purchases</target>
+            </trans-unit>
+            <trans-unit id="tramitar.anadir_tarjeta">
+                <source>tramitar.anadir_tarjeta</source>
+                <target>Add new card</target>
+            </trans-unit>
+            <trans-unit id="tramitar.iban">
+                <source>tramitar.iban</source>
+                <target>IBAN</target>
+            </trans-unit>
+            <trans-unit id="tramitar.iban_alias">
+                <source>tramitar.iban_alias</source>
+                <target>Alias (optional)</target>
+            </trans-unit>
+            <trans-unit id="tramitar.iban_alias_placeholder">
+                <source>tramitar.iban_alias_placeholder</source>
+                <target>Main account</target>
+            </trans-unit>
+            <trans-unit id="tramitar.guardar_cuenta">
+                <source>tramitar.guardar_cuenta</source>
+                <target>Save account for future purchases</target>
+            </trans-unit>
+            <trans-unit id="tramitar.anadir_cuenta">
+                <source>tramitar.anadir_cuenta</source>
+                <target>Add new bank account</target>
+            </trans-unit>
+            <trans-unit id="tramitar.confirmar_pedido">
+                <source>tramitar.confirmar_pedido</source>
+                <target>Confirm order</target>
+            </trans-unit>
+            <trans-unit id="tramitar.notificaciones">
+                <source>tramitar.notificaciones</source>
+                <target>Notifications</target>
+            </trans-unit>
+            <trans-unit id="cuenta.titulo">
+                <source>cuenta.titulo</source>
+                <target>My account</target>
+            </trans-unit>
+            <trans-unit id="cuenta.pedidos.titulo">
+                <source>cuenta.pedidos.titulo</source>
+                <target>My orders</target>
+            </trans-unit>
+            <trans-unit id="cuenta.pedidos.vacio">
+                <source>cuenta.pedidos.vacio</source>
+                <target>You don't have any orders yet.</target>
+            </trans-unit>
+            <trans-unit id="cuenta.pedidos.cta_tienda">
+                <source>cuenta.pedidos.cta_tienda</source>
+                <target>Go to shop</target>
+            </trans-unit>
+            <trans-unit id="cuenta.pedido.numero">
+                <source>cuenta.pedido.numero</source>
+                <target>Order</target>
+            </trans-unit>
+            <trans-unit id="cuenta.pedido.fecha_creacion">
+                <source>cuenta.pedido.fecha_creacion</source>
+                <target>Placed on</target>
+            </trans-unit>
+            <trans-unit id="cuenta.pedido.fecha_envio">
+                <source>cuenta.pedido.fecha_envio</source>
+                <target>Shipped on</target>
+            </trans-unit>
+            <trans-unit id="cuenta.pedido.seguimiento">
+                <source>cuenta.pedido.seguimiento</source>
+                <target>Tracking</target>
+            </trans-unit>
+            <trans-unit id="cuenta.pedido.factura">
+                <source>cuenta.pedido.factura</source>
+                <target>View invoice</target>
+            </trans-unit>
+            <trans-unit id="admin.title">
+                <source>admin.title</source>
+                <target>Admin panel</target>
+            </trans-unit>
+            <trans-unit id="admin.panel.titulo">
+                <source>admin.panel.titulo</source>
+                <target>Dashboard</target>
+            </trans-unit>
+            <trans-unit id="admin.panel.indicadores">
+                <source>admin.panel.indicadores</source>
+                <target>KPIs</target>
+            </trans-unit>
+            <trans-unit id="admin.panel.accesos_rapidos">
+                <source>admin.panel.accesos_rapidos</source>
+                <target>Quick links</target>
+            </trans-unit>
+            <trans-unit id="admin.panel.ultimos_pedidos">
+                <source>admin.panel.ultimos_pedidos</source>
+                <target>Recent orders</target>
+            </trans-unit>
+            <trans-unit id="admin.panel.ultimos_movimientos">
+                <source>admin.panel.ultimos_movimientos</source>
+                <target>Recent movements</target>
+            </trans-unit>
+            <trans-unit id="admin.panel.alerta_vencidos">
+                <source>admin.panel.alerta_vencidos</source>
+                <target>Overdue orders</target>
+            </trans-unit>
+            <trans-unit id="admin.acceso_rapido.catalogo">
+                <source>admin.acceso_rapido.catalogo</source>
+                <target>Catalog</target>
+            </trans-unit>
+            <trans-unit id="admin.acceso_rapido.inventario">
+                <source>admin.acceso_rapido.inventario</source>
+                <target>Inventory</target>
+            </trans-unit>
+            <trans-unit id="admin.acceso_rapido.empleados">
+                <source>admin.acceso_rapido.empleados</source>
+                <target>Employees</target>
+            </trans-unit>
+            <trans-unit id="admin.master_data.title">
+                <source>admin.master_data.title</source>
+                <target>Master data</target>
+            </trans-unit>
+            <trans-unit id="admin.articulos.title">
+                <source>admin.articulos.title</source>
+                <target>Items</target>
+            </trans-unit>
+            <trans-unit id="admin.articulos.new">
+                <source>admin.articulos.new</source>
+                <target>New item</target>
+            </trans-unit>
+            <trans-unit id="admin.categorias.title">
+                <source>admin.categorias.title</source>
+                <target>Categories</target>
+            </trans-unit>
+            <trans-unit id="admin.categorias.new">
+                <source>admin.categorias.new</source>
+                <target>New category</target>
+            </trans-unit>
+            <trans-unit id="admin.proveedores.title">
+                <source>admin.proveedores.title</source>
+                <target>Suppliers</target>
+            </trans-unit>
+            <trans-unit id="admin.proveedores.new">
+                <source>admin.proveedores.new</source>
+                <target>New supplier</target>
+            </trans-unit>
+            <trans-unit id="admin.ubicaciones.title">
+                <source>admin.ubicaciones.title</source>
+                <target>Warehouse locations</target>
+            </trans-unit>
+            <trans-unit id="admin.ubicaciones.new">
+                <source>admin.ubicaciones.new</source>
+                <target>New location</target>
+            </trans-unit>
+            <trans-unit id="admin.empleados.title">
+                <source>admin.empleados.title</source>
+                <target>Employees</target>
+            </trans-unit>
+            <trans-unit id="admin.empleados.new">
+                <source>admin.empleados.new</source>
+                <target>New employee</target>
+            </trans-unit>
+            <trans-unit id="admin.crud.total">
+                <source>admin.crud.total</source>
+                <target>Total</target>
+            </trans-unit>
+            <trans-unit id="admin.crud.confirm_delete">
+                <source>admin.crud.confirm_delete</source>
+                <target>Are you sure you want to delete this record?</target>
+            </trans-unit>
+            <trans-unit id="admin.crud.empty">
+                <source>admin.crud.empty</source>
+                <target>No records available.</target>
+            </trans-unit>
+            <trans-unit id="contabilidad.title">
+                <source>contabilidad.title</source>
+                <target>Accounting</target>
+            </trans-unit>
+            <trans-unit id="contabilidad.panel.titulo">
+                <source>contabilidad.panel.titulo</source>
+                <target>Finance dashboard</target>
+            </trans-unit>
+            <trans-unit id="contabilidad.kpi.income">
+                <source>contabilidad.kpi.income</source>
+                <target>Income</target>
+            </trans-unit>
+            <trans-unit id="contabilidad.kpi.expense">
+                <source>contabilidad.kpi.expense</source>
+                <target>Expenses</target>
+            </trans-unit>
+            <trans-unit id="contabilidad.kpi.pending">
+                <source>contabilidad.kpi.pending</source>
+                <target>Pending</target>
+            </trans-unit>
+            <trans-unit id="contabilidad.libro.titulo">
+                <source>contabilidad.libro.titulo</source>
+                <target>Ledger</target>
+            </trans-unit>
+            <trans-unit id="contabilidad.libro.conteo">
+                <source>contabilidad.libro.conteo</source>
+                <target>%count% movements (latest 50)</target>
+            </trans-unit>
+            <trans-unit id="contabilidad.pedidos.title">
+                <source>contabilidad.pedidos.title</source>
+                <target>Orders</target>
+            </trans-unit>
+            <trans-unit id="contabilidad.pedidos.empty">
+                <source>contabilidad.pedidos.empty</source>
+                <target>No orders match the selected filters.</target>
+            </trans-unit>
+            <trans-unit id="contabilidad.clientes.title">
+                <source>contabilidad.clientes.title</source>
+                <target>Customers</target>
+            </trans-unit>
+            <trans-unit id="contabilidad.empleados.title">
+                <source>contabilidad.empleados.title</source>
+                <target>Employees</target>
+            </trans-unit>
+            <trans-unit id="contabilidad.btn_factura">
+                <source>contabilidad.btn_factura</source>
+                <target>View invoice</target>
+            </trans-unit>
+            <trans-unit id="contabilidad.btn_registrar_pago">
+                <source>contabilidad.btn_registrar_pago</source>
+                <target>Register payment</target>
+            </trans-unit>
+            <trans-unit id="logistica.title">
+                <source>logistica.title</source>
+                <target>Logistics</target>
+            </trans-unit>
+            <trans-unit id="logistica.status_nav">
+                <source>logistica.status_nav</source>
+                <target>Filter by status</target>
+            </trans-unit>
+            <trans-unit id="logistica.nav.preparacion">
+                <source>logistica.nav.preparacion</source>
+                <target>Orders in preparation</target>
+            </trans-unit>
+            <trans-unit id="logistica.nav.listo">
+                <source>logistica.nav.listo</source>
+                <target>Orders ready to ship</target>
+            </trans-unit>
+            <trans-unit id="logistica.nav.enviados">
+                <source>logistica.nav.enviados</source>
+                <target>Shipped orders</target>
+            </trans-unit>
+            <trans-unit id="logistica.empty">
+                <source>logistica.empty</source>
+                <target>No active orders for the selected filters.</target>
+            </trans-unit>
+            <trans-unit id="logistica.section.preparacion">
+                <source>logistica.section.preparacion</source>
+                <target>In preparation</target>
+            </trans-unit>
+            <trans-unit id="logistica.section.listo">
+                <source>logistica.section.listo</source>
+                <target>Ready to ship</target>
+            </trans-unit>
+            <trans-unit id="logistica.order">
+                <source>logistica.order</source>
+                <target>Order</target>
+            </trans-unit>
+            <trans-unit id="logistica.bultos">
+                <source>logistica.bultos</source>
+                <target>Packages</target>
+            </trans-unit>
+            <trans-unit id="logistica.tracking_number">
+                <source>logistica.tracking_number</source>
+                <target>Tracking number</target>
+            </trans-unit>
+            <trans-unit id="logistica.mark_ready">
+                <source>logistica.mark_ready</source>
+                <target>Mark ready</target>
+            </trans-unit>
+            <trans-unit id="logistica.mark_shipped">
+                <source>logistica.mark_shipped</source>
+                <target>Mark shipped</target>
+            </trans-unit>
+            <trans-unit id="logistica.confirm_send">
+                <source>logistica.confirm_send</source>
+                <target>Confirm shipping of order #%id%?</target>
+            </trans-unit>
+            <trans-unit id="logistica.print_albaran">
+                <source>logistica.print_albaran</source>
+                <target>Print delivery note</target>
+            </trans-unit>
+            <trans-unit id="formulario.etiqueta.imagen_actual">
+                <source>formulario.etiqueta.imagen_actual</source>
+                <target>Current image</target>
+            </trans-unit>
+            <trans-unit id="logistica.inventario.title">
+                <source>logistica.inventario.title</source>
+                <target>Inventory</target>
+            </trans-unit>
+            <trans-unit id="logistica.inventario.intake">
+                <source>logistica.inventario.intake</source>
+                <target>Stock intake</target>
+            </trans-unit>
+            <trans-unit id="logistica.inventario.stock_table">
+                <source>logistica.inventario.stock_table</source>
+                <target>Current stock</target>
+            </trans-unit>
+            <trans-unit id="logistica.inventario.history">
+                <source>logistica.inventario.history</source>
+                <target>Recent history</target>
+            </trans-unit>
+            <trans-unit id="factura.titulo">
+                <source>factura.titulo</source>
+                <target>INVOICE</target>
+            </trans-unit>
+            <trans-unit id="factura.numero">
+                <source>factura.numero</source>
+                <target>No.</target>
+            </trans-unit>
+            <trans-unit id="factura.fecha_pedido">
+                <source>factura.fecha_pedido</source>
+                <target>Order date</target>
+            </trans-unit>
+            <trans-unit id="factura.fecha_envio">
+                <source>factura.fecha_envio</source>
+                <target>Shipping date</target>
+            </trans-unit>
+            <trans-unit id="factura.cliente">
+                <source>factura.cliente</source>
+                <target>Customer details</target>
+            </trans-unit>
+            <trans-unit id="factura.direccion_facturacion">
+                <source>factura.direccion_facturacion</source>
+                <target>Billing address</target>
+            </trans-unit>
+            <trans-unit id="factura.direccion_envio">
+                <source>factura.direccion_envio</source>
+                <target>Shipping address</target>
+            </trans-unit>
+            <trans-unit id="factura.col.producto">
+                <source>factura.col.producto</source>
+                <target>Product</target>
+            </trans-unit>
+            <trans-unit id="factura.col.cantidad">
+                <source>factura.col.cantidad</source>
+                <target>Qty.</target>
+            </trans-unit>
+            <trans-unit id="factura.col.precio_unitario">
+                <source>factura.col.precio_unitario</source>
+                <target>Unit price excl. VAT</target>
+            </trans-unit>
+            <trans-unit id="factura.col.iva">
+                <source>factura.col.iva</source>
+                <target>VAT %</target>
+            </trans-unit>
+            <trans-unit id="factura.col.subtotal">
+                <source>factura.col.subtotal</source>
+                <target>Subtotal</target>
+            </trans-unit>
+            <trans-unit id="factura.total.subtotal">
+                <source>factura.total.subtotal</source>
+                <target>Subtotal excl. VAT</target>
+            </trans-unit>
+            <trans-unit id="factura.total.iva">
+                <source>factura.total.iva</source>
+                <target>Total VAT</target>
+            </trans-unit>
+            <trans-unit id="factura.total.gran_total">
+                <source>factura.total.gran_total</source>
+                <target>Invoice total</target>
+            </trans-unit>
+            <trans-unit id="factura.pagada">
+                <source>factura.pagada</source>
+                <target>PAID</target>
+            </trans-unit>
+            <trans-unit id="factura.boton_imprimir">
+                <source>factura.boton_imprimir</source>
+                <target>Print / Save PDF</target>
+            </trans-unit>
+            <trans-unit id="factura.pie">
+                <source>factura.pie</source>
+                <target>This invoice has been generated automatically. Keep this document for any claims.</target>
+            </trans-unit>
+            <trans-unit id="albaran.titulo">
+                <source>albaran.titulo</source>
+                <target>DELIVERY NOTE</target>
+            </trans-unit>
+            <trans-unit id="albaran.numero">
+                <source>albaran.numero</source>
+                <target>No.</target>
+            </trans-unit>
+            <trans-unit id="albaran.cliente">
+                <source>albaran.cliente</source>
+                <target>Customer</target>
+            </trans-unit>
+            <trans-unit id="albaran.direccion_envio">
+                <source>albaran.direccion_envio</source>
+                <target>Shipping address</target>
+            </trans-unit>
+            <trans-unit id="albaran.lineas">
+                <source>albaran.lineas</source>
+                <target>Order lines</target>
+            </trans-unit>
+            <trans-unit id="albaran.total_unidades">
+                <source>albaran.total_unidades</source>
+                <target>Total units</target>
+            </trans-unit>
+            <trans-unit id="albaran.bultos_caja">
+                <source>albaran.bultos_caja</source>
+                <target>Packages</target>
+            </trans-unit>
+            <trans-unit id="albaran.pie">
+                <source>albaran.pie</source>
+                <target>This delivery note does not include prices. Document for logistics and delivery only.</target>
+            </trans-unit>
+            <trans-unit id="albaran.boton_imprimir">
+                <source>albaran.boton_imprimir</source>
+                <target>Print delivery note</target>
+            </trans-unit>
+            <trans-unit id="admin.kpi.pedidos_hoy">
+                <source>admin.kpi.pedidos_hoy</source>
+                <target>Orders today</target>
+            </trans-unit>
+            <trans-unit id="admin.kpi.en_preparacion">
+                <source>admin.kpi.en_preparacion</source>
+                <target>In preparation</target>
+            </trans-unit>
+            <trans-unit id="admin.kpi.ventas_cobradas">
+                <source>admin.kpi.ventas_cobradas</source>
+                <target>Sales collected</target>
+            </trans-unit>
+            <trans-unit id="admin.kpi.ingresos_mes">
+                <source>admin.kpi.ingresos_mes</source>
+                <target>Income this month</target>
+            </trans-unit>
+            <trans-unit id="admin.kpi.gastos_mes">
+                <source>admin.kpi.gastos_mes</source>
+                <target>Expenses this month</target>
+            </trans-unit>
+            <trans-unit id="admin.acceso_rapido.catalogo.sub">
+                <source>admin.acceso_rapido.catalogo.sub</source>
+                <target>Items and prices</target>
+            </trans-unit>
+            <trans-unit id="admin.acceso_rapido.inventario.sub">
+                <source>admin.acceso_rapido.inventario.sub</source>
+                <target>Stock and warehouse intake</target>
+            </trans-unit>
+            <trans-unit id="admin.acceso_rapido.empleados.sub">
+                <source>admin.acceso_rapido.empleados.sub</source>
+                <target>Staff and roles</target>
+            </trans-unit>
+            <trans-unit id="admin.acceso_rapido.categorias">
+                <source>admin.acceso_rapido.categorias</source>
+                <target>Categories</target>
+            </trans-unit>
+            <trans-unit id="admin.acceso_rapido.categorias.sub">
+                <source>admin.acceso_rapido.categorias.sub</source>
+                <target>Product families</target>
+            </trans-unit>
+            <trans-unit id="admin.pedidos_tabla.ver_todos">
+                <source>admin.pedidos_tabla.ver_todos</source>
+                <target>View all</target>
+            </trans-unit>
+            <trans-unit id="admin.pedidos_tabla.vacio">
+                <source>admin.pedidos_tabla.vacio</source>
+                <target>No orders recorded yet.</target>
+            </trans-unit>
+            <trans-unit id="admin.pedidos_tabla.col.cliente">
+                <source>admin.pedidos_tabla.col.cliente</source>
+                <target>Customer</target>
+            </trans-unit>
+            <trans-unit id="admin.pedidos_tabla.col.total">
+                <source>admin.pedidos_tabla.col.total</source>
+                <target>Total</target>
+            </trans-unit>
+            <trans-unit id="admin.pedidos_tabla.col.metodo_pago">
+                <source>admin.pedidos_tabla.col.metodo_pago</source>
+                <target>Payment method</target>
+            </trans-unit>
+            <trans-unit id="admin.pedidos_tabla.col.estado">
+                <source>admin.pedidos_tabla.col.estado</source>
+                <target>Status</target>
+            </trans-unit>
+            <trans-unit id="admin.pedidos_tabla.col.fecha">
+                <source>admin.pedidos_tabla.col.fecha</source>
+                <target>Date</target>
+            </trans-unit>
+            <trans-unit id="admin.pedidos_tabla.alerta_vencidos">
+                <source>admin.pedidos_tabla.alerta_vencidos</source>
+                <target>%count% orders with unrecorded overdue payment.</target>
+            </trans-unit>
+            <trans-unit id="admin.pedidos_tabla.alerta_vencidos.cta">
+                <source>admin.pedidos_tabla.alerta_vencidos.cta</source>
+                <target>Go to accounting</target>
+            </trans-unit>
+            <trans-unit id="admin.movimientos_tabla.vacio">
+                <source>admin.movimientos_tabla.vacio</source>
+                <target>No financial movements recorded yet.</target>
+            </trans-unit>
+            <trans-unit id="estado.corto.preparacion">
+                <source>estado.corto.preparacion</source>
+                <target>Preparing</target>
+            </trans-unit>
+            <trans-unit id="estado.corto.listo">
+                <source>estado.corto.listo</source>
+                <target>Ready</target>
+            </trans-unit>
+            <trans-unit id="estado.corto.enviado">
+                <source>estado.corto.enviado</source>
+                <target>Shipped</target>
+            </trans-unit>
+            <trans-unit id="estado.corto.pagado">
+                <source>estado.corto.pagado</source>
+                <target>Paid</target>
+            </trans-unit>
+            <trans-unit id="pago.corto.tarjeta">
+                <source>pago.corto.tarjeta</source>
+                <target>Card</target>
+            </trans-unit>
+            <trans-unit id="pago.corto.transferencia">
+                <source>pago.corto.transferencia</source>
+                <target>Transfer</target>
+            </trans-unit>
+            <trans-unit id="pago.corto.contrarreembolso">
+                <source>pago.corto.contrarreembolso</source>
+                <target>COD</target>
+            </trans-unit>
+            <trans-unit id="admin.master_data.breadcrumb">
+                <source>admin.master_data.breadcrumb</source>
+                <target>Master Data</target>
+            </trans-unit>
+            <trans-unit id="admin.master_data.home">
+                <source>admin.master_data.home</source>
+                <target>Home</target>
+            </trans-unit>
+            <trans-unit id="admin.empleados_tabla.titulo">
+                <source>admin.empleados_tabla.titulo</source>
+                <target>Employee management</target>
+            </trans-unit>
+            <trans-unit id="admin.empleados_tabla.nuevo">
+                <source>admin.empleados_tabla.nuevo</source>
+                <target>Register employee</target>
+            </trans-unit>
+            <trans-unit id="admin.empleados_tabla.ayuda">
+                <source>admin.empleados_tabla.ayuda</source>
+                <target>Create a new employee with system access.</target>
+            </trans-unit>
+            <trans-unit id="admin.inventario_tabla.titulo">
+                <source>admin.inventario_tabla.titulo</source>
+                <target>Inventory and stock</target>
+            </trans-unit>
+            <trans-unit id="admin.inventario_tabla.ver">
+                <source>admin.inventario_tabla.ver</source>
+                <target>View inventory</target>
+            </trans-unit>
+            <trans-unit id="admin.inventario_tabla.ayuda">
+                <source>admin.inventario_tabla.ayuda</source>
+                <target>Check current stock for all products and record new stock intake.</target>
+            </trans-unit>
+            <trans-unit id="admin.productos_tabla.titulo">
+                <source>admin.productos_tabla.titulo</source>
+                <target>Product list</target>
+            </trans-unit>
+            <trans-unit id="admin.productos_tabla.vacio">
+                <source>admin.productos_tabla.vacio</source>
+                <target>No products created.</target>
+            </trans-unit>
+            <trans-unit id="admin.productos_tabla.col.peso">
+                <source>admin.productos_tabla.col.peso</source>
+                <target>Weight</target>
+            </trans-unit>
+            <trans-unit id="admin.productos_tabla.col.categoria">
+                <source>admin.productos_tabla.col.categoria</source>
+                <target>Category</target>
+            </trans-unit>
+            <trans-unit id="admin.productos_tabla.col.stock">
+                <source>admin.productos_tabla.col.stock</source>
+                <target>Stock</target>
+            </trans-unit>
+            <trans-unit id="admin.productos_tabla.sin_categoria">
+                <source>admin.productos_tabla.sin_categoria</source>
+                <target>No category</target>
+            </trans-unit>
+            <trans-unit id="admin.proveedores_tabla.titulo">
+                <source>admin.proveedores_tabla.titulo</source>
+                <target>Supplier list</target>
+            </trans-unit>
+            <trans-unit id="admin.proveedores_tabla.vacio">
+                <source>admin.proveedores_tabla.vacio</source>
+                <target>No suppliers created.</target>
+            </trans-unit>
+            <trans-unit id="admin.categorias_tabla.titulo">
+                <source>admin.categorias_tabla.titulo</source>
+                <target>Category list</target>
+            </trans-unit>
+            <trans-unit id="admin.categorias_tabla.vacio">
+                <source>admin.categorias_tabla.vacio</source>
+                <target>No categories created.</target>
+            </trans-unit>
+            <trans-unit id="admin.categorias_tabla.col.productos">
+                <source>admin.categorias_tabla.col.productos</source>
+                <target>Products</target>
+            </trans-unit>
+            <trans-unit id="admin.ubicaciones_tabla.titulo">
+                <source>admin.ubicaciones_tabla.titulo</source>
+                <target>Location list</target>
+            </trans-unit>
+            <trans-unit id="admin.ubicaciones_tabla.vacio">
+                <source>admin.ubicaciones_tabla.vacio</source>
+                <target>No locations created.</target>
+            </trans-unit>
+            <trans-unit id="admin.ubicaciones_tabla.col.pasillo">
+                <source>admin.ubicaciones_tabla.col.pasillo</source>
+                <target>Aisle</target>
+            </trans-unit>
+            <trans-unit id="admin.ubicaciones_tabla.col.estanteria">
+                <source>admin.ubicaciones_tabla.col.estanteria</source>
+                <target>Shelf</target>
+            </trans-unit>
+            <trans-unit id="admin.ubicaciones_tabla.col.nivel">
+                <source>admin.ubicaciones_tabla.col.nivel</source>
+                <target>Level</target>
+            </trans-unit>
+            <trans-unit id="admin.ubicaciones_tabla.pasillo_n">
+                <source>admin.ubicaciones_tabla.pasillo_n</source>
+                <target>Aisle %n%</target>
+            </trans-unit>
+            <trans-unit id="admin.ubicaciones_tabla.estante_n">
+                <source>admin.ubicaciones_tabla.estante_n</source>
+                <target>Shelf %n%</target>
+            </trans-unit>
+            <trans-unit id="admin.ubicaciones_tabla.nivel_n">
+                <source>admin.ubicaciones_tabla.nivel_n</source>
+                <target>Level %n%</target>
+            </trans-unit>
+            <trans-unit id="admin.btn_create">
+                <source>admin.btn_create</source>
+                <target>Create</target>
+            </trans-unit>
+            <trans-unit id="admin.btn_view_more">
+                <source>admin.btn_view_more</source>
+                <target>View more</target>
+            </trans-unit>
+            <trans-unit id="admin.crud.search_placeholder">
+                <source>admin.crud.search_placeholder</source>
+                <target>Search...</target>
+            </trans-unit>
+            <trans-unit id="admin.crud.no_data">
+                <source>admin.crud.no_data</source>
+                <target>No data available.</target>
+            </trans-unit>
+            <trans-unit id="admin.articulos.breadcrumb">
+                <source>admin.articulos.breadcrumb</source>
+                <target>Items</target>
+            </trans-unit>
+            <trans-unit id="admin.articulos.list">
+                <source>admin.articulos.list</source>
+                <target>Item list</target>
+            </trans-unit>
+            <trans-unit id="admin.articulos.col.title">
+                <source>admin.articulos.col.title</source>
+                <target>Title</target>
+            </trans-unit>
+            <trans-unit id="admin.articulos.col.price">
+                <source>admin.articulos.col.price</source>
+                <target>Price</target>
+            </trans-unit>
+            <trans-unit id="admin.articulos.edit">
+                <source>admin.articulos.edit</source>
+                <target>Edit item</target>
+            </trans-unit>
+            <trans-unit id="admin.categorias.breadcrumb">
+                <source>admin.categorias.breadcrumb</source>
+                <target>Categories</target>
+            </trans-unit>
+            <trans-unit id="admin.categorias.list">
+                <source>admin.categorias.list</source>
+                <target>Category list</target>
+            </trans-unit>
+            <trans-unit id="admin.categorias.edit">
+                <source>admin.categorias.edit</source>
+                <target>Edit category</target>
+            </trans-unit>
+            <trans-unit id="admin.proveedores.breadcrumb">
+                <source>admin.proveedores.breadcrumb</source>
+                <target>Suppliers</target>
+            </trans-unit>
+            <trans-unit id="admin.proveedores.list">
+                <source>admin.proveedores.list</source>
+                <target>Supplier list</target>
+            </trans-unit>
+            <trans-unit id="admin.proveedores.edit">
+                <source>admin.proveedores.edit</source>
+                <target>Edit supplier</target>
+            </trans-unit>
+            <trans-unit id="admin.ubicaciones.breadcrumb">
+                <source>admin.ubicaciones.breadcrumb</source>
+                <target>Locations</target>
+            </trans-unit>
+            <trans-unit id="admin.ubicaciones.list">
+                <source>admin.ubicaciones.list</source>
+                <target>Location list</target>
+            </trans-unit>
+            <trans-unit id="admin.ubicaciones.edit">
+                <source>admin.ubicaciones.edit</source>
+                <target>Edit location</target>
+            </trans-unit>
+            <trans-unit id="contabilidad.panel.breadcrumb">
+                <source>contabilidad.panel.breadcrumb</source>
+                <target>Accounting</target>
+            </trans-unit>
+            <trans-unit id="contabilidad.filter.from">
+                <source>contabilidad.filter.from</source>
+                <target>From</target>
+            </trans-unit>
+            <trans-unit id="contabilidad.filter.to">
+                <source>contabilidad.filter.to</source>
+                <target>To</target>
+            </trans-unit>
+            <trans-unit id="contabilidad.movimientos.titulo">
+                <source>contabilidad.movimientos.titulo</source>
+                <target>Movements</target>
+            </trans-unit>
+            <trans-unit id="contabilidad.movimiento.tipo">
+                <source>contabilidad.movimiento.tipo</source>
+                <target>Type</target>
+            </trans-unit>
+            <trans-unit id="contabilidad.movimiento.ingreso">
+                <source>contabilidad.movimiento.ingreso</source>
+                <target>Income</target>
+            </trans-unit>
+            <trans-unit id="contabilidad.movimiento.gasto">
+                <source>contabilidad.movimiento.gasto</source>
+                <target>Expense</target>
+            </trans-unit>
+            <trans-unit id="contabilidad.movimiento.concepto">
+                <source>contabilidad.movimiento.concepto</source>
+                <target>Concept</target>
+            </trans-unit>
+            <trans-unit id="contabilidad.movimiento.importe">
+                <source>contabilidad.movimiento.importe</source>
+                <target>Amount</target>
+            </trans-unit>
+            <trans-unit id="contabilidad.movimiento.referencia">
+                <source>contabilidad.movimiento.referencia</source>
+                <target>Reference</target>
+            </trans-unit>
+            <trans-unit id="contabilidad.pago.registrar">
+                <source>contabilidad.pago.registrar</source>
+                <target>Register payment</target>
+            </trans-unit>
+            <trans-unit id="contabilidad.pago.banco">
+                <source>contabilidad.pago.banco</source>
+                <target>Bank</target>
+            </trans-unit>
+            <trans-unit id="contabilidad.pago.referencia">
+                <source>contabilidad.pago.referencia</source>
+                <target>Bank reference</target>
+            </trans-unit>
+            <trans-unit id="contabilidad.carencia">
+                <source>contabilidad.carencia</source>
+                <target>Grace period</target>
+            </trans-unit>
+            <trans-unit id="contabilidad.clientes.empty">
+                <source>contabilidad.clientes.empty</source>
+                <target>No customers registered.</target>
+            </trans-unit>
+            <trans-unit id="contabilidad.empleados.empty">
+                <source>contabilidad.empleados.empty</source>
+                <target>No employees registered.</target>
+            </trans-unit>
+            <trans-unit id="contabilidad.ver_pedidos">
+                <source>contabilidad.ver_pedidos</source>
+                <target>View orders</target>
+            </trans-unit>
+            <trans-unit id="contabilidad.role.admin">
+                <source>contabilidad.role.admin</source>
+                <target>Administrator</target>
+            </trans-unit>
+            <trans-unit id="contabilidad.role.logistica">
+                <source>contabilidad.role.logistica</source>
+                <target>Logistics</target>
+            </trans-unit>
+            <trans-unit id="contabilidad.role.contabilidad">
+                <source>contabilidad.role.contabilidad</source>
+                <target>Accounting</target>
+            </trans-unit>
+            <trans-unit id="contabilidad.role.empleado">
+                <source>contabilidad.role.empleado</source>
+                <target>Employee</target>
+            </trans-unit>
+            <trans-unit id="contabilidad.role.cliente">
+                <source>contabilidad.role.cliente</source>
+                <target>Customer</target>
+            </trans-unit>
+            <trans-unit id="concepto.nomina">
+                <source>concepto.nomina</source>
+                <target>Payroll</target>
+            </trans-unit>
+            <trans-unit id="concepto.pago_proveedor">
+                <source>concepto.pago_proveedor</source>
+                <target>Supplier payment</target>
+            </trans-unit>
+            <trans-unit id="concepto.suministros">
+                <source>concepto.suministros</source>
+                <target>Utilities</target>
+            </trans-unit>
+            <trans-unit id="concepto.otro_gasto">
+                <source>concepto.otro_gasto</source>
+                <target>Other</target>
+            </trans-unit>
+            <trans-unit id="concepto.otro_ingreso">
+                <source>concepto.otro_ingreso</source>
+                <target>Other income</target>
+            </trans-unit>
+            <trans-unit id="concepto.pago_factura">
+                <source>concepto.pago_factura</source>
+                <target>Invoice payment</target>
+            </trans-unit>
+            <trans-unit id="admin.ubicaciones.col.aisle">
+                <source>admin.ubicaciones.col.aisle</source>
+                <target>Aisle</target>
+            </trans-unit>
+            <trans-unit id="admin.ubicaciones.col.shelf">
+                <source>admin.ubicaciones.col.shelf</source>
+                <target>Shelf</target>
+            </trans-unit>
+            <trans-unit id="admin.ubicaciones.col.level">
+                <source>admin.ubicaciones.col.level</source>
+                <target>Level</target>
+            </trans-unit>
+            <trans-unit id="logistica.update.new">
+                <source>logistica.update.new</source>
+                <target>There are updates on orders.</target>
+            </trans-unit>
+            <trans-unit id="logistica.update.refresh">
+                <source>logistica.update.refresh</source>
+                <target>Refresh</target>
+            </trans-unit>
+            <trans-unit id="logistica.inventario.product">
+                <source>logistica.inventario.product</source>
+                <target>Product</target>
+            </trans-unit>
+            <trans-unit id="logistica.inventario.current_stock">
+                <source>logistica.inventario.current_stock</source>
+                <target>Current stock</target>
+            </trans-unit>
+            <trans-unit id="logistica.inventario.units">
+                <source>logistica.inventario.units</source>
+                <target>Units</target>
+            </trans-unit>
+            <trans-unit id="logistica.inventario.supplier">
+                <source>logistica.inventario.supplier</source>
+                <target>Supplier</target>
+            </trans-unit>
+            <trans-unit id="logistica.inventario.location">
+                <source>logistica.inventario.location</source>
+                <target>Location</target>
+            </trans-unit>
+            <trans-unit id="logistica.inventario.register">
+                <source>logistica.inventario.register</source>
+                <target>Register intake</target>
+            </trans-unit>
+            <trans-unit id="logistica.inventario.history.empty">
+                <source>logistica.inventario.history.empty</source>
+                <target>No intakes recorded yet.</target>
+            </trans-unit>
+            <trans-unit id="logistica.inventario.register_entry">
+                <source>logistica.inventario.register_entry</source>
+                <target>Register stock intake</target>
+            </trans-unit>
+            <trans-unit id="logistica.inventario.article">
+                <source>logistica.inventario.article</source>
+                <target>Article</target>
+            </trans-unit>
+            <trans-unit id="logistica.inventario.select_article">
+                <source>logistica.inventario.select_article</source>
+                <target>— Select an article —</target>
+            </trans-unit>
+            <trans-unit id="logistica.inventario.stock">
+                <source>logistica.inventario.stock</source>
+                <target>stock</target>
+            </trans-unit>
+            <trans-unit id="logistica.inventario.quantity">
+                <source>logistica.inventario.quantity</source>
+                <target>Quantity to add</target>
+            </trans-unit>
+            <trans-unit id="logistica.inventario.no_supplier">
+                <source>logistica.inventario.no_supplier</source>
+                <target>— No supplier —</target>
+            </trans-unit>
+            <trans-unit id="logistica.inventario.albaran">
+                <source>logistica.inventario.albaran</source>
+                <target>Supplier delivery note №</target>
+            </trans-unit>
+            <trans-unit id="logistica.inventario.articles">
+                <source>logistica.inventario.articles</source>
+                <target>articles</target>
+            </trans-unit>
+            <trans-unit id="logistica.inventario.no_stock">
+                <source>logistica.inventario.no_stock</source>
+                <target>Out of stock</target>
+            </trans-unit>
+            <trans-unit id="logistica.inventario.recent_entries">
+                <source>logistica.inventario.recent_entries</source>
+                <target>Latest recorded intakes</target>
+            </trans-unit>
+            <trans-unit id="logistica.inventario.col.product">
+                <source>logistica.inventario.col.product</source>
+                <target>Product</target>
+            </trans-unit>
+            <trans-unit id="logistica.inventario.col.category">
+                <source>logistica.inventario.col.category</source>
+                <target>Category</target>
+            </trans-unit>
+            <trans-unit id="logistica.inventario.col.supplier">
+                <source>logistica.inventario.col.supplier</source>
+                <target>Supplier</target>
+            </trans-unit>
+            <trans-unit id="logistica.inventario.col.stock">
+                <source>logistica.inventario.col.stock</source>
+                <target>Available stock</target>
+            </trans-unit>
+            <trans-unit id="logistica.inventario.col.date">
+                <source>logistica.inventario.col.date</source>
+                <target>Date</target>
+            </trans-unit>
+            <trans-unit id="logistica.inventario.col.albaran">
+                <source>logistica.inventario.col.albaran</source>
+                <target>Delivery note №</target>
+            </trans-unit>
+            <trans-unit id="logistica.inventario.col.quantity">
+                <source>logistica.inventario.col.quantity</source>
+                <target>Quantity</target>
+            </trans-unit>
+            <trans-unit id="admin.crud.no_results">
+                <source>admin.crud.no_results</source>
+                <target>No articles registered.</target>
+            </trans-unit>
+            <trans-unit id="formulario.etiqueta.correo">
+                <source>formulario.etiqueta.correo</source>
+                <target>Email</target>
+            </trans-unit>
+            <trans-unit id="formulario.etiqueta.contrasena">
+                <source>formulario.etiqueta.contrasena</source>
+                <target>Password</target>
+            </trans-unit>
+            <trans-unit id="formulario.etiqueta.confirmar_contrasena">
+                <source>formulario.etiqueta.confirmar_contrasena</source>
+                <target>Confirm password</target>
+            </trans-unit>
+            <trans-unit id="formulario.etiqueta.nombre">
+                <source>formulario.etiqueta.nombre</source>
+                <target>First name</target>
+            </trans-unit>
+            <trans-unit id="formulario.etiqueta.apellidos">
+                <source>formulario.etiqueta.apellidos</source>
+                <target>Surname</target>
+            </trans-unit>
+            <trans-unit id="formulario.etiqueta.telefono">
+                <source>formulario.etiqueta.telefono</source>
+                <target>Phone</target>
+            </trans-unit>
+            <trans-unit id="formulario.etiqueta.rol">
+                <source>formulario.etiqueta.rol</source>
+                <target>Role</target>
+            </trans-unit>
+            <trans-unit id="formulario.etiqueta.titulo">
+                <source>formulario.etiqueta.titulo</source>
+                <target>Title</target>
+            </trans-unit>
+            <trans-unit id="formulario.etiqueta.titulo_es">
+                <source>formulario.etiqueta.titulo_es</source>
+                <target>Title (ES)</target>
+            </trans-unit>
+            <trans-unit id="formulario.etiqueta.titulo_en">
+                <source>formulario.etiqueta.titulo_en</source>
+                <target>Title (EN)</target>
+            </trans-unit>
+            <trans-unit id="formulario.etiqueta.titulo_gl">
+                <source>formulario.etiqueta.titulo_gl</source>
+                <target>Title (GL)</target>
+            </trans-unit>
+            <trans-unit id="formulario.etiqueta.descripcion">
+                <source>formulario.etiqueta.descripcion</source>
+                <target>Description</target>
+            </trans-unit>
+            <trans-unit id="formulario.etiqueta.descripcion_es">
+                <source>formulario.etiqueta.descripcion_es</source>
+                <target>Description (ES)</target>
+            </trans-unit>
+            <trans-unit id="formulario.etiqueta.descripcion_en">
+                <source>formulario.etiqueta.descripcion_en</source>
+                <target>Description (EN)</target>
+            </trans-unit>
+            <trans-unit id="formulario.etiqueta.descripcion_gl">
+                <source>formulario.etiqueta.descripcion_gl</source>
+                <target>Description (GL)</target>
+            </trans-unit>
+            <trans-unit id="formulario.etiqueta.nombre_es">
+                <source>formulario.etiqueta.nombre_es</source>
+                <target>Name (ES)</target>
+            </trans-unit>
+            <trans-unit id="formulario.etiqueta.nombre_en">
+                <source>formulario.etiqueta.nombre_en</source>
+                <target>Name (EN)</target>
+            </trans-unit>
+            <trans-unit id="formulario.etiqueta.nombre_gl">
+                <source>formulario.etiqueta.nombre_gl</source>
+                <target>Name (GL)</target>
+            </trans-unit>
+            <trans-unit id="formulario.etiqueta.precio">
+                <source>formulario.etiqueta.precio</source>
+                <target>Price</target>
+            </trans-unit>
+            <trans-unit id="formulario.etiqueta.peso">
+                <source>formulario.etiqueta.peso</source>
+                <target>Weight (kg)</target>
+            </trans-unit>
+            <trans-unit id="formulario.etiqueta.stock">
+                <source>formulario.etiqueta.stock</source>
+                <target>Stock</target>
+            </trans-unit>
+            <trans-unit id="formulario.etiqueta.iva">
+                <source>formulario.etiqueta.iva</source>
+                <target>VAT %</target>
+            </trans-unit>
+            <trans-unit id="formulario.etiqueta.categoria">
+                <source>formulario.etiqueta.categoria</source>
+                <target>Category</target>
+            </trans-unit>
+            <trans-unit id="formulario.etiqueta.imagen">
+                <source>formulario.etiqueta.imagen</source>
+                <target>Image</target>
+            </trans-unit>
+            <trans-unit id="formulario.etiqueta.pasillo">
+                <source>formulario.etiqueta.pasillo</source>
+                <target>Aisle</target>
+            </trans-unit>
+            <trans-unit id="formulario.etiqueta.estanteria">
+                <source>formulario.etiqueta.estanteria</source>
+                <target>Shelf</target>
+            </trans-unit>
+            <trans-unit id="formulario.etiqueta.nivel">
+                <source>formulario.etiqueta.nivel</source>
+                <target>Level</target>
+            </trans-unit>
+            <trans-unit id="formulario.etiqueta.cif">
+                <source>formulario.etiqueta.cif</source>
+                <target>Tax ID</target>
+            </trans-unit>
+            <trans-unit id="formulario.etiqueta.calle">
+                <source>formulario.etiqueta.calle</source>
+                <target>Street</target>
+            </trans-unit>
+            <trans-unit id="formulario.rol.placeholder">
+                <source>formulario.rol.placeholder</source>
+                <target>-- Select --</target>
+            </trans-unit>
+            <trans-unit id="formulario.categoria.placeholder">
+                <source>formulario.categoria.placeholder</source>
+                <target>-- No category --</target>
+            </trans-unit>
+            <trans-unit id="formulario.proveedor.placeholder">
+                <source>formulario.proveedor.placeholder</source>
+                <target>-- No supplier --</target>
+            </trans-unit>
+            <trans-unit id="formulario.ubicacion.placeholder">
+                <source>formulario.ubicacion.placeholder</source>
+                <target>-- No location --</target>
+            </trans-unit>
+            <trans-unit id="formulario.imagen.ayuda">
+                <source>formulario.imagen.ayuda</source>
+                <target>Allowed formats: JPG, PNG or WEBP.</target>
+            </trans-unit>
+            <trans-unit id="aviso.csrf.invalido">
+                <source>aviso.csrf.invalido</source>
+                <target>Invalid security token.</target>
+            </trans-unit>
+            <trans-unit id="aviso.articulo.creado">
+                <source>aviso.articulo.creado</source>
+                <target>Item created successfully.</target>
+            </trans-unit>
+            <trans-unit id="aviso.articulo.actualizado">
+                <source>aviso.articulo.actualizado</source>
+                <target>Item updated.</target>
+            </trans-unit>
+            <trans-unit id="aviso.articulo.eliminado">
+                <source>aviso.articulo.eliminado</source>
+                <target>Item deleted.</target>
+            </trans-unit>
+            <trans-unit id="aviso.categoria.creada">
+                <source>aviso.categoria.creada</source>
+                <target>Category created successfully.</target>
+            </trans-unit>
+            <trans-unit id="aviso.categoria.actualizada">
+                <source>aviso.categoria.actualizada</source>
+                <target>Category updated.</target>
+            </trans-unit>
+            <trans-unit id="aviso.categoria.eliminada">
+                <source>aviso.categoria.eliminada</source>
+                <target>Category deleted.</target>
+            </trans-unit>
+            <trans-unit id="aviso.proveedor.creado">
+                <source>aviso.proveedor.creado</source>
+                <target>Supplier created successfully.</target>
+            </trans-unit>
+            <trans-unit id="aviso.proveedor.actualizado">
+                <source>aviso.proveedor.actualizado</source>
+                <target>Supplier updated.</target>
+            </trans-unit>
+            <trans-unit id="aviso.proveedor.eliminado">
+                <source>aviso.proveedor.eliminado</source>
+                <target>Supplier deleted.</target>
+            </trans-unit>
+            <trans-unit id="aviso.ubicacion.creada">
+                <source>aviso.ubicacion.creada</source>
+                <target>Location created successfully.</target>
+            </trans-unit>
+            <trans-unit id="aviso.ubicacion.actualizada">
+                <source>aviso.ubicacion.actualizada</source>
+                <target>Location updated.</target>
+            </trans-unit>
+            <trans-unit id="aviso.ubicacion.eliminada">
+                <source>aviso.ubicacion.eliminada</source>
+                <target>Location deleted.</target>
+            </trans-unit>
+            <trans-unit id="aviso.usuario.existe">
+                <source>aviso.usuario.existe</source>
+                <target>A user with that email already exists.</target>
+            </trans-unit>
+            <trans-unit id="aviso.usuario.creado">
+                <source>aviso.usuario.creado</source>
+                <target>User created successfully.</target>
+            </trans-unit>
+            <trans-unit id="aviso.empleado.creado">
+                <source>aviso.empleado.creado</source>
+                <target>Employee created successfully.</target>
+            </trans-unit>
+            <trans-unit id="aviso.pedido.listo">
+                <source>aviso.pedido.listo</source>
+                <target>Order #%id% marked as ready to ship.</target>
+            </trans-unit>
+            <trans-unit id="aviso.pedido.enviado">
+                <source>aviso.pedido.enviado</source>
+                <target>Order #%id% shipped. Visible in Accounting.</target>
+            </trans-unit>
+            <trans-unit id="aviso.pedido.seguimiento_actualizado">
+                <source>aviso.pedido.seguimiento_actualizado</source>
+                <target>Tracking number for order #%id% updated.</target>
+            </trans-unit>
+            <trans-unit id="aviso.pago.pedido_registrado">
+                <source>aviso.pago.pedido_registrado</source>
+                <target>Payment registered for order #%id%.</target>
+            </trans-unit>
+            <trans-unit id="aviso.movimiento.invalido">
+                <source>aviso.movimiento.invalido</source>
+                <target>Invalid movement data.</target>
+            </trans-unit>
+            <trans-unit id="aviso.movimiento.registrado">
+                <source>aviso.movimiento.registrado</source>
+                <target>Movement registered successfully.</target>
+            </trans-unit>
+            <trans-unit id="aviso.stock.invalido">
+                <source>aviso.stock.invalido</source>
+                <target>Select an item and a valid quantity (minimum 1).</target>
+            </trans-unit>
+            <trans-unit id="aviso.articulo.no_encontrado">
+                <source>aviso.articulo.no_encontrado</source>
+                <target>Item not found.</target>
+            </trans-unit>
+            <trans-unit id="aviso.stock.anadido">
+                <source>aviso.stock.anadido</source>
+                <target>Stock added: %qty% units of %title%.</target>
+            </trans-unit>
+            <trans-unit id="js.error.cargando_datos">
+                <source>js.error.cargando_datos</source>
+                <target>Error loading data. Please try again.</target>
+            </trans-unit>
+            <trans-unit id="js.error.seleccionar_envio">
+                <source>js.error.seleccionar_envio</source>
+                <target>Please select or enter a shipping address.</target>
+            </trans-unit>
+            <trans-unit id="js.error.seleccionar_facturacion">
+                <source>js.error.seleccionar_facturacion</source>
+                <target>Please select or enter a billing address.</target>
+            </trans-unit>
+            <trans-unit id="js.error.seleccionar_pago">
+                <source>js.error.seleccionar_pago</source>
+                <target>Please select a payment method.</target>
+            </trans-unit>
+            <trans-unit id="js.error.rellenar_tarjeta">
+                <source>js.error.rellenar_tarjeta</source>
+                <target>Please fill in card details.</target>
+            </trans-unit>
+            <trans-unit id="js.error.numero_tarjeta_invalido">
+                <source>js.error.numero_tarjeta_invalido</source>
+                <target>Invalid card number.</target>
+            </trans-unit>
+            <trans-unit id="js.error.introducir_iban">
+                <source>js.error.introducir_iban</source>
+                <target>Please enter the IBAN.</target>
+            </trans-unit>
+            <trans-unit id="js.error.pedido_fallido">
+                <source>js.error.pedido_fallido</source>
+                <target>Could not place the order.</target>
+            </trans-unit>
+            <trans-unit id="js.error.conexion">
+                <source>js.error.conexion</source>
+                <target>Connection error when submitting the order. Please try again.</target>
+            </trans-unit>
+            <trans-unit id="js.exito.pedido_realizado">
+                <source>js.exito.pedido_realizado</source>
+                <target>Order placed successfully! We'll notify you when it's on the way.</target>
+            </trans-unit>
+            <trans-unit id="js.cesta.unidad">
+                <source>js.cesta.unidad</source>
+                <target>unit</target>
+            </trans-unit>
+            <trans-unit id="js.direccion.nueva">
+                <source>js.direccion.nueva</source>
+                <target>New address</target>
+            </trans-unit>
+            <trans-unit id="js.metodo.nuevo">
+                <source>js.metodo.nuevo</source>
+                <target>New method</target>
+            </trans-unit>
+            <trans-unit id="js.guardado.ultimos4">
+                <source>js.guardado.ultimos4</source>
+                <target>Ends in %last4%</target>
+            </trans-unit>
+            <trans-unit id="aviso.guardado">
+                <source>aviso.guardado</source>
+                <target>Saved successfully.</target>
+            </trans-unit>
+            <trans-unit id="aviso.eliminado">
+                <source>aviso.eliminado</source>
+                <target>Deleted successfully.</target>
+            </trans-unit>
+            <trans-unit id="aviso.error">
+                <source>aviso.error</source>
+                <target>An error has occurred.</target>
+            </trans-unit>
+            <trans-unit id="aviso.acceso_denegado">
+                <source>aviso.acceso_denegado</source>
+                <target>Access denied.</target>
+            </trans-unit>
+            <trans-unit id="flash.order.created">
+                <source>flash.order.created</source>
+                <target>Order created successfully.</target>
+            </trans-unit>
+            <trans-unit id="flash.order.updated">
+                <source>flash.order.updated</source>
+                <target>Order updated.</target>
+            </trans-unit>
+            <trans-unit id="aviso.pago.registrado">
+                <source>aviso.pago.registrado</source>
+                <target>Payment registered.</target>
+            </trans-unit>
+            <trans-unit id="aviso.stock.actualizado">
+                <source>aviso.stock.actualizado</source>
+                <target>Stock updated.</target>
+            </trans-unit>
+        </body>
+    </file>
+</xliff>

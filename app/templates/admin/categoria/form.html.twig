@@ -1,0 +1,56 @@
+{% extends 'admin/crud_base.html.twig' %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('css/admin_articulos.css') }}">
+{% endblock %}
+
+{% block breadcrumbs %}
+    <ul>
+        <li><a href="{{ path('app_admin') }}">{{ 'admin.master_data.home'|trans }}</a></li>
+        <li><a href="{{ path('admin_datos_maestros') }}">{{ 'admin.master_data.breadcrumb'|trans }}</a></li>
+        <li><a href="{{ path('admin_categoria_index') }}">{{ 'admin.categorias.breadcrumb'|trans }}</a></li>
+        <li>{{ ('ditar' in titulo ? 'comun.editar' : 'comun.crear')|trans }}</li>
+    </ul>
+{% endblock %}
+
+{% block crud_content %}
+<main class="fondo-pagina">
+    <div class="contenedor-formulario">
+        <section class="tarjeta-maestra">
+
+            <header class="cabecera-tarjeta">
+                <h1>{{ titulo }}</h1>
+                <a href="{{ path('admin_categoria_index') }}" class="boton-volver">
+                    <span class="material-icons" aria-hidden="true">arrow_back</span>
+                    {{ 'comun.atras'|trans }}
+                </a>
+            </header>
+
+            <div class="cuerpo-formulario">
+                {{ form_start(form) }}
+
+                    {% for field in form %}
+                        {% if not field.rendered and field.vars.name != '_token' %}
+                        <div class="fila-formulario">
+                            {{ form_label(field) }}
+                            {{ form_widget(field) }}
+                            {{ form_errors(field) }}
+                        </div>
+                        {% endif %}
+                    {% endfor %}
+
+                    <div class="acciones-formulario">
+                        <button type="submit" class="boton-primario">
+                            <span class="material-icons" aria-hidden="true">save</span>
+                            {{ 'comun.guardar'|trans }}
+                        </button>
+                    </div>
+
+                {{ form_end(form) }}
+            </div>
+
+        </section>
+    </div>
+</main>
+{% endblock %}

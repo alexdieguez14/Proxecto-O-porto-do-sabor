@@ -1,0 +1,283 @@
+
+/* Fondo y contenedor principal */
+.fondo-pagina {
+    padding: var(--espacio-xl) 0;
+    flex: 1;
+    min-width: 0;
+}
+
+.contenedor-principal {
+    width: 95%;
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: var(--espacio-xl);
+}
+
+/* Tarjeta base */
+.tarjeta-maestra {
+    background: var(--color-blanco);
+    border-radius: var(--radio-lg);
+    overflow: hidden;
+    box-shadow: var(--sombra-md);
+    width: 100%;
+}
+
+.cabecera-tarjeta {
+    padding: var(--espacio-md) var(--espacio-lg);
+    border-bottom: 1px solid var(--color-borde-suave);
+    display: flex;
+    flex-direction: column;
+    gap: var(--espacio-sm);
+}
+
+.cabecera-tarjeta h1 {
+    margin: 0;
+    font-size: var(--texto-lg);
+    color: var(--color-accion);
+}
+
+/* Tabla */
+.envoltorio-tabla {
+    overflow-x: auto;
+    width: 100%;
+}
+
+.tarjeta-maestra table,
+.envoltorio-tabla table {
+    width: 100%;
+    border-collapse: collapse;
+    table-layout: auto;
+}
+
+.tarjeta-maestra table th,
+.envoltorio-tabla table th {
+    background: var(--color-th-fondo);
+    color: var(--color-accion);
+    text-align: left;
+    padding: .75rem var(--espacio-lg);
+    border-bottom: 2px solid var(--color-borde-suave);
+    font-size: var(--texto-xs);
+    text-transform: uppercase;
+    font-weight: 800;
+    white-space: nowrap;
+}
+
+.tarjeta-maestra table td,
+.envoltorio-tabla table td {
+    padding: .85rem var(--espacio-lg);
+    border-bottom: 1px solid var(--color-borde-suave);
+    font-size: var(--texto-sm);
+    color: var(--color-accion);
+    font-weight: 700;
+    vertical-align: middle;
+    max-width: 260px;
+    word-break: break-word;
+}
+
+.tarjeta-maestra table tbody tr:last-child td,
+.envoltorio-tabla table tbody tr:last-child td {
+    border-bottom: none;
+}
+
+/* Pie de tarjeta */
+.pie-tarjeta {
+    padding: var(--espacio-md) var(--espacio-lg);
+    background-color: var(--color-blanco);
+    border-top: 1px solid var(--color-borde-suave);
+    color: var(--color-accion);
+    font-size: var(--texto-sm);
+}
+
+.pie-tarjeta p {
+    margin: 0;
+}
+
+.pie-tarjeta--fin {
+    display: flex;
+    justify-content: flex-end;
+}
+
+/* Estado vacío */
+.tarjeta-vacia {
+    color: var(--color-accion);
+    padding: var(--espacio-xl) var(--espacio-lg);
+    text-align: center;
+}
+
+/* Botón principal y de creación */
+.boton-nuevo {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--espacio-xs);
+    background: var(--color-accion);
+    color: var(--color-blanco);
+    padding: .5rem var(--espacio-md);
+    text-decoration: none;
+    border-radius: var(--radio-md);
+    font-weight: 700;
+    font-size: var(--texto-sm);
+    white-space: nowrap;
+    border: none;
+    cursor: pointer;
+    transition: background-color .2s;
+}
+
+.boton-nuevo:hover {
+    background: var(--color-accion-oscuro);
+}
+
+.boton-nuevo .material-icons {
+    font-size: 18px !important;
+}
+
+/* Enlace "ver más" */
+.boton-ver-mas {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--espacio-xs);
+    color: var(--color-accion);
+    font-size: var(--texto-sm);
+    font-weight: 700;
+    text-decoration: none;
+    padding: .35rem .85rem;
+    border: 1px solid var(--color-borde-suave);
+    border-radius: var(--radio-sm);
+    transition: background-color .2s, color .2s;
+}
+
+.boton-ver-mas:hover {
+    background-color: var(--color-accion);
+    color: var(--color-blanco);
+}
+
+.boton-ver-mas .material-icons {
+    font-size: 16px !important;
+}
+
+/* Insignia con contador */
+.contador-insignia {
+    display: inline-block;
+    background-color: var(--color-pagina);
+    color: var(--color-accion);
+    padding: 3px 10px;
+    border-radius: var(--radio-total);
+    font-size: var(--texto-xs);
+    font-weight: 700;
+    border: 1px solid var(--color-borde-suave);
+}
+
+/* Contador de sección (número de registros en heading) */
+.contador-seccion {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 1.5rem;
+    height: 1.5rem;
+    padding: 0 .35rem;
+    border-radius: var(--radio-total);
+    background: var(--color-accion);
+    color: var(--color-blanco);
+    font-size: .65rem;
+    font-weight: 800;
+    line-height: 1;
+    margin-left: var(--espacio-xs);
+}
+
+/* Imagen miniatura en tabla */
+.imagen-miniatura {
+    width: 45px;
+    height: 45px;
+    object-fit: cover;
+    border: 1px solid var(--color-borde-suave);
+    border-radius: var(--radio-sm);
+    display: block;
+}
+
+/* Vista previa en formulario */
+.vista-previa-producto {
+    border-radius: var(--radio-lg);
+    height: 140px;
+    object-fit: cover;
+    width: 220px;
+}
+
+/* Precio calculado */
+.precio-calculado {
+    background: var(--color-pagina);
+    border-radius: var(--radio-md);
+    color: var(--color-accion);
+    font-weight: 700;
+    margin-top: var(--espacio-md);
+    padding: .75rem var(--espacio-md);
+}
+
+/* Utilidades de texto */
+.texto-centrado {
+    text-align: center;
+}
+
+.texto-primario-negrita {
+    color: var(--color-accion);
+    font-weight: 700;
+}
+
+.texto-suave {
+    color: var(--color-texto-suave);
+}
+
+/* Contenedor de formularios */
+.contenedor-formulario {
+    width: 95%;
+    max-width: 720px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: var(--espacio-xl);
+}
+
+.cuerpo-formulario {
+    padding: var(--espacio-lg);
+}
+
+/* Filtro dentro de tarjeta */
+.envoltorio-filtro {
+    border-bottom: 1px solid var(--color-borde-suave);
+    background: var(--color-pagina);
+}
+
+.envoltorio-filtro .filter-bar {
+    padding: var(--espacio-md) var(--espacio-lg);
+    background: transparent;
+}
+
+.envoltorio-filtro .btn {
+    padding: .32rem .8rem;
+    font-size: .8rem;
+}
+
+.envoltorio-filtro .btn .material-icons {
+    font-size: .9rem;
+}
+
+@media (min-width: 900px) {
+    .contenedor-principal {
+        width: 80%;
+    }
+
+    .contenedor-formulario {
+        width: 80%;
+        max-width: 860px;
+    }
+
+    .cabecera-tarjeta {
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    .cuerpo-formulario {
+        padding: var(--espacio-xl) var(--espacio-2xl);
+    }
+}

@@ -1,0 +1,361 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ 'cliente.title'|trans }}{% endblock %}
+
+{% block body_attrs %}
+    data-url-acceso="{{ path('app_acceso') }}"
+    data-url-pedido="{{ path('app_tienda_pedido_crear') }}"
+    data-url-datos-checkout="{{ path('app_tienda_checkout_data') }}"
+    data-url-guardar-direccion="{{ path('app_tienda_save_address') }}"
+    data-url-guardar-metodo-pago="{{ path('app_tienda_save_payment_method') }}"
+    data-token-csrf="{{ csrf_token('place_order') }}"
+    data-token-csrf-checkout="{{ csrf_token('checkout') }}"
+    data-autenticado="{{ app.user ? 'true' : 'false' }}"
+    data-i18n-loading="{{ 'comun.cargando'|trans }}"
+    data-i18n-required="{{ 'comun.obligatorio'|trans|default('Obligatorio') }}"
+{% endblock %}
+
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('css/cliente.css') }}">
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script>
+    window.i18n = {
+        'cesta.vacia':            {{ 'cesta.vacia'|trans|json_encode|raw }},
+        'js.error.cargando_datos': {{ 'js.error.cargando_datos'|trans|json_encode|raw }},
+        'js.error.seleccionar_envio': {{ 'js.error.seleccionar_envio'|trans|json_encode|raw }},
+        'js.error.seleccionar_facturacion':  {{ 'js.error.seleccionar_facturacion'|trans|json_encode|raw }},
+        'js.error.seleccionar_pago':  {{ 'js.error.seleccionar_pago'|trans|json_encode|raw }},
+        'js.error.rellenar_tarjeta':       {{ 'js.error.rellenar_tarjeta'|trans|json_encode|raw }},
+        'js.error.numero_tarjeta_invalido': {{ 'js.error.numero_tarjeta_invalido'|trans|json_encode|raw }},
+        'js.error.introducir_iban':      {{ 'js.error.introducir_iban'|trans|json_encode|raw }},
+        'js.error.pedido_fallido':    {{ 'js.error.pedido_fallido'|trans|json_encode|raw }},
+        'js.error.conexion':      {{ 'js.error.conexion'|trans|json_encode|raw }},
+        'js.exito.pedido_realizado':  {{ 'js.exito.pedido_realizado'|trans|json_encode|raw }},
+        'js.cesta.unidad':             {{ 'js.cesta.unidad'|trans|json_encode|raw }},
+        'js.direccion.nueva':           {{ 'js.direccion.nueva'|trans|json_encode|raw }},
+        'js.metodo.nuevo':            {{ 'js.metodo.nuevo'|trans|json_encode|raw }},
+        'tramitar.confirmar_pedido':   {{ 'tramitar.confirmar_pedido'|trans|json_encode|raw }}
+    };
+    window.t = function (key) { return window.i18n[key] || key; };
+    </script>
+    <script src="{{ asset('js/tienda-carrito.js') }}" defer></script>
+{% endblock %}
+
+{% from 'components/_filter_bar.html.twig' import filter_bar %}
+
+{% block body %}
+    <header>
+        <nav class="navbar">
+            <a class="nav-logo" href="#inicio">
+                <img src="{{ asset('images/logo-transparent.png') }}" alt="O Porto do Sabor">
+            </a>
+
+            <button class="nav-hamburger js-nav-toggle" aria-label="{{ 'nav.abrir_menu'|trans }}" aria-expanded="false">
+                <span class="material-icons">menu</span>
+            </button>
+
+            <div class="contenedor-menu js-nav-menu">
+                <div class="menu-overlay-header">
+                    <a class="nav-logo" href="#inicio">
+                        <img src="{{ asset('images/logo-transparent.png') }}" alt="O Porto do Sabor">
+                    </a>
+                    <button class="nav-hamburger js-nav-toggle" aria-label="{{ 'nav.cerrar_menu'|trans }}" aria-expanded="false">
+                        <span class="material-icons">close</span>
+                    </button>
+                </div>
+
+                <ul class="categorias-centro">
+                    {% for cat in categories %}
+                        <li><a href="#{{ cat.slug }}">{{ cat.title }}</a></li>
+                    {% endfor %}
+                </ul>
+
+                <ul class="usuario-derecha">
+                    {% include 'partials/_nav-cuenta.html.twig' with { nav_context: 'tienda' } %}
+                    <li>
+                        <button class="enlace-cesta" type="button" data-abrir-cesta>
+                            <span class="material-icons" aria-hidden="true">shopping_cart</span>
+                            {{ 'nav.cesta'|trans }}
+                            <span class="contador-cesta" data-contador-cesta>0</span>
+                        </button>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <main id="contenido-principal">
+        <section class="sobre-nosotros" id="inicio">
+            <header class="texto-hero">
+                <h1>{{ 'cliente.hero.title'|trans }}</h1>
+                <p>{{ 'cliente.hero.subtitle'|trans }}</p>
+                <a class="accion-hero" href="#{{ categories|first.slug|default('tienda') }}">{{ 'cliente.hero.cta'|trans }}</a>
+            </header>
+        </section>
+
+        <section class="seccion-tienda" id="buscar" style="padding-top:1.5rem;">
+            {{ filter_bar(filtroForm) }}
+        </section>
+
+        {% if categories is empty %}
+            <section class="seccion-tienda" style="padding:2rem 1.5rem;">
+                <p>{{ 'cliente.no_products'|trans }}</p>
+            </section>
+        {% endif %}
+
+        {% for cat in categories %}
+            <section class="seccion-tienda {{ loop.index is even ? 'seccion-alterna' : '' }}" id="{{ cat.slug }}">
+                <header class="seccion-encabezado">
+                    <h2>{{ cat.title }}</h2>
+                </header>
+                <div class="cuadricula-productos">
+                    {% for articulo in cat.products %}
+                        {% set _titulo = articulo.tituloLocalizado(app.request.locale) %}
+                        {% set _descripcion = articulo.descripcionLocalizada(app.request.locale) %}
+                        <article class="tarjeta-producto">
+                            <figure class="imagen-tarjeta-producto"
+                                 style="background-image: url('{{ articulo.imagen ? asset('images/' ~ articulo.imagen) : asset('images/default.jpg') }}');"
+                                 role="img" aria-label="{{ _titulo }}"></figure>
+                            <div class="info-tarjeta-producto">
+                                <p class="categoria-etiqueta">{{ cat.title }}</p>
+                                <h3>{{ _titulo }}</h3>
+                                <p class="descripcion-producto">{{ _descripcion }}</p>
+                                <footer class="compra-tarjeta-producto">
+                                    <span class="precio">{{ articulo.precio|number_format(2, ',', '.') }} €</span>
+                                    <button type="button"
+                                            data-agregar-cesta
+                                            data-id="{{ articulo.id }}"
+                                            data-titulo="{{ _titulo }}"
+                                            data-precio="{{ articulo.precio }}"
+                                            data-imagen="{{ articulo.imagen ?? '' }}"
+                                            data-categoria="{{ cat.title }}"
+                                            data-stock="{{ articulo.stock }}">
+                                        {{ 'cliente.add'|trans }}
+                                    </button>
+                                </footer>
+                            </div>
+                        </article>
+                    {% else %}
+                        <p class="aviso-vacio">{{ 'cliente.category_empty'|trans({ '%category%': cat.title }) }}</p>
+                    {% endfor %}
+                </div>
+            </section>
+        {% endfor %}
+    </main>
+
+    {# ── Panel lateral de la cesta ── #}
+    <aside class="panel-cesta" data-panel-cesta aria-hidden="true" role="dialog" aria-label="{{ 'cesta.titulo'|trans }}">
+        <header class="cabecera-cesta">
+            <div>
+                <p>{{ 'cesta.subtitulo'|trans }}</p>
+                <h2>{{ 'cesta.titulo'|trans }}</h2>
+            </div>
+            <button class="cerrar-cesta" type="button" data-cerrar-cesta aria-label="{{ 'cesta.cerrar'|trans }}">
+                <span class="material-icons">close</span>
+            </button>
+        </header>
+        <div class="articulos-cesta" data-articulos-cesta aria-live="polite">
+            <p class="cesta-vacia">{{ 'cesta.vacia'|trans }}</p>
+        </div>
+        <footer class="resumen-cesta">
+            <p class="fila-total">
+                <span>{{ 'cesta.total_estimado'|trans }}</span>
+                <strong data-total-cesta>0,00 €</strong>
+            </p>
+            <button class="boton-finalizar" type="button" data-finalizar-compra>{{ 'cesta.comprar'|trans }}</button>
+            <button class="vaciar-cesta" type="button" data-vaciar-cesta>{{ 'cesta.vaciar'|trans }}</button>
+        </footer>
+    </aside>
+
+    <span class="capa-superpuesta" data-fondo-cesta></span>
+
+    {# ── Asistente de compra ── #}
+    <div class="asistente-compra" id="asistente-compra" role="dialog" aria-modal="true" aria-label="{{ 'tramitar.titulo'|trans }}">
+        <article class="interior-asistente">
+
+            {# Barra de progreso #}
+            <nav class="barra-progreso" aria-label="{{ 'tramitar.pasos'|trans }}">
+                <article class="indicador-paso active" data-paso="1">
+                    <span class="numero-paso">1</span>
+                    <span class="etiqueta-paso">{{ 'tramitar.paso.direccion'|trans }}</span>
+                </article>
+                <hr class="separador-paso">
+                <article class="indicador-paso" data-paso="2">
+                    <span class="numero-paso">2</span>
+                    <span class="etiqueta-paso">{{ 'tramitar.paso.pago'|trans }}</span>
+                </article>
+            </nav>
+
+            {# Paso 1: Dirección #}
+            <div class="panel-paso" id="paso-1">
+                <h3 class="titulo-seccion">
+                    <span class="material-icons">local_shipping</span>
+                    {{ 'tramitar.direccion_envio'|trans }}
+                </h3>
+                <div id="contenido-envio" class="opciones-direccion"></div>
+
+                <label class="etiqueta-misma-direccion">
+                    <input type="checkbox" id="misma-direccion" checked>
+                    {{ 'tramitar.misma_direccion'|trans }}
+                </label>
+
+                <div id="seccion-facturacion" hidden>
+                    <h3 class="titulo-seccion" style="margin-top:1.5rem;">
+                        <span class="material-icons">receipt</span>
+                        {{ 'tramitar.direccion_facturacion'|trans }}
+                    </h3>
+                    <div id="contenido-facturacion" class="opciones-direccion"></div>
+                </div>
+            </div>
+
+            {# Paso 2: Pago #}
+            <div class="panel-paso" id="paso-2" hidden>
+                <h3 class="titulo-seccion">
+                    <span class="material-icons">payments</span>
+                    {{ 'pago.metodo'|trans }}
+                </h3>
+
+                <div class="metodo-pago-options" id="metodo-pago-options">
+                    <label class="opcion-pago">
+                        <input type="radio" name="metodo_pago" value="TARJETA">
+                        <div class="tarjeta-opcion">
+                            <span class="material-icons">credit_card</span>
+                            <p>
+                                <strong>{{ 'pago.tarjeta'|trans }}</strong>
+                                <span>{{ 'pago.tarjeta.descripcion'|trans }}</span>
+                            </p>
+                        </div>
+                    </label>
+                    <label class="opcion-pago">
+                        <input type="radio" name="metodo_pago" value="TRANSFERENCIA">
+                        <div class="tarjeta-opcion">
+                            <span class="material-icons">account_balance</span>
+                            <p>
+                                <strong>{{ 'pago.transferencia'|trans }}</strong>
+                                <span>{{ 'pago.transferencia.descripcion'|trans }}</span>
+                            </p>
+                        </div>
+                    </label>
+                    <label class="opcion-pago">
+                        <input type="radio" name="metodo_pago" value="CONTRARREEMBOLSO">
+                        <div class="tarjeta-opcion">
+                            <span class="material-icons">local_shipping</span>
+                            <p>
+                                <strong>{{ 'pago.contrarreembolso'|trans }}</strong>
+                                <span>{{ 'pago.contrarreembolso.descripcion'|trans }}</span>
+                            </p>
+                        </div>
+                    </label>
+                </div>
+
+                {# Detalles TARJETA #}
+                <div id="seccion-tarjeta" hidden>
+                    <div id="tarjetas-guardadas" class="metodos-guardados"></div>
+                    <div id="formulario-tarjeta" class="formulario-nuevo-metodo" hidden>
+                        <p class="grupo-campo">
+                            <label>{{ 'tramitar.titular_tarjeta'|trans }}</label>
+                            <input type="text" id="titular" placeholder="{{ 'tramitar.titular_tarjeta_placeholder'|trans }}" autocomplete="cc-name">
+                        </p>
+                        <p class="grupo-campo">
+                            <label>{{ 'tramitar.numero_tarjeta'|trans }}</label>
+                            <input type="text" id="numero-tarjeta" placeholder="**** **** **** ****"
+                                   maxlength="19" autocomplete="cc-number" inputmode="numeric">
+                        </p>
+                        <div class="fila-dos">
+                            <p class="grupo-campo">
+                                <label>{{ 'tramitar.vencimiento_tarjeta'|trans }}</label>
+                                <input type="text" id="vencimiento" placeholder="MM/AA"
+                                       maxlength="5" autocomplete="cc-exp" inputmode="numeric">
+                            </p>
+                            <p class="grupo-campo">
+                                <label>{{ 'tramitar.cvv'|trans }}</label>
+                                <input type="password" id="cvv" placeholder="···"
+                                       maxlength="4" autocomplete="off" inputmode="numeric">
+                            </p>
+                        </div>
+                        <label class="etiqueta-guardar">
+                            <input type="checkbox" id="guardar-tarjeta" checked>
+                            {{ 'tramitar.guardar_tarjeta'|trans }}
+                        </label>
+                    </div>
+                    <button type="button" class="boton-agregar-metodo" id="boton-nueva-tarjeta">
+                        <span class="material-icons">add</span> {{ 'tramitar.anadir_tarjeta'|trans }}
+                    </button>
+                </div>
+
+                {# Detalles TRANSFERENCIA #}
+                <div id="seccion-transferencia" hidden>
+                    <div id="cuentas-guardadas" class="metodos-guardados"></div>
+                    <div id="formulario-iban" class="formulario-nuevo-metodo" hidden>
+                        <p class="grupo-campo">
+                            <label>{{ 'tramitar.iban'|trans }}</label>
+                            <input type="text" id="numero-iban" placeholder="ES91 2100 0418 4502 0005 1332"
+                                   autocomplete="off" style="text-transform:uppercase">
+                        </p>
+                        <p class="grupo-campo">
+                            <label>{{ 'tramitar.iban_alias'|trans }}</label>
+                            <input type="text" id="alias-iban" placeholder="{{ 'tramitar.iban_alias_placeholder'|trans }}">
+                        </p>
+                        <label class="etiqueta-guardar">
+                            <input type="checkbox" id="guardar-cuenta" checked>
+                            {{ 'tramitar.guardar_cuenta'|trans }}
+                        </label>
+                    </div>
+                    <button type="button" class="boton-agregar-metodo" id="boton-nueva-cuenta">
+                        <span class="material-icons">add</span> {{ 'tramitar.anadir_cuenta'|trans }}
+                    </button>
+                </div>
+
+                {# Información CONTRARREEMBOLSO #}
+                <div id="seccion-contrarreembolso" hidden>
+                    <aside class="contrarreembolso-info">
+                        <span class="material-icons">info</span>
+                        <p>{{ 'pago.contrarreembolso.info'|trans }}</p>
+                    </aside>
+                </div>
+            </div>
+
+            {# Botones de acción #}
+            <footer class="acciones-asistente">
+                <button type="button" class="boton-cancelar" id="boton-cancelar">{{ 'comun.cancelar'|trans }}</button>
+                <nav class="nav-asistente">
+                    <button type="button" class="boton-atras" id="boton-atras" hidden>
+                        <span class="material-icons">arrow_back</span> {{ 'comun.atras'|trans }}
+                    </button>
+                    <button type="button" class="boton-siguiente" id="boton-siguiente">
+                        {{ 'comun.siguiente'|trans }} <span class="material-icons">arrow_forward</span>
+                    </button>
+                    <button type="button" class="boton-confirmar" id="boton-confirmar" hidden>
+                        <span class="material-icons">check</span> {{ 'tramitar.confirmar_pedido'|trans }}
+                    </button>
+                </nav>
+            </footer>
+
+        </article>
+    </div>
+    <span class="fondo-asistente" id="fondo-asistente"></span>
+
+    <footer>
+        <p>&copy; {{ "now"|date("Y") }} {{ 'cliente.footer'|trans }}</p>
+    </footer>
+
+    <aside class="flash-contenedor" id="flash-contenedor" aria-label="{{ 'tramitar.notificaciones'|trans }}"></aside>
+
+    <aside class="aviso-cookies" id="aviso-cookies" role="region" aria-label="{{ 'cookies.text'|trans|slice(0, 40) }}">
+        <p class="aviso-cookies__texto">
+            {{ 'cookies.text'|trans }}
+            <a class="aviso-cookies__enlace" href="#">{{ 'cookies.more_info'|trans }}</a>
+        </p>
+        <footer class="aviso-cookies__acciones">
+            <button class="aviso-cookies__boton aviso-cookies__boton--secundario" id="cookies-rechazar" type="button">
+                {{ 'cookies.necessary_only'|trans }}
+            </button>
+            <button class="aviso-cookies__boton aviso-cookies__boton--primario" id="cookies-aceptar" type="button">
+                {{ 'cookies.accept_all'|trans }}
+            </button>
+        </footer>
+    </aside>
+{% endblock %}

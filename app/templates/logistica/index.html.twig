@@ -1,0 +1,460 @@
+{% extends 'base.html.twig' %}
+{% from 'components/_filter_bar.html.twig' import filter_bar %}
+
+{% block title %}{{ 'logistica.title'|trans }} — {{ 'nav.pedidos'|trans }}{% endblock %}
+
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('css/admin.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/admin_articulos.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/logistica.css') }}">
+{% endblock %}
+
+{% block javascripts %}
+{{ parent() }}
+<script>
+(function () {
+    var esUrl = '{{ mercure(mercure_base_topic ~ '/pedidos')|escape('js') }}';
+    var es = new EventSource(esUrl);
+    var banner = null;
+
+    function showUpdateBanner(msg) {
+        if (banner) return;
+        banner = document.createElement('div');
+        banner.className = 'mercure-update-banner';
+        banner.innerHTML =
+            '<span class="material-icons">sync</span> ' +
+            '<span class="mercure-update-msg">' + msg + '</span>' +
+            '<button class="boton-actualizacion-mercure" onclick="window.location.reload()">{{ 'logistica.update.refresh'|trans|escape('js') }}</button>' +
+            '<button class="mercure-update-close" aria-label="{{ 'comun.cerrar'|trans|escape('js') }}" ' +
+            '  onclick="this.parentNode.remove();banner=null;">' +
+            '  <span class="material-icons">close</span></button>';
+        document.body.prepend(banner);
+    }
+
+    es.onmessage = function (e) {
+        var data = {};
+        try { data = JSON.parse(e.data); } catch (_) { return; }
+        if (data.evento === 'pedido.actualizado') {
+            showUpdateBanner('{{ 'logistica.update.new'|trans|escape('js') }}');
+        }
+    };
+
+    es.onerror = function () {};
+}());
+</script>
+<style>
+.mercure-update-banner {
+    position: fixed; top: 0; left: 0; right: 0; z-index: var(--capa-flash);
+    display: flex; align-items: center; gap: var(--espacio-md);
+    padding: var(--espacio-sm) var(--espacio-lg);
+    background: var(--color-accion);
+    color: var(--color-blanco); font-size: var(--texto-sm);
+}
+.mercure-update-banner .material-icons { font-size: var(--texto-md); animation: spin 1.4s linear infinite; }
+@keyframes spin { to { transform: rotate(360deg); } }
+.mercure-update-msg { flex: 1; }
+.boton-actualizacion-mercure {
+    padding: var(--espacio-xs) var(--espacio-sm); border-radius: var(--radio-sm); border: 2px solid var(--color-blanco);
+    background: transparent; color: var(--color-blanco); font-weight: 600; cursor: pointer;
+}
+.mercure-update-close {
+    background: transparent; border: none; color: var(--color-blanco); cursor: pointer;
+    display: flex; align-items: center;
+}
+</style>
+{% endblock %}
+
+{% block body %}
+{% set activeSection = activeSection|default('preparacion') %}
+{% set en_preparacion = pedidos|filter(p => p.estado == 'PREPARACION') %}
+{% set listos = pedidos|filter(p => p.estado == 'LISTO_ENVIO') %}
+{% set enviados = pedidos|filter(p => p.estado == 'ENVIADO') %}
+{% set activeTitle = {
+    'preparacion': 'logistica.nav.preparacion'|trans,
+    'listos': 'logistica.nav.listo'|trans,
+    'enviados': 'logistica.nav.enviados'|trans,
+}[activeSection] ?? 'nav.pedidos'|trans %}
+<header>
+    <nav class="navbar">
+        <a class="nav-logo" href="{{ path('app_logistica') }}">
+            <img src="{{ asset('images/logo-transparent.png') }}" alt="O Porto do Sabor">
+        </a>
+        <button class="nav-hamburger js-nav-toggle" aria-label="{{ 'nav.abrir_menu'|trans }}" aria-expanded="false">
+            <span class="material-icons">menu</span>
+        </button>
+        <div class="menu-desplegable js-nav-menu">
+            <div class="menu-overlay-header">
+                <a class="nav-logo" href="{{ path('app_logistica') }}">
+                    <img src="{{ asset('images/logo-transparent.png') }}" alt="O Porto do Sabor">
+                </a>
+                <button class="nav-hamburger js-nav-toggle" aria-label="{{ 'nav.cerrar_menu'|trans }}" aria-expanded="false">
+                    <span class="material-icons">close</span>
+                </button>
+            </div>
+            <ul class="enlaces-nav">
+                <li>
+                    <a href="{{ path('logistica_preparacion') }}" class="{{ activeSection == 'preparacion' ? 'enlace-nav-activo' : '' }}">
+                        <span class="material-icons icono-nav" aria-hidden="true">pending</span>
+                        {{ 'logistica.nav.preparacion'|trans }}
+                        {% if en_preparacion is defined and en_preparacion|length > 0 %}
+                            <span class="contador-estado-nav contador-estado-nav--preparacion">{{ en_preparacion|length }}</span>
+                        {% endif %}
+                    </a>
+                </li>
+                <li>
+                    <a href="{{ path('logistica_listos') }}" class="{{ activeSection == 'listos' ? 'enlace-nav-activo' : '' }}">
+                        <span class="material-icons icono-nav" aria-hidden="true">local_shipping</span>
+                        {{ 'logistica.nav.listo'|trans }}
+                        {% if listos is defined and listos|length > 0 %}
+                            <span class="contador-estado-nav contador-estado-nav--listo">{{ listos|length }}</span>
+                        {% endif %}
+                    </a>
+                </li>
+                <li>
+                    <a href="{{ path('logistica_enviados') }}" class="{{ activeSection == 'enviados' ? 'enlace-nav-activo' : '' }}">
+                        <span class="material-icons icono-nav" aria-hidden="true">outbox</span>
+                        {{ 'logistica.nav.enviados'|trans }}
+                        {% if enviados is defined and enviados|length > 0 %}
+                            <span class="contador-estado-nav contador-estado-nav--listo">{{ enviados|length }}</span>
+                        {% endif %}
+                    </a>
+                </li>
+                <li>
+                    <a href="{{ path('app_inventario') }}">
+                        <span class="material-icons icono-nav" aria-hidden="true">inventory</span>
+                        {{ 'admin.acceso_rapido.inventario'|trans }}
+                    </a>
+                </li>
+            </ul>
+            <div class="usuario-nav">
+                {% include 'components/_locale_switcher.html.twig' %}
+                {% if app.user %}
+                    <span class="material-icons icono-nav-usuario" aria-hidden="true">person</span>
+                    <span class="email-nav-usuario">{{ app.user.email }}</span>
+                    {% if is_granted('ROLE_ADMIN') %}
+                        <a href="{{ path('app_admin') }}" class="boton-panel-admin">
+                            <span class="material-icons" aria-hidden="true">admin_panel_settings</span>
+                            {{ 'nav.admin'|trans }}
+                        </a>
+                    {% endif %}
+                    <a href="{{ path('app_cerrar_sesion') }}" class="boton-salir">
+                        <span class="material-icons" aria-hidden="true">logout</span>
+                        {{ 'nav.salir'|trans }}
+                    </a>
+                {% endif %}
+            </div>
+        </div>
+    </nav>
+</header>
+
+<nav class="breadcrumbs">
+    <ul>
+        <li>{{ 'logistica.title'|trans }}</li>
+        <li>{{ activeTitle }}</li>
+    </ul>
+</nav>
+
+<main class="fondo-pagina">
+    <div class="contenedor-principal">
+
+        <div class="envoltorio-filtro">
+            {{ filter_bar(filtroForm) }}
+        </div>
+
+        {% if pedidos is empty %}
+            <section class="tarjeta-maestra">
+                <header class="cabecera-tarjeta">
+                    <h1>{{ activeTitle }}</h1>
+                </header>
+                <p class="tarjeta-vacia">{{ 'logistica.empty'|trans }}</p>
+            </section>
+        {% else %}
+
+        {# ── EN PREPARACIÓN ── #}
+        {% if en_preparacion|length > 0 %}
+        <h2 class="titulo-seccion-logistica" id="preparacion">
+            <span class="material-icons">pending</span>
+            {{ 'logistica.section.preparacion'|trans }}
+            <span class="contador-seccion">{{ en_preparacion|length }}</span>
+        </h2>
+
+        {% for pedido in en_preparacion %}
+        <article class="tarjeta-maestra pedido-logistica">
+            <header class="cabecera-tarjeta">
+                <div class="pedido-info">
+                    <p class="pedido-num">{{ 'logistica.order'|trans }} #{{ pedido.id }}</p>
+                    <h2>{{ pedido.clienteEmail }}</h2>
+                    <span class="pedido-fecha">{{ pedido.creadoEn|date('d/m/Y H:i') }}</span>
+                </div>
+                <div class="pedido-cabecera-derecha">
+                    <span class="estado estado-preparacion">{{ 'estado.preparacion'|trans }}</span>
+                    {% if pedido.metodoPago == 'TARJETA' %}
+                        <span class="insignia-metodo-pago insignia-metodo-pago--tarjeta">
+                            <span class="material-icons">credit_card</span> {{ 'pago.tarjeta.corto'|trans }}
+                        </span>
+                    {% elseif pedido.metodoPago == 'CONTRARREEMBOLSO' %}
+                        <span class="insignia-metodo-pago insignia-metodo-pago--contrarreembolso">
+                            <span class="material-icons">local_shipping</span> {{ 'pago.contrarreembolso'|trans }}
+                        </span>
+                    {% else %}
+                        <span class="insignia-metodo-pago insignia-metodo-pago--transferencia">
+                            <span class="material-icons">account_balance</span> {{ 'pago.transferencia.corto'|trans }}
+                        </span>
+                    {% endif %}
+                </div>
+            </header>
+
+            {% if pedido.direccionEnvio %}
+            <div class="direccion-pedido">
+                <span class="material-icons">location_on</span>
+                <span>{{ pedido.direccionEnvio.calle }}, {{ pedido.direccionEnvio.codigoPostal }} {{ pedido.direccionEnvio.ciudad }}</span>
+            </div>
+            {% endif %}
+
+            <div class="envoltorio-tabla">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>{{ 'comun.producto'|trans }}</th>
+                            <th>{{ 'comun.cantidad'|trans }}</th>
+                            <th>{{ 'logistica.inventario.location'|trans }}</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for item in pedido.items %}
+                        <tr>
+                            <td class="texto-primario-negrita">{{ item.titulo }}</td>
+                            <td><strong>{{ item.cantidad }}</strong></td>
+                            <td>{{ item.ubicacion ?? ubicaciones[item.id] ?? '—' }}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                            <td><strong>{{ 'albaran.total_unidades'|trans }}</strong></td>
+                            <td><strong>{{ pedido.cantidadTotal }}</strong></td>
+                            <td></td>
+                        </tr>
+                    </tfoot>
+                </table>
+            </div>
+
+            <footer class="acciones-pedido">
+                <form class="formulario-bultos" method="post"
+                      action="{{ path('logistica_bultos', {id: pedido.id}) }}">
+                    <input type="hidden" name="_token" value="{{ csrf_token('logistica_' ~ pedido.id) }}">
+                    <label for="bultos-{{ pedido.id }}">
+                        <span class="material-icons">inventory_2</span>
+                        {{ 'logistica.bultos'|trans }}
+                    </label>
+                    <input type="number" id="bultos-{{ pedido.id }}" name="bultos"
+                           value="{{ pedido.bultos ?? '' }}" min="1" placeholder="Nº">
+                    <button type="submit" class="boton-accion boton-secundario">{{ 'comun.guardar'|trans }}</button>
+                </form>
+
+                <div class="fila-acciones">
+                    <form method="post" action="{{ path('logistica_marcar_listo', {id: pedido.id}) }}">
+                        <input type="hidden" name="_token" value="{{ csrf_token('logistica_' ~ pedido.id) }}">
+                        <button type="submit" class="boton-accion boton-listo">
+                            <span class="material-icons">check_circle</span>
+                            {{ 'logistica.mark_ready'|trans }}
+                        </button>
+                    </form>
+                    <a href="{{ path('logistica_albaran', {id: pedido.id}) }}"
+                       class="boton-accion boton-albaran" target="_blank">
+                        <span class="material-icons">print</span>
+                        {{ 'albaran.titulo'|trans }}
+                    </a>
+                </div>
+            </footer>
+        </article>
+        {% endfor %}
+        {% endif %}
+
+        {# ── LISTO PARA ENVÍO ── #}
+        {% if listos|length > 0 %}
+        <h2 class="titulo-seccion-logistica" id="listo-envio">
+            <span class="material-icons">local_shipping</span>
+            {{ 'logistica.section.listo'|trans }}
+            <span class="contador-seccion">{{ listos|length }}</span>
+        </h2>
+
+        {% for pedido in listos %}
+        <article class="tarjeta-maestra pedido-logistica pedido-logistica--listo">
+            <header class="cabecera-tarjeta">
+                <div class="pedido-info">
+                    <p class="pedido-num">{{ 'logistica.order'|trans }} #{{ pedido.id }}</p>
+                    <h2>{{ pedido.clienteEmail }}</h2>
+                    <span class="pedido-fecha">{{ pedido.creadoEn|date('d/m/Y H:i') }}</span>
+                </div>
+                <div class="pedido-cabecera-derecha">
+                    <span class="estado estado-listo">{{ 'estado.listo_envio'|trans }}</span>
+                    {% if pedido.metodoPago == 'TARJETA' %}
+                        <span class="insignia-metodo-pago insignia-metodo-pago--tarjeta">
+                            <span class="material-icons">credit_card</span> {{ 'pago.tarjeta.corto'|trans }}
+                        </span>
+                    {% elseif pedido.metodoPago == 'CONTRARREEMBOLSO' %}
+                        <span class="insignia-metodo-pago insignia-metodo-pago--contrarreembolso">
+                            <span class="material-icons">local_shipping</span> {{ 'pago.contrarreembolso'|trans }}
+                        </span>
+                    {% else %}
+                        <span class="insignia-metodo-pago insignia-metodo-pago--transferencia">
+                            <span class="material-icons">account_balance</span> {{ 'pago.transferencia.corto'|trans }}
+                        </span>
+                    {% endif %}
+                    {% if pedido.bultos %}
+                        <span class="insignia-bultos">
+                            <span class="material-icons">inventory_2</span>
+                            {{ pedido.bultos }} {{ 'logistica.bultos'|trans|lower }}
+                        </span>
+                    {% endif %}
+                </div>
+            </header>
+
+            {% if pedido.direccionEnvio %}
+            <div class="direccion-pedido">
+                <span class="material-icons">location_on</span>
+                <span>{{ pedido.direccionEnvio.calle }}, {{ pedido.direccionEnvio.codigoPostal }} {{ pedido.direccionEnvio.ciudad }}</span>
+            </div>
+            {% endif %}
+
+            <div class="envoltorio-tabla">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>{{ 'comun.producto'|trans }}</th>
+                            <th>{{ 'comun.cantidad'|trans }}</th>
+                            <th>{{ 'logistica.inventario.location'|trans }}</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for item in pedido.items %}
+                        <tr>
+                            <td class="texto-primario-negrita">{{ item.titulo }}</td>
+                            <td><strong>{{ item.cantidad }}</strong></td>
+                            <td>{{ item.ubicacion ?? ubicaciones[item.id] ?? '—' }}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                            <td><strong>{{ 'albaran.total_unidades'|trans }}</strong></td>
+                            <td><strong>{{ pedido.cantidadTotal }}</strong></td>
+                            <td></td>
+                        </tr>
+                    </tfoot>
+                </table>
+            </div>
+
+            <footer class="acciones-pedido">
+                <form class="formulario-seguimiento" method="post"
+                      action="{{ path('logistica_marcar_enviado', {id: pedido.id}) }}"
+                      onsubmit="return confirm('{{ 'logistica.confirm_send'|trans({'%id%': pedido.id})|escape('js') }}')">
+                    <input type="hidden" name="_token" value="{{ csrf_token('logistica_' ~ pedido.id) }}">
+                    <label>
+                        <span class="material-icons">pin_drop</span>
+                        {{ 'logistica.tracking_number'|trans }}
+                    </label>
+                    <input type="text" name="numero_seguimiento"
+                           value="{{ pedido.numeroSeguimiento ?? '' }}"
+                           maxlength="100"
+                           placeholder="{{ 'comun.opcional'|trans }}">
+                    <button type="submit" class="boton-accion boton-enviado">
+                        <span class="material-icons">send</span>
+                        {{ 'logistica.mark_shipped'|trans }}
+                    </button>
+                </form>
+                <div class="fila-acciones">
+                    <a href="{{ path('logistica_albaran', {id: pedido.id}) }}"
+                       class="boton-accion boton-albaran" target="_blank">
+                        <span class="material-icons">print</span>
+                        {{ 'albaran.titulo'|trans }}
+                    </a>
+                </div>
+            </footer>
+        </article>
+        {% endfor %}
+        {% endif %}
+
+        {# ── ENVIADOS ── #}
+        {% if enviados|length > 0 %}
+        <h2 class="titulo-seccion-logistica" id="enviados">
+            <span class="material-icons">outbox</span>
+            {{ 'logistica.nav.enviados'|trans }}
+            <span class="contador-seccion">{{ enviados|length }}</span>
+        </h2>
+
+        {% for pedido in enviados %}
+        <article class="tarjeta-maestra pedido-logistica pedido-logistica--enviado">
+            <header class="cabecera-tarjeta">
+                <div class="pedido-info">
+                    <p class="pedido-num">{{ 'logistica.order'|trans }} #{{ pedido.id }}</p>
+                    <h2>{{ pedido.clienteEmail }}</h2>
+                    <span class="pedido-fecha">{{ pedido.creadoEn|date('d/m/Y H:i') }}</span>
+                </div>
+                <div class="pedido-cabecera-derecha">
+                    <span class="estado estado-enviado">{{ 'estado.enviado'|trans }}</span>
+                    {% if pedido.enviadoEn %}
+                        <span class="pedido-fecha">{{ pedido.enviadoEn|date('d/m/Y H:i') }}</span>
+                    {% endif %}
+                </div>
+            </header>
+
+            {% if pedido.direccionEnvio %}
+            <div class="direccion-pedido">
+                <span class="material-icons">location_on</span>
+                <span>{{ pedido.direccionEnvio.calle }}, {{ pedido.direccionEnvio.codigoPostal }} {{ pedido.direccionEnvio.ciudad }}</span>
+            </div>
+            {% endif %}
+
+            {% if pedido.numeroSeguimiento %}
+            <div class="direccion-pedido">
+                {{ 'logistica.tracking_number'|trans }}: <strong>{{ pedido.numeroSeguimiento }}</strong>
+            </div>
+            {% endif %}
+
+            <div class="envoltorio-tabla">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>{{ 'comun.producto'|trans }}</th>
+                            <th>{{ 'comun.cantidad'|trans }}</th>
+                            <th>{{ 'logistica.inventario.location'|trans }}</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for item in pedido.items %}
+                        <tr>
+                            <td class="texto-primario-negrita">{{ item.titulo }}</td>
+                            <td><strong>{{ item.cantidad }}</strong></td>
+                            <td>{{ item.ubicacion ?? ubicaciones[item.id] ?? '—' }}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                            <td><strong>{{ 'albaran.total_unidades'|trans }}</strong></td>
+                            <td><strong>{{ pedido.cantidadTotal }}</strong></td>
+                            <td></td>
+                        </tr>
+                    </tfoot>
+                </table>
+            </div>
+
+            <footer class="acciones-pedido">
+                <div class="fila-acciones">
+                    <a href="{{ path('logistica_albaran', {id: pedido.id}) }}"
+                       class="boton-accion boton-albaran" target="_blank">
+                        <span class="material-icons">print</span>
+                        {{ 'albaran.titulo'|trans }}
+                    </a>
+                </div>
+            </footer>
+        </article>
+        {% endfor %}
+        {% endif %}
+
+        {% endif %}
+    </div>
+</main>
+{% endblock %}

@@ -1,0 +1,45 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ 'acceso.inicio.titulo'|trans }}{% endblock %}
+
+{% block stylesheets %}
+<style>
+    body { background: var(--color-pagina); }
+    .inicio-nav {
+        background: var(--color-primario);
+        padding: var(--espacio-md) var(--espacio-xl);
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+    .inicio-nav span { color: var(--color-blanco); font-size: var(--texto-sm); }
+    .inicio-nav a { color: var(--badge-listo-fondo); text-decoration: none; font-size: var(--texto-sm); }
+    .inicio-nav a:hover { color: var(--color-blanco); }
+    .inicio-contenedor {
+        max-width: 700px;
+        margin: var(--espacio-2xl) auto;
+        padding: 0 var(--espacio-md);
+        text-align: center;
+    }
+    .inicio-contenedor h1 { font-size: var(--texto-2xl); color: var(--color-primario); margin-bottom: var(--espacio-md); }
+    .inicio-contenedor p { color: var(--color-texto-suave); font-size: var(--texto-lg); }
+</style>
+{% endblock %}
+
+{% block body %}
+<header>
+    <nav class="inicio-nav">
+        <span>{{ 'nav.bienvenido'|trans }}, {{ app.user.email }}</span>
+        <div style="display:inline-flex;align-items:center;gap:var(--espacio-md);">
+            {% include 'components/_locale_switcher.html.twig' %}
+            <a href="{{ path('app_cerrar_sesion') }}">{{ 'nav.salir'|trans }}</a>
+        </div>
+    </nav>
+</header>
+<main>
+    <section class="inicio-contenedor">
+        <h1>{{ 'acceso.inicio.titulo'|trans }}</h1>
+        <p>{{ 'acceso.inicio.cuerpo'|trans }}</p>
+    </section>
+</main>
+{% endblock %}

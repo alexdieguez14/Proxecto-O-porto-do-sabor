@@ -1,0 +1,97 @@
+{% extends 'contabilidad/crud_base.html.twig' %}
+{% from 'components/_filter_bar.html.twig' import filter_bar %}
+
+{% block title %}{{ 'contabilidad.libro.titulo'|trans }} — {{ 'contabilidad.title'|trans }}{% endblock %}
+
+{% block breadcrumbs %}
+<ul>
+    <li><a href="{{ path('app_contabilidad') }}">{{ 'contabilidad.panel.breadcrumb'|trans }}</a></li>
+    <li>{{ 'contabilidad.libro.titulo'|trans }}</li>
+</ul>
+{% endblock %}
+
+{% block crud_content %}
+<main class="fondo-pagina">
+    <div class="contenedor-principal">
+
+        <section class="tarjeta-maestra">
+            <header class="cabecera-tarjeta">
+                <h1 class="titulo-tarjeta-financiera">
+                    <span class="material-icons" aria-hidden="true">receipt_long</span>
+                    {{ 'contabilidad.libro.titulo'|trans }}
+                </h1>
+                <a href="{{ path('app_contabilidad') }}" class="boton-ver-mas">
+                    <span class="material-icons" aria-hidden="true">arrow_back</span>
+                    {{ 'comun.atras'|trans }}
+                </a>
+            </header>
+
+            <div class="envoltorio-filtro">
+                {{ filter_bar(filtroForm) }}
+            </div>
+
+            {% if movimientos is empty %}
+                <p class="tarjeta-vacia">{{ 'admin.crud.no_results'|trans }}</p>
+            {% else %}
+                <div class="envoltorio-tabla">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>{{ 'comun.fecha'|trans }}</th>
+                                <th>{{ 'contabilidad.movimiento.tipo'|trans }}</th>
+                                <th>{{ 'contabilidad.movimiento.concepto'|trans }}</th>
+                                <th>{{ 'contabilidad.movimiento.referencia'|trans }}</th>
+                                <th class="texto-centrado">{{ 'contabilidad.movimiento.importe'|trans }}</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for m in movimientos %}
+                            <tr>
+                                <td>{{ m.creadoEn|date('d/m/Y H:i') }}</td>
+                                <td>
+                                    {% if m.tipo == 'INGRESO' %}
+                                        <span class="tipo-movimiento tipo-movimiento--ingreso">
+                                            <span class="material-icons" aria-hidden="true">arrow_upward</span>
+                                            {{ 'contabilidad.movimiento.ingreso'|trans }}
+                                        </span>
+                                    {% else %}
+                                        <span class="tipo-movimiento tipo-movimiento--egreso">
+                                            <span class="material-icons" aria-hidden="true">arrow_downward</span>
+                                            {{ 'contabilidad.movimiento.gasto'|trans }}
+                                        </span>
+                                    {% endif %}
+                                </td>
+                                <td>
+                                    {% if m.concepto == 'PAGO_FACTURA' %}{{ 'concepto.pago_factura'|trans }}
+                                    {% elseif m.concepto == 'NOMINA' %}{{ 'concepto.nomina'|trans }}
+                                    {% elseif m.concepto == 'PAGO_PROVEEDOR' %}{{ 'concepto.pago_proveedor'|trans }}
+                                    {% elseif m.concepto == 'SUMINISTROS' %}{{ 'concepto.suministros'|trans }}
+                                    {% else %}{{ 'concepto.otro_gasto'|trans }}{% endif %}
+                                </td>
+                                <td class="texto-suave">
+                                    {% if m.numeroFactura %}
+                                        <span class="referencia-financiera">
+                                            <span class="material-icons" aria-hidden="true">receipt</span>
+                                            {{ m.numeroFactura }}
+                                        </span>
+                                    {% else %}—{% endif %}
+                                </td>
+                                <td class="texto-centrado">
+                                    <span class="importe-financiero importe-financiero--{{ m.tipo|lower }}">
+                                        {{ m.tipo == 'INGRESO' ? '+' : '−' }}{{ m.importe|number_format(2, ',', '.') }} €
+                                    </span>
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+                <footer class="pie-tarjeta">
+                    <p>{{ 'contabilidad.libro.conteo'|trans({ '%count%': movimientos|length }) }}</p>
+                </footer>
+            {% endif %}
+        </section>
+
+    </div>
+</main>
+{% endblock %}

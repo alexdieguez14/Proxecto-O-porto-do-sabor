@@ -1,0 +1,163 @@
+{% extends 'contabilidad/crud_base.html.twig' %}
+
+{% block title %}{{ 'nav.pedidos'|trans }} — {{ cliente.nombre }} {{ cliente.apellidos }} — {{ 'contabilidad.title'|trans }}{% endblock %}
+
+{% block breadcrumbs %}
+    <ul>
+        <li><a href="{{ path('app_contabilidad') }}">{{ 'contabilidad.panel.breadcrumb'|trans }}</a></li>
+        <li><a href="{{ path('contabilidad_cliente_index') }}">{{ 'contabilidad.clientes.title'|trans }}</a></li>
+        <li>{{ cliente.nombre }} {{ cliente.apellidos }}</li>
+        <li>{{ 'nav.pedidos'|trans }}</li>
+    </ul>
+{% endblock %}
+
+{% block crud_content %}
+<main class="fondo-pagina">
+    <div class="contenedor-principal">
+
+        <section class="tarjeta-maestra" style="margin-bottom: var(--espacio-lg)">
+            <header class="cabecera-tarjeta">
+                <div>
+                    <h1>{{ cliente.nombre }} {{ cliente.apellidos }}</h1>
+                    <p style="margin:0;font-size:var(--texto-sm);color:var(--color-texto-suave)">{{ cliente.email }}{% if cliente.telefono %} · {{ cliente.telefono }}{% endif %}</p>
+                </div>
+                <span style="margin-left:auto;font-size:var(--texto-xs);font-weight:700;background-color:var(--color-pagina);color:var(--color-accion);border:1px solid var(--color-borde-suave);border-radius:var(--radio-total);padding:.15rem .65rem;white-space:nowrap">{{ pedidos|length }} {{ 'nav.pedidos'|trans|lower }}</span>
+            </header>
+        </section>
+
+        {% if pedidos is empty %}
+        <section class="tarjeta-maestra">
+            <p class="tarjeta-vacia">{{ 'contabilidad.pedidos.empty'|trans }}</p>
+        </section>
+        {% else %}
+
+        {% for pedido in pedidos %}
+            {% set display = pedido.estadoContableCalculado %}
+            <article class="tarjeta-maestra pedido-contable pedido-contable--{{ display|lower|replace({'_': '-'}) }}">
+                <header class="cabecera-tarjeta">
+                    <div class="info-pedido-contable">
+                        <h2 class="numero-pedido-contable">{{ 'logistica.order'|trans }} #{{ pedido.id }}</h2>
+                        <span class="email-pedido-contable">{{ pedido.clienteEmail }}</span>
+                    </div>
+                    <div class="insignias-pedido-contable">
+                        {% if display == 'PAGADO' %}
+                            <span class="estado-badge insignia-pagado">
+                                <span class="material-icons">check_circle</span>
+                                {{ 'estado.pagado'|trans }}
+                            </span>
+                        {% elseif display == 'VENCIDO_SIN_PAGAR' %}
+                            <span class="estado-badge insignia-vencido">
+                                <span class="material-icons">warning</span>
+                                {{ 'estado.vencido'|trans }}
+                            </span>
+                        {% elseif display %}
+                            <span class="estado-badge insignia-pendiente">
+                                <span class="material-icons">schedule</span>
+                                {{ 'estado.pendiente_pago'|trans }}
+                            </span>
+                        {% endif %}
+                        {% if pedido.metodoPago == 'TARJETA' %}
+                            <span class="estado-badge insignia-metodo-tarjeta">
+                                <span class="material-icons">credit_card</span>
+                                {{ 'pago.tarjeta.corto'|trans }}
+                            </span>
+                        {% elseif pedido.metodoPago == 'CONTRARREEMBOLSO' %}
+                            <span class="estado-badge insignia-metodo-contrarreembolso">
+                                <span class="material-icons">local_shipping</span>
+                                {{ 'pago.contrarreembolso'|trans }}
+                            </span>
+                        {% else %}
+                            <span class="estado-badge insignia-metodo-transferencia">
+                                <span class="material-icons">account_balance</span>
+                                {{ 'pago.transferencia.corto'|trans }}
+                            </span>
+                        {% endif %}
+                    </div>
+                </header>
+
+                <div class="meta-pedido-contable">
+                    <span>
+                        <span class="material-icons">calendar_today</span>
+                        {{ 'logistica.order'|trans }}: {{ pedido.creadoEn|date('d/m/Y') }}
+                    </span>
+                    {% if pedido.enviadoEn %}
+                    <span>
+                        <span class="material-icons">local_shipping</span>
+                        {{ 'estado.enviado'|trans }}: {{ pedido.enviadoEn|date('d/m/Y') }}
+                    </span>
+                    {% endif %}
+                </div>
+
+                {% if pedido.direccionEnvio %}
+                <div class="pedido-address-bar">
+                    <span class="material-icons">location_on</span>
+                    <span>{{ pedido.direccionEnvio.calle }}, {{ pedido.direccionEnvio.codigoPostal }} {{ pedido.direccionEnvio.ciudad }}</span>
+                </div>
+                {% endif %}
+
+                <div class="envoltorio-tabla">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>{{ 'comun.producto'|trans }}</th>
+                                <th>{{ 'comun.cantidad'|trans }}</th>
+                                <th>{{ 'factura.col.precio_unitario'|trans }}</th>
+                                <th>{{ 'comun.subtotal'|trans }}</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for item in pedido.items %}
+                            <tr>
+                                <td class="texto-primario-negrita">{{ item.titulo }}</td>
+                                <td>{{ item.cantidad }}</td>
+                                <td>{{ item.precioUnitario|number_format(2, ',', '.') }} €</td>
+                                <td>{{ item.subtotal|number_format(2, ',', '.') }} €</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                        <tfoot>
+                            <tr>
+                                <td colspan="3"><strong>{{ 'comun.total'|trans }}</strong></td>
+                                <td><strong>{{ pedido.total|number_format(2, ',', '.') }} €</strong></td>
+                            </tr>
+                        </tfoot>
+                    </table>
+                </div>
+
+                {% if pedido.estado in ['ENVIADO', 'PAGADO'] %}
+                <footer class="acciones-pedido-contable">
+                    <a href="{{ path('contabilidad_factura', {id: pedido.id}) }}"
+                       class="boton-accion-contable boton-factura" target="_blank">
+                        <span class="material-icons">description</span>
+                        {{ 'contabilidad.btn_factura'|trans }}
+                    </a>
+                    {% if display != 'PAGADO' and pedido.metodoPago != 'TARJETA' %}
+                    <form method="post"
+                          action="{{ path('contabilidad_registrar_pago', {id: pedido.id}) }}"
+                          class="formulario-pago"
+                          onsubmit="return confirm('{{ 'admin.crud.confirm_delete'|trans|escape('js') }}')">
+                        <input type="hidden" name="_token"
+                               value="{{ csrf_token('pago_' ~ pedido.id) }}">
+                        <div class="referencias-formulario-pago">
+                            <input type="text" name="numero_factura"
+                                   maxlength="100" placeholder="{{ 'contabilidad.movimiento.referencia'|trans }} ({{ 'comun.opcional'|trans }})">
+                            <input type="text" name="numero_operacion_bancaria"
+                                   maxlength="100" placeholder="{{ 'contabilidad.pago.banco'|trans }} ({{ 'comun.opcional'|trans }})">
+                        </div>
+                        <button type="submit" class="boton-accion-contable boton-registrar-pago">
+                            <span class="material-icons">payments</span>
+                            {{ 'contabilidad.pago.registrar'|trans }}
+                        </button>
+                    </form>
+                    {% endif %}
+                </footer>
+                {% endif %}
+
+            </article>
+        {% endfor %}
+
+        {% endif %}
+
+    </div>
+</main>
+{% endblock %}
