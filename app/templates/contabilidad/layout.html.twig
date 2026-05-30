@@ -44,7 +44,11 @@
         var data = {};
         try { data = JSON.parse(e.data); } catch (_) { return; }
         if (data.evento === 'pedido.actualizado' || data.evento === 'movimiento.creado') {
-            showUpdateBanner('{{ 'logistica.update.new'|trans|escape('js') }}');
+            if (typeof window.onMercureUpdate === 'function') {
+                window.onMercureUpdate(data);
+            } else {
+                showUpdateBanner('{{ 'logistica.update.new'|trans|escape('js') }}');
+            }
         }
     };
 

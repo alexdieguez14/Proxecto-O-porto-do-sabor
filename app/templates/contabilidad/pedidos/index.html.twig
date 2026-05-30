@@ -1,4 +1,15 @@
 {% extends 'contabilidad/crud_base.html.twig' %}
+
+{% block javascripts %}
+{{ parent() }}
+<script>
+window.onMercureUpdate = function (data) {
+    if (data.evento === 'pedido.actualizado') {
+        window.location.reload();
+    }
+};
+</script>
+{% endblock %}
 {% from 'components/_filter_bar.html.twig' import filter_bar %}
 
 {% block title %}{{ 'nav.pedidos'|trans }} — {{ 'contabilidad.title'|trans }}{% endblock %}
