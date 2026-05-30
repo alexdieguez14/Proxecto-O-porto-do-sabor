@@ -121,6 +121,7 @@ input[type="email"]::placeholder {
     cursor: pointer;
     margin-top: var(--espacio-sm);
     transition: background .2s;
+    justify-content: center;
 }
 
 .btn:hover {
