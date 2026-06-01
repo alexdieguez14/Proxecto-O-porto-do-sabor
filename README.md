@@ -18,7 +18,7 @@ Aplicación web de gestión empresarial (ERP) con tienda online para una empresa
 
 ```bash
 git clone https://github.com/alexdieguez14/O_porto_do_sabor_Proxecto_Docker.git
-cd O_porto_do_sabor_Proxecto_Docker
+cd Proxecto-O-porto-do-sabor/
 ```
 
 ### 2. Construir y levantar los contenedores
@@ -82,6 +82,7 @@ docker exec symfony-mysql mysql -u root -proot -e "GRANT ALL PRIVILEGES ON symfo
 ```
 
 > Credenciales de la aplicación: usuario `symfony`, contraseña `symfony` (definidas en `docker-compose.yml` y en `app/.env`).
+> Se pueden cambbiar a otro usuario y otra contraseña en los archivos anteriores.
 
 ### 7. Acceder a la aplicación
 
